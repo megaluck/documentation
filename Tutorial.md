@@ -18,6 +18,8 @@ Heading level 1
 I think you should use an
 `<addr>` element here instead.
 
+Heading level 2
+===============
 
 - [x] @mentions, #refs, [links](), **formatting**, and <del>tags</del> supported
 - [x] list syntax required (any unordered or ordered list supported)
