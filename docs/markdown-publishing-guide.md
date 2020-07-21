@@ -337,4 +337,5 @@ public class CarRegistryApp {
         sidechainApp.run();
         System.out.println("Simple Sidechain application successfully started...");
     }
-}```
+}
+```
