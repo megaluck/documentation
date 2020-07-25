@@ -28,7 +28,7 @@ in the order presented here.
     :numbered:
 
     01-install
-    02-templates_placeholders
+    02-blockchain-representation
     03-integrating_applications
     04-plugins
     05-apphooks
