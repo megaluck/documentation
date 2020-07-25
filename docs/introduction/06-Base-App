@@ -1,0 +1,192 @@
+========
+Base App
+========
+
+As was said in previous chapters, SidechainsSDK provides to the developers implemented Consensus Protocol and CCTP, but not only.
+Additionally to this SDK provides basic transactions, network layer, data storing and node configuration, as well as entry points for any custom extension.
+
+Secret / Proof / Proposition
+****************************
+
+* **Secret / Proof / Proposition** - SDK uses its own terms for secret key / public key / signed message and provides various types of them.
+* **Secret** -  Private key 
+* **Proof** -  Signed message
+* SDK provide next implementations for Secret / Proof / Proposition:
+  * Curve 25519 (PrivateKey25519/PublicKey25519Proposition/Signature25519)
+  * VRF based on  ginger-lib (VrfSecretKey/VrfPublicKey/VrfProof)
+  * Schnorr based on ginger-lib (SchnorrSecret/SchnorrPropostion/SchnorrProof)
+
+
+Boxes
+*****
+
+Data in a sidechain is meant to be represented as a Box, that we can see as data kept “closed” by a Proposition, that can be open only with the Proposition’s Secret(s).
+The Sidechain SDK offers two different Box types: Coin Box and non-Coin Box. Non-Coin box represents some unique entity which could be transferred between different owners,
+for example they could be sold. Coin box is a box which contains ZEN, examples of Coin box are RegularBox and ForgingBox. Coin Box can be used to add custom data to an object
+that represents some coins, i.e. that holds an intrinsic defined value. As an example, a developer would extend a Coin Box to manage a time lock on a UTXO, e.g. to implement 
+some kind of smart contract.
+In particular, any box could be logically split in two parts: Box and BoxData (box data are included in the box). Box itself represents the entity in blockchain, 
+i.e. all operations like create/open etc. are performed on boxes. Box data contains information about the entity like value, proposition address and any custom data.
+Every box has its own unique boxId (do not be confused with box type id which are used for serialization). That box id is calculated for each box by next function:
+
+.. code-block:: java
+
+public final byte[] id() {
+   if(id == null) {
+       id = Blake2b256.hash(Bytes.concat(
+               this instanceof CoinsBox ? coinsBoxFlag : nonCoinsBoxFlag,
+               Longs.toByteArray(value()),
+               proposition().bytes(),
+               Longs.toByteArray(nonce()),
+               boxData.customFieldsHash()));
+   }
+   return id;
+}
+
+
+That id is used during transaction verification, so it is important to add custom data  into customFieldsHash()  function.
+
+Next boxes are provided by SDK:
+  * RegularBox -- contains ZEN coins
+  * ForgerBox -- contains ZEN coins are used for forging 
+  * WithdrawalRequestBox -- contain ZEN coins are used to backward transfer, i.e. move coins back to the mainchain  
+SDK developer could declare his own Boxes, please refer to SDK extension chapter.
+
+Transactions
+************
+
+There are two basic transactions: MC2SCAggregatedTransaction and SidechainCoreTransaction.
+MC2SCAggregatedTransaction is actually an implementation of Forward Transfer and can be only added as a part of some MainchainBlock reference data during synchronization with Mainchain.
+When Forger is going to produce a sidechain block and some new mainchain block appears, the forger recreates that mainchain block as a reference that will contain sidechain 
+related data. So, if some Forward Transfer exists in the mainchain block, it will be included into MC2SCAggregatedTransaction and added as a part of the reference.
+SidechainCoreTransaction is the transaction, which can be created by anyone to send coins inside sidechain, create forging stakes or perform withdrawal requests
+(send coins back to the MC). 
+SidechainCoreTransaction can be extended to support custom logic operations. For example, if we think about real-estate sidechain, we can tokenize some private
+property as a specific Box using SidechainCoreTransaction. Please refer to SDK extensions for more details.
+
+Serialization
+*************
+
+Due SDK is based on Scorex, Scorex way for serialization of data is implemented in SDK.. 
+  * Any serialized data like Box/BoxData/Secret/Proof/Transaction implements Scorex BytesSerializable interface/trait.
+  * BytesSerializable declare functions byte[] bytes() and Serializer serializer(). 
+  * Serializer  itself works with Reader/Writer which are wrappers on byte stream. 
+  * Scorex Reader and Writer also implements some functionality like reading/parsing data of integer/long/string etc. 
+  * Serialization and parsing itself implemented in data class by implementation byte[] bytes() (required by BytesSerializable interface) and implementation static function for parsing bytes public static Data parseBytes(byte[] bytes)
+  * Also, for correct parse purposes, special bytes as a unique id of data type is put at the beginning of the byte stream (it done automatically), thus any serialized data shall provide a unique id. Specific serializers shall be set for those unique ids during dependency injection setting as well as custom Serializer shall be put into Custom Serializers Map which are defined at AppModule. Please refer to SDK extension chapter for more information
+
+SidechainNodeView
+*****************
+
+SidechainNodeView is a provider to current Node state including NodeWallet, NodeHistory, NodeState, NodememoryPool and application data as well. SidechainNodeView is accessible during custom API implementation.  
+
+Memory Pool
+***********
+
+Contains not submitted transactions
+
+Node wallet
+***********
+
+Contains available private keys, required for generating correct proofs
+
+State
+*****
+
+Contains information about current node state
+
+History
+*******
+
+Provide access to history, i.e. blocks not only from active chain but from forks as well.
+ 
+Network layer
+*************
+
+Network layer can be divided into communication between Nodes and communication between the node and user.
+Nodes interconnection organized as a peer-to-peer network. Over the network, SDK has the protocol of nodes handshaking, blockchain synchronization, and transactions transmission.
+
+Physical storage
+****************
+
+Physical storage. SDK introduces the unified physical storage interface for this and default implementation based on LevelDB library. Sidechain developers can decide to use the default solution or to provide the custom one. For example, he can decide to use some encrypted storage or some SQL database or even cloud solution.
+
+User specific settings
+**********************
+
+The last but not the least is user specific settings. User has the possibility to define his specific path to the node data storages, wallet seed, node name and api server 
+address/port, etc. To do this he should fill the configuration file in a HOCON notation. Configuration file consists of SDK required fields and application custom fields 
+if needed. Sidechain developers can use com.horizen.settings.SettingsReader utility class to extract Sidechain specific data and Config object itself to get custom parts.
+
+.. code-block:: java
+
+class SettingsReader {
+    public SettingsReader (String userConfigPath, Optional<String> applicationConfigPath)
+
+    public SidechainSettings getSidechainSettings()
+
+    public Config getConfig()
+}
+
+Moreover, if a specific sidechain contains general application settings that should be controlled only by the developer, it is possible to define basic application 
+config that can be passed as an argument to SettingsReader.
+
+
+SidechainApp class
+******************
+
+The starting point of the SDK for each sidechain is the SidechainApp class. Every sidechain application should create an instance of SidechainApp with passing all required parameters to it and then execute the sidechain node flow:
+
+.. code-block:: java
+
+class SidechainApp {
+	public SidechainApp(
+		// Settings:
+		SidechainSettings sidechainSettings,
+		
+		// Custom objects serializers:
+		HashMap<> customBoxSerializers,
+		HashMap<> customBoxDataSerializers,
+		HashMap<> customSecretSerializers,
+		HashMap<> customTransactionSerializers,
+		
+		// Application Node logic extensions:
+		ApplicationWallet applicationWallet,
+		ApplicationState applicationState,
+		
+		// Physical storages:
+		Storage secretStorage,
+		Storage walletBoxStorage,
+		Storage walletTransactionStorage,
+		Storage stateStorage,
+		Storage historyStorage,
+		Storage walletForgingBoxesInfoStorage,
+		Storage consensusStorage,
+		
+		// Custom API calls and Core API endpoints to disable:
+		List<ApplicationApiGroup> customApiGroups,
+		List<Pair<String, String>> rejectedApiPaths
+	)
+	
+	public void run()
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
