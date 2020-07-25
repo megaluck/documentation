@@ -29,13 +29,6 @@ in the order presented here.
 
     01-install
     02-blockchain-representation
-    03-integrating_applications
-    04-plugins
-    05-apphooks
-    06-toolbar
-    07-menu
-    08-wizards
-    09-third_party
 
 If you want to install django CMS into an existing project, or prefer to configure django CMS by
 hand, rather than using the automated installer, see :doc:`/how_to/install` and then follow the
