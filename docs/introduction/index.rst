@@ -29,6 +29,7 @@ in the order presented here.
 
     01-install
     02-blockchain-representation
+    03-Cross-chain-transfer-protocol
 
 If you want to install django CMS into an existing project, or prefer to configure django CMS by
 hand, rather than using the automated installer, see :doc:`/how_to/install` and then follow the
