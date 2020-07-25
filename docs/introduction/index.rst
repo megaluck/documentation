@@ -32,6 +32,7 @@ in the order presented here.
     03-Cross-chain-transfer-protocol
     04-Latus-Consensus
     05-Node-communication
+    06-Base-App
 
 Either way, you'll be able to find support and help from the numerous friendly
 members of the Horizen community,  on our Discord
