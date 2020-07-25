@@ -54,6 +54,18 @@ Installing on Linux OS:
   7. Keep reading this tutorial, and start playing with the code. You will find some sidechain examples in the “examples/simpleapp” directory, that you can customize, start from there! When you are ready to run your standalone sidechain, you can install Maven (link).
   8. To produce your specific sidechain jar files, you can change directory to the repository root and run the “mvn package” command.   
   
+  
+*************************
+Sidechain SDK Components:
+*************************
+
+As a result of step 8, three jar files will be generated:
+  
+  * **sdk/target/Sidechains-SDK-0.2.0.jar** - the main SDK jar file, that contains all the necessary classes and components;
+  * **tools/sctool/target/Sidechains-SDK-ScBootstrappingTools-0.2.0.jar** - executable bootstrap tool. It is used to create the configuration of the new Sidechain. You can find all available commands and examples of usage in the examples/simpleapp/mc_sc_workflow_example.md file;   
+  * **examples/simpleapp/target/Sidechains-SDK-simpleapp-0.2.0.jar** - in contains a Sidechain application example. You can find more details in the examples/simpleapp/readme.md file.
+
+  
 
 
   
