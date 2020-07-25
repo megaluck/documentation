@@ -7,3 +7,4 @@ Documents
    :maxdepth: 16
 
    markdown-publishing-guide
+   testing
