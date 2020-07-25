@@ -100,36 +100,32 @@ Why Horizen Sidechains?
 The first decentralized and fully customizable sidechain protocol in the industry that solves the 
 biggest problems in applying blockchain solutions to real-world use cases.
 
-* A Novel Construction
+* **A Novel Construction**
 
 A revolutionary system of blockchains with decoupled consensus linked through common Cross-Chain Transfer Protocol (CCTP)
 — is indefinitely scalable, fully configurable to meet heterogeneous needs, and inclusive of embedded incentives for endogenous growth.
 
-* Scalability and Flexibility
+* **Scalability and Flexibility**
 
 Zendoo uses a modular protocol that stresses functionality over design choice. Any type of rules can be deployed as a sidechain 
 with this framework – whether it’s a blockchain or other types of computing systems. This modularization enables massive scalability,
 application design freedom, and flexibility such that any component can be changed over time.
 
-* Decentralization
+* **Decentralization**
 
 Zendoo is decentralized in all its components. Decentralization provides resilience and reliability to the network. The Zendoo sidechain
 platform is fueled by a well-adopted cryptocurrency, ZEN, and supported by the largest node infrastructure in the industry. Furthermore,
 Zendoo doesn’t rely on third parties for backward transfers, removing the need for trusted parties and honesty.
 
 
-* Privacy and Auditability
+* **Privacy and Auditability**
   
 Zendoo allows the verification of sidechains by the mainchain, without knowing the internal structure of the sidechain. Zendoo SDK provides
 a set of tools that will enable the creation of auditable and privacy-preserving blockchain applications, a requirement for many real-world 
 applications.
 
-* ...and much more
 
-There are other capable Django-based CMS platforms but here's why you should
-consider django CMS:
-
-* Easy Deployment with the Sidechain SDK
+* **Easy Deployment with the Sidechain SDK**
 
 Zendoo comes with an SDK that includes all necessary components required for building a blockchain in a single toolbox.
 This allows developers to focus only on the specific features of their blockchain instead of low-level tasks, making the
