@@ -142,6 +142,8 @@ Custom Box Data Serializer class creation
 SDK provide base class for Custom Box Data Serializer
 NoncedBoxDataSerializer<D extends NoncedBoxData> where D is type of serialized Custom Box Data
 So creation of Custom Box Data Serializer can be done in next way:
+
 :code:`public class CustomBoxDataSerializer implements NoncedBoxDataSerializer<CustomBoxData>`
+
 That new Custom Box Data Serializer require next:
 
