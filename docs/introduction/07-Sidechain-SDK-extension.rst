@@ -92,11 +92,11 @@ SDK provide base class for any Box Data class:
 
 ::
 
-  AbstractNoncedBoxData<:red:`interpreted text`P extends Proposition, B extends AbstractNoncedBox<P, BD, B>, BD extends AbstractNoncedBoxData<P, B, BD>>
+  AbstractNoncedBoxData<P extends Proposition, B extends AbstractNoncedBox<P, BD, B>, BD extends AbstractNoncedBoxData<P, B, BD>>
 
 
 where
-  
+:red:`interpreted text`
 ::
   
   P extends Proposition -- Proposition type for the box, for common purposes PublicKey25519Proposition could be used as it used in regular boxes
