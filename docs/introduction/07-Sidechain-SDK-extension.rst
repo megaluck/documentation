@@ -11,10 +11,7 @@ As was described before serialization is performed via special Serializer class.
 shall declare those Serializers for SDK, thus SDK will be able to use proper serializer for custom data. So full actions for describe serialization/parsing for some
 CustomData are next:
 
-  * :java:Implement BytesSerializable interface for CustomData, i.e.  functions byte[] bytes() and Serializer serializer(), also implement public static CustomData parseBytes(byte[] bytes) function for parsing from bytes
+  * :kbd:`Implement BytesSerializable interface` for :kbd:`CustomData`, i.e.  functions byte[] bytes() and Serializer serializer(), also implement public static CustomData parseBytes(byte[] bytes) function for parsing from bytes
 
-:php:`$result = $a + 23;`
-:typoscript:`lib.hello.value = Hello World!`
-:file:`/etc/passwd`
-:kbd:`ctrl` + :kbd:`s`
+
 
