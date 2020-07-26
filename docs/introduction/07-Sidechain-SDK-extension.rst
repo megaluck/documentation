@@ -92,10 +92,10 @@ SDK provide base class for any Box Data class:
 
 ::
 
-  AbstractNoncedBoxData<P extends Proposition, B extends AbstractNoncedBox<P, BD, B>, BD extends AbstractNoncedBoxData<P, B, BD>>
+  AbstractNoncedBoxData<:red:`interpreted text`P extends Proposition, B extends AbstractNoncedBox<P, BD, B>, BD extends AbstractNoncedBoxData<P, B, BD>>
 
 
-  where
+where
   
 ::
   
