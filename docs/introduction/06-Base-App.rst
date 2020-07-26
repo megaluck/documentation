@@ -5,6 +5,10 @@ Base App
 As was said in previous chapters, SidechainsSDK provides to the developers implemented Consensus Protocol and CCTP, but not only.
 Additionally to this SDK provides basic transactions, network layer, data storing and node configuration, as well as entry points for any custom extension.
 
+========
+Concepts
+========
+
 Secret / Proof / Proposition
 ****************************
 
