@@ -24,7 +24,7 @@ creation of a brand new project, and build on each other, so it's recommended to
 in the order presented here.
 
 .. toctree::
-    :maxdepth: 1
+    :maxdepth: 2
     :numbered:
 
     01-install
