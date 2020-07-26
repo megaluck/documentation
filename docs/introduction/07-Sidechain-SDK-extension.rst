@@ -13,4 +13,8 @@ CustomData are next:
 
   * :java:Implement BytesSerializable interface for CustomData, i.e.  functions byte[] bytes() and Serializer serializer(), also implement public static CustomData parseBytes(byte[] bytes) function for parsing from bytes
 
+:php:`$result = $a + 23;`
+:typoscript:`lib.hello.value = Hello World!`
+:file:`/etc/passwd`
+:kbd:`ctrl` + :kbd:`s`
 
