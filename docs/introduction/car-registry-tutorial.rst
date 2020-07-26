@@ -85,5 +85,231 @@ So overall next classes will be created:
     
     public class CarBoxData extends AbstractNoncedBoxData<PublicKey25519Proposition, CarBox, CarBoxData>
 
+  ::
+    
+    public class CarSellOrder extends AbstractNoncedBox<PublicKey25519Proposition, CarSellOrderData, CarSellOrder>
+
+  ::
+  
+    public class CarSellOrderSerializer implements BoxSerializer<CarSellOrder>
+   
+  ::
+  
+    public class CarSellOrderData extends AbstractNoncedBoxData<PublicKey25519Proposition, CarSellOrder, CarSellOrderData>
+    
+  ::
+  
+    public class CarSellOrderDataSerializer implements NoncedBoxDataSerializer<CarSellOrderData>
+
+
+Implementation of CarBoxData
+****************************
+  
+  CarBoxData is implemented according description from “Custom Box Data Creation” chapter as public class CarBoxData extends AbstractNoncedBoxData<PublicKey25519Proposition, CarBox, CarBoxData> with custom data as:
+
+    ::
+    
+        private final BigInteger vin;
+        private final int year;
+        private final String model;
+        private final String color;
+        private final String description;
+        
+        public byte[] bytes() {
+         return Bytes.concat(
+             proposition().bytes(),
+             Longs.toByteArray(value()),
+             Ints.toByteArray(year),
+             Ints.toByteArray(model.getBytes().length),
+             model.getBytes(),
+             Ints.toByteArray(color.getBytes().length),
+             color.getBytes(),
+             Ints.toByteArray(description.getBytes().length),
+             description.getBytes(),
+             vin.toByteArray()
+         );
+        }
+
+1. Serialization is implemented as SDK developer, as described before, shall include proposition and value into serialization. Ordering is not important.
+2. CarBoxData shall have a value parameter as a Scorex limitation, but in our business logic CarBoxData does not use that data at all because each car is unique and doesn't have any inherent value. Thus value is hidden, i.e. value is not present in the constructor parameter and just set by default to “1” in the class constructor.
+3. public byte[] customFieldsHash() shall be implemented because we introduce some new custom data.
+
+Implementation of CarBoxDataSerializer
+**************************************
+
+CarBoxDataSerializer is implemented according to the description from “Custom Box Data Serializer Creation” chapter as 
+public class CarBoxDataSerializer implements NoncedBoxDataSerializer<CarBoxData>. 
+Nothing special to note about.
+
+Implementation of CarBox
+************************
+
+CarBox is implemented according to description from “Custom Box Class creation” chapter as
+public class CarBox extends AbstractNoncedBox<PublicKey25519Proposition, CarBoxData, CarBox>
+Few comments about implementation:
+
+  1. As a serialization part SDK developer shall include long nonce as a part of serialization, thus serialization is implemented in next way:
+  
+    :: 
+      public byte[] bytes()
+      {
+       return Bytes.concat(
+           Longs.toByteArray(nonce),
+           CarBoxDataSerializer.getSerializer().toBytes(boxData)
+       );
+      }
+  
+  2. CarBox defines his own unique id by implementation of the function public byte boxTypeId(). Similar function is defined in CarBoxData but it is a different ids despite value returned in CarBox and CarBoxData is the same.
+  
+
+Implementation of CarBoxSerializer
+**********************************
+
+CarBoxSerializer is implemented according to the description from “Custom Box Data Serializer Creation” chapter as 
+public class CarBoxSerializer implements BoxSerializer<CarBox>. 
+Nothing special to note about.
+
+Implementation of CarSellOrderData
+**********************************
+
+CarSellOrderData is implemented according description from “Custom Box Data Creation” chapter as public class CarSellOrderData extends AbstractNoncedBoxData<PublicKey25519Proposition, CarSellOrder, CarSellOrderData> with custom data as:
+private final PublicKey25519Proposition sellerProposition;
+private final BigInteger vin;
+
+Few comments about implementation:
+  1. Proposition and value shall be included in serialization as it done in CarBoxData 
+  2. Id of that box data shall different than in CarBoxData   
+
+      
+Implementation of CarSellOrderDataSerializer
+********************************************
+
+CarSellOrderDataSerializer is implemented according to the description from “Custom Box Data Serializer Creation” chapter as 
+public class CarSellOrderDataSerializer implements NoncedBoxDataSerializer<CarSellOrderData>. 
+Nothing special to note about.
+
+Implementation of CarSellOrder
+******************************
+
+CarSellorder is implemented according to description from “Custom Box Class creation” chapter as
+public class CarSellOrder extends AbstractNoncedBox<PublicKey25519Proposition, CarSellOrderData, CarSellOrder>
+Nothing special to note about.
+
+Extend API by creating new transactions Car creation transaction and Car sell Order transaction
+***********************************************************************************************
+
+For our purpose we need to define two transaction  Car creation transaction and Car sell Order transaction  so according custom API extension manual we shall do next: 
+
+a) Create a new class CarApi which extends ApplicationApiGroup class, add that new class to Route by it in SimpleAppModule, like described in Custom API manual. In our case it is done in CarRegistryAppModule by 
+
+  * Creating customApiGroups as a list of custom API Groups:
+  * List<ApplicationApiGroup> customApiGroups = new ArrayList<>();
+  * Adding created CarApi into customApiGroups: 
+  customApiGroups.add(new CarApi());
+  * Binding that custom api group via dependency injection:
+    ::
+    
+      bind(new TypeLiteral<List<ApplicationApiGroup>> () {})
+      .annotatedWith(Names.named("CustomApiGroups"))
+      .toInstance(customApiGroups);
+      
+b) Define Car creation transaction.
+
+  1. Defining request class/JSON request body
+     As input for the transaction we expected: 
+     Regular box id  as input for paying fee; 
+     Fee value; 
+     Proposition address which will be recognized as a Car Proposition; 
+     Vehicle identification number of car. So next request class shall be created:
+     
+  ::
+  
+    public static class CreateCarBoxRequest {
+    private BigInteger vin;
+    private int year;
+    private String model;
+    private String color;
+    private String description;
+    private PublicKey25519Proposition carProposition;
+
+    private int fee;
+    private String boxId;
+
+    public BigInteger getVin() {
+        return vin;
+    }
+
+    public void setVin(String vin) {
+        this.vin = new BigInteger(vin);
+    }
+
+
+    public int getYear() {
+        return year;
+    }
+
+    public void setYear(int year) {
+        this.year = year;
+    }
+
+    public String getModel() {
+        return model;
+    }
+
+    public void setModel(String model) {
+        this.model = model;
+    }
+
+    public String getColor() {
+        return color;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public PublicKey25519Proposition getCarProposition() {
+        return carProposition;
+    }
+
+    public void setCarProposition(String propositionHexBytes) {
+        byte[] propositionBytes = BytesUtils.fromHexString(propositionHexBytes);
+        carProposition = new PublicKey25519Proposition(propositionBytes);
+    }
+
+
+    public int getFee() {
+        return fee;
+    }
+
+    public void setFee(int fee) {
+        this.fee = fee;
+    }
+
+    public String getBoxId() {
+        return boxId;
+    }
+
+    public void setBoxId(String boxId) {
+        this.boxId = boxId;
+    }
+}
+
+
+
+
+
+
+
+
+
 
 
