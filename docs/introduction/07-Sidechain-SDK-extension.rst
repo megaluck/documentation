@@ -2,9 +2,9 @@
 Sidechain SDK extension
 =======================
 
-******************
+
 Data serialization
-******************
+##################
 
 Any data like Box/BoxData/Secret/Proposition/Proof/Transaction shall provide a way to  serialize itself to bytes and provide a way to parse it from bytes.
 As was described before serialization is performed via special Serializer class. Any custom data, beside defining own Serializer and definition of parsing/serializing,
@@ -60,7 +60,7 @@ where  :kbd:`BoxSerializer<Box<Proposition>>>`  -- common serializer type :kbd:`
 :kbd:`customBoxSerializers` - created map with all defined custom serializers. Overall we have the next expected type and property name.
 
 Custom box creation
-*******************
+###################
 
   a) SDK Box extension Overview
 
@@ -86,7 +86,7 @@ To build a real application, a developer will need more than just receive, trans
 +---------------------------------------+------------------------------------------------------------------------------------+
 
 Custom Box Data class creation
-******************************
+##############################
 
 SDK provide base class for any Box Data class: 
 
@@ -137,7 +137,7 @@ That new custom box data class require next:
 
 
 Custom Box Data Serializer class creation
-*****************************************
+#########################################
 
 SDK provide base class for Custom Box Data Serializer
 NoncedBoxDataSerializer<D extends NoncedBoxData> where D is type of serialized Custom Box Data
@@ -169,7 +169,7 @@ Class shall be converted to singleton, for example it could be done in next way:
   }
   
 Custom Box class creation
-*************************
+#########################
 
 SDK provide base class for creation Custom Box:
 
@@ -189,7 +189,7 @@ The Custom Box itself require implementation of next functionality:
     * Providing box type id by implementation of function  public byte boxTypeId() which return custom box type id. And, finally, proper serializer for the Custom Box shall be returned by implementation of function public BoxSerializer serializer()
 
 Custom Box Serializer Class
-***************************
+###########################
 
 SDK provide base class for Custom Box Serializer
 BoxSerializer<B extends Box> where B is type of serialized Custom Box
@@ -216,17 +216,17 @@ by implementation of function public CustomBox parse(Reader reader)
       
       
 Specific actions for extension of Coin-box
-******************************************
+###########################################
 
 Coin box is created and extended as a usual non-coin box, only one additional action is required: Coin box class shall also implements interface CoinsBox<P extends PublicKey25519Proposition> interface without any additional function implementations, i.e. it is a mixin interface.
 
 Transaction extension
-*********************
+#####################
 
 Transaction in SDK is represented by public abstract class BoxTransaction<P extends Proposition, B extends Box<P>> extends Transaction class. That class provides access to data like which boxes will be created, unlockers for input boxes, fee, etc. SDK developer could add custom transaction check by implement custom ApplicationState (see appropriate chapter for it)
 
 ApplicationState and Wallet
-***************************
+###########################
 
  ApplicationState:
  
@@ -255,7 +255,7 @@ Overall next custom state checks could be done here:
   * public Try<ApplicationState> onRollback(byte[] version) -- any specific action after rollback of State (for example in case of fork/invalid block) could be defined here
   
 Application Wallet 
-******************
+##################
 
 The Wallet by default keeps user secret info and related balances. The actual data is updated when the new block is applied to the chain or when some blocks are reverted. Developers can specify custom secret types that will be processed by Wallet. But it may be not enough, so he may extend the logic using ApplicationWallet:
 
@@ -272,7 +272,7 @@ For example, some developer needs to have some event-based data, like an auction
 
 
 Custom API creation 
-*******************
+###################
 
   Steps to extend the API:
   
