@@ -171,4 +171,237 @@ Class shall be converted to singleton, for example it could be done in next way:
 Custom Box class creation
 *************************
 
+SDK provide base class for creation Custom Box:
 
+:code:`public class CustomBox extends AbstractNoncedBox<PublicKey25519Proposition, CustomBoxData, CustomBoxBox>`
+
+As a parameters for **AbstractNoncedBox** three template parameters shall be provided:
+:code:`P extends Proposition`- Proposition type for the box, for common purposes 
+PublicKey25519Proposition could be used as it used in regular boxes
+BD extends AbstractNoncedBoxData<P, B, BD> -- Definition of type for Box Data which contains all custom data for new custom box
+B extends AbstractNoncedBox<P, BD, B> -- Definition of type for Box itself, required for description inside of new Custom Box data.
+
+The Custom Box itself require implementation of next functionality:
+  1. Serialization definition
+
+    * Box itself shall provide the way to be serialized into bytes, thus function public byte[] bytes() shall be implemented 
+    * Function public static CarBox parseBytes(byte[] bytes) for creation of a new Car Box object from bytes, 
+    * Providing box type id by implementation of function  public byte boxTypeId() which return custom box type id. And, finally, proper serializer for the Custom Box shall be returned by implementation of function public BoxSerializer serializer()
+
+Custom Box Serializer Class
+***************************
+
+SDK provide base class for Custom Box Serializer
+BoxSerializer<B extends Box> where B is type of serialized Custom Box
+So creation of Custom Box Serializer can be done in next way:
+ public class CustomBoxSerializer implements NoncedBoxSerializer<CustomBox>
+That new Custom Box Serializer require next:
+
+  1. Definition of function for writing Custom Box into the Scorex Writer by implementation of public void serialize(CustomBox box, Writer writer)function.
+  2. Definition of function for reading Custom Box from Scorex Reader
+by implementation of function public CustomBox parse(Reader reader)
+  3. Class shall be converted to singleton, for example it could be done in next way:
+
+    ::
+    
+      private static final CustomBoxSerializer serializer = new CustomBoxSerializer();
+
+      private CustomBoxSerializer() {
+       super();
+      }
+
+      public static CustomBoxSerializer getSerializer() {
+       return serializer;
+      }
+      
+      
+Specific actions for extension of Coin-box
+******************************************
+
+Coin box is created and extended as a usual non-coin box, only one additional action is required: Coin box class shall also implements interface CoinsBox<P extends PublicKey25519Proposition> interface without any additional function implementations, i.e. it is a mixin interface.
+
+Transaction extension
+*********************
+
+Transaction in SDK is represented by public abstract class BoxTransaction<P extends Proposition, B extends Box<P>> extends Transaction class. That class provides access to data like which boxes will be created, unlockers for input boxes, fee, etc. SDK developer could add custom transaction check by implement custom ApplicationState (see appropriate chapter for it)
+
+ApplicationState and Wallet
+***************************
+
+ ApplicationState:
+ 
+  ::
+  
+    interface ApplicationState {
+    boolean validate(SidechainStateReader stateReader, SidechainBlock block);
+
+    boolean validate(SidechainStateReader stateReader, BoxTransaction<Proposition, Box<Proposition>> transaction);
+
+    Try<ApplicationState> onApplyChanges(SidechainStateReader stateReader, byte[] version, List<Box<Proposition>> newBoxes, List<byte[]> boxIdsToRemove);
+
+    Try<ApplicationState> onRollback(byte[] version);
+    }
+
+For example, the custom application may have the possibility to tokenize cars by creation of Box entries - let’s call them CarBox. Each CarBox token should represent a unique car by having a unique VIN (Vehicle Identification Number). To do this Sidechain developer may define ApplicationState where to keep the list of actual VINs and reject transactions with CarBox tokens with VIN already existing in the system.
+
+Overall next custom state checks could be done here:
+
+  * public boolean validate(SidechainStateReader stateReader, SidechainBlock block) --  any custom block validation could be done here if function return false then block will note be accepted by Sidechain Node at all
+  
+  * public boolean validate(SidechainStateReader stateReader, BoxTransaction<Proposition, Box<Proposition>> transaction) -- any custom checks for transaction could be done here, if function return false then transaction is assumed as invalid and for example will not be included in a memory pool. 
+
+  * public Try<ApplicationState> onApplyChanges(SidechainStateReader stateReader, byte[] version, List<Box<Proposition>> newBoxes, List<byte[]> boxIdsToRemove) -- any specific action after block applying in State could be defined here.
+  
+  * public Try<ApplicationState> onRollback(byte[] version) -- any specific action after rollback of State (for example in case of fork/invalid block) could be defined here
+  
+Application Wallet 
+******************
+
+The Wallet by default keeps user secret info and related balances. The actual data is updated when the new block is applied to the chain or when some blocks are reverted. Developers can specify custom secret types that will be processed by Wallet. But it may be not enough, so he may extend the logic using ApplicationWallet:
+
+::
+
+  interface ApplicationWallet {
+    void onAddSecret(Secret secret);
+    void onRemoveSecret(Proposition proposition);
+    void onChangeBoxes(byte[] version, List<Box<Proposition>> boxesToUpdate, List<byte[]> boxIdsToRemove);
+    void onRollback(byte[] version);
+  }
+
+For example, some developer needs to have some event-based data, like an auction slot that belongs to him and will start in 10 blocks and will expire in 100 blocks. So in ApplicationWallet he will additionally keep this event-based info and will react when a new block is going to be applied (onChangeBoxes method execution) to activate or deactivate that slot in ApplicationWallet.
+
+
+Custom API creation 
+*******************
+
+  Steps to extend the API:
+  
+    1. Create a class (e.g. MyCustomApi) which extends the ApplicationApiGroup abstract class (you could create multiple classes, for example to group functions by functionality).
+
+    2. In a class where all dependencies are declared (e.g. SimpleAppModule in our Simple App example ) we need to create the following variable: List<ApplicationApiGroup> customApiGroups = new ArrayList<>();
+
+    3. Create a new instance of the class MyCustomApi, and then add it to customApiGroups 
+
+At this point MyCustomApi will be included in the API route, but we still need to declare the HTTP address. To do that, please:
+
+  1. Override the basepath() function -
+  
+    ::
+    
+      public String basePath() {
+       return "myCustomAPI";
+      }
+
+Where "myCustomAPI" is part of the HTTP path for that API group 
+
+
+  2.  Define HTTP request classes -- i.e. the json body in the HTTP request will be converted to that request class. For example, if as “request” we want to have byte array data with some integer value, we could define the following class:
+  
+  ::
+  
+    public static class MyCustomRequest {
+     byte[] someBytes;
+     int number;
+
+    public byte[] getSomeBytes(){
+     return someBytes;
+    }
+
+    public void setSomeBytes(String bytesInHex){
+     someBytes = BytesUtils.fromHexString(bytesInHex);
+    }
+
+    public int getNumber(){
+     return number;
+    }
+
+    public void setNumber(int number){
+    this.number = number;
+    }
+    }
+
+Setters are defined to expect data from JSON. So, for the given MyCustomRequest we could use next JSON: 
+
+    ::
+    
+      {
+      "number": "342",
+      "someBytes": "a5b10622d70f094b7276e04608d97c7c699c8700164f78e16fe5e8082f4bb2ac"
+      }
+
+ And it will be converted to an instance of the MyCustomRequest class with vin = 342, and someBytes = bytes which are represented by hex string "a5b10622d70f094b7276e04608d97c7c699c8700164f78e16fe5e8082f4bb2ac"
+
+
+  3. Define a function to process the HTTP request: Currently we support three types of function’s signature:
+  
+      * ApiResponse custom_function_name(Custom_HTTP_request_type) -- a function that by default does not have access to SidechainNodeView. To have access to SidechainNodeViewHolder, this special call should be used: getFunctionsApplierOnSidechainNodeView().applyFunctionOnSidechainNodeView(Function<SidechainNodeView, T> function)
+      
+      * ApiResponse custom_function_name(SidechainNodeView, Custom_HTTP_request_type) -- a function that offers by default access to SidechainNodeView
+      
+      * ApiResponse custom_function_name(SidechainNodeView) -- a function to process empty HTTP requests, i.e. JSON body shall be empty
+      
+Inside those functions all required action could be defined, and with them also function response results. Responses could be based on SuccessResponse or ErrorResponse interfaces. The JSON response will be formatted by using the defined getters.  
+
+  4. Add response classes
+
+As a result of an API request some result shall be sent back via HTTP response. In a common case we could have two different types of  responses: operation is successful and some error had appeared during processing of the API request. SDK provides next way to declare those API responses:
+For successful response implement SuccessResponse interface with data to be returned. That data shall be accessible via getters. Also that class shall have next annotation which requires for marshaling and correct convertation to JSON: @JsonView(Views.Default.class) . You could define here some other custom class for JSON marshaling. For example if some string shall be returned then next response class could be defined:
+
+  ::
+  
+    @JsonView(Views.Default.class)
+    class CustomSuccessResponce implements SuccessResponse{
+    private final String response;
+
+    public CustomSuccessResponce (String response) {
+    this.response = response;
+    }
+
+    public String getResponse() {
+    return response;
+    }
+    }
+
+In such case API response will be represented in next JSON form:
+
+  ::
+  
+    {"result": {“response” : “response from CustomSuccessResponse object”}}
+    
+In case if something going wrong and error shall be returned then response shall implements ErrorResponse interface which by default have next functions to be implemented:
+
+public String code() -- error code
+
+public String description() -- error description 
+
+public Option<Throwable> exception() -- Caught exception during API processing
+
+As a result next JSON will be returned in case of error:
+
+  ::
+  
+    {
+    "error": {
+    "code": "Defined error code",
+    "description": "Defined error description",
+    "Detail": “Exception stack trace”
+    }
+    }
+    
+  5. Add defined route processing functions to route
+
+  Override public List<Route> getRoutes() function by returning all defined routes, for example:
+
+    ::
+      
+      List<Route> routes = new ArrayList<>();
+      routes.add(bindPostRequest("getNSecrets", this::getNSecretsFunction, GetSecretRequest.class));
+      routes.add(bindPostRequest("getNSecretOtherImplementation", this::getNSecretOtherImplementationFunction, GetSecretRequest.class));
+      routes.add(bindPostRequest("getAllSecretByEmptyHttpBody", this::getAllSecretByEmptyHttpBodyFunction));
+      return routes;
+      
+ Where "getNSecrets", "getNSecretOtherImplementation", "getAllSecretByEmptyHttpBody" are defined API end points; this::getNSecretsFunction, this::getNSecretOtherImplementationFunction, getAllSecretByEmptyHttpBodyFunction binded functions;
+GetSecretRequest.class -- class for defining type of HTTP request
+
+
+      
