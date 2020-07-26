@@ -96,7 +96,7 @@ SDK provide base class for any Box Data class:
 
 
 where
-:red:`interpreted text`
+
 ::
   
   P extends Proposition -- Proposition type for the box, for common purposes PublicKey25519Proposition could be used as it used in regular boxes
