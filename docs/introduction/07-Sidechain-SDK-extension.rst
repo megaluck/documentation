@@ -122,6 +122,7 @@ So creation of new Custom Box Data will be created in next way:
 public class CustomBoxData extends AbstractNoncedBoxData<PublicKey25519Proposition, CustomBox, CustomBoxData>
 
 That new custom box data class require next:
+
 1. Custom data definition
   * Custom data itself
   * Hash of all added custom data shall be returned in public byte[] customFieldsHash() function, otherwise custom data will not be “protected”, i.e. some malicious actor        could change custom data during transaction creation. 
