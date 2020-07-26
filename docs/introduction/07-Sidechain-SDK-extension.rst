@@ -47,3 +47,16 @@ Where Common serializer type and Bound property name could have next values
 | CustomTransactionSerializers   |  TransactionSerializer<BoxTransaction  |                                  
 |                                |  <Proposition, Box<Proposition>>>      |
 +--------------------------------+----------------------------------------+
+
+For example: 
+
+::
+
+  bind(new TypeLiteral<HashMap<Byte, BoxSerializer<Box<Proposition>>>>() {})
+       .annotatedWith(Names.named("CustomBoxSerializers"))
+       .toInstance(customBoxSerializers);
+
+where  :kbd:`BoxSerializer<Box<Proposition>>>`  -- common serializer type :kbd:`"CustomBoxSerializers"` - bound property name 
+:kbd:`customBoxSerializers` - created map with all defined custom serializers. Overall we have the next expected type and property name.
+
+
