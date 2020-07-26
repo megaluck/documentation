@@ -67,22 +67,54 @@ Custom box creation
 To build a real application, a developer will need more than just receive, transfer and send coins back. A distributed app, built on a sidechain, will typically have to define some custom data that the sidechain users will be able to exchange according to a defined logic. Creation of new Boxes requires definition of new four classes. We will use name Custom Box as a definition for some abstract custom Box:
 
 
-Class type
-Class description
-Custom Box Data class 
--- Contains all custom data definitions plus proposition for Box
--- Provide required information for serialization of Box Data
--- Define the way for creation new Custom Box from current Custom Box Data
-Custom Box Data Serializer Singleton 
--- Define the way how to parse bytes from Reader into Custom Box Data object
--- Define the way how to put boxData object into Writer
-Parsing/Serialization itself could be defined in Custom Box Data class
-Custom Box
-Representation new entity in Sidechain, contains appropriate Custom Box Data class
-Custom Box Serializer Singleton
--- Define the way how to parse bytes from Reader into Box Data object
--- Define the way how to put boxData object into Writer
-Parsing/Serialization itself could be defined in Box Data class
++---------------------------------------+------------------------------------------------------------------------------------+
+| Class type                            | Class description                                                                  |
++=======================================+====================================================================================+
+| Custom Box Data class                 | -- Contains all custom data definitions plus proposition for Box                   |
+|                                       | -- Provide required information for serialization of Box Data                      |
+|                                       | -- Define the way for creation new Custom Box from current Custom Box Data         |
++---------------------------------------+------------------------------------------------------------------------------------+
+| Custom Box Data Serializer Singleton  | -- Define the way how to parse bytes from Reader into Custom Box Data object       |
+|                                       | -- Define the way how to put boxData object into Writer                            |
+|                                       | Parsing/Serialization itself could be defined in Custom Box Data class             |
++---------------------------------------+------------------------------------------------------------------------------------+
+| Custom Box                            | Representation new entity in Sidechain, contains appropriate Custom Box Data class |
++---------------------------------------+------------------------------------------------------------------------------------+
+| Custom Box Serializer Singleton       | -- Define the way how to parse bytes from Reader into Box Data object              |
+|                                       | -- Define the way how to put boxData object into Writer                            |
+|                                       | Parsing/Serialization itself could be defined in Box Data class                    |
++---------------------------------------+------------------------------------------------------------------------------------+
 
+Custom Box Data class creation
+******************************
+
+SDK provide base class for any Box Data class: 
+
+::
+
+  AbstractNoncedBoxData<P extends Proposition, B extends AbstractNoncedBox<P, BD, B>, BD extends AbstractNoncedBoxData<P, B, BD>>
+  
+  where
+  
+::
+  
+  P extends Proposition -- Proposition type for the box, for common purposes PublicKey25519Proposition could be used as it used in regular boxes
+BD extends AbstractNoncedBoxData<P, B, BD>
+
+- Definition of type for Box Data which contains all custom data for new custom box
+
+::
+  
+  B extends AbstractNoncedBox<P, BD, B>
+  
+Definition of type for Box itself, required for description inside of new Custom Box data 
+
+
+That base class provide next data by default:
+::
+
+  proposition of type P long value
+
+value of that box if required, that value is important in case if Box is coin Box, otherwise it will be used in custom logic only. In common case for non-Coin box it could be always equal 1 
 
 
