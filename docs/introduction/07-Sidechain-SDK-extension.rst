@@ -23,6 +23,7 @@ CustomData are next:
   
 * Bind map with custom serializers to your application:
 ::
+ 
  TypeLiteral<HashMap<Byte, Common serializer type>() {})
        .annotatedWith(Names.named(Bound property name))
        .toInstance(Created map with custom serializers);
