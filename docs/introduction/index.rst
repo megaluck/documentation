@@ -33,6 +33,7 @@ in the order presented here.
     04-Latus-Consensus
     05-Node-communication
     06-Base-App
+    07-Sidechain-SDK-extension
 
 Either way, you'll be able to find support and help from the numerous friendly
 members of the Horizen community,  on our Discord
