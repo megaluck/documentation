@@ -17,7 +17,17 @@ CustomData are next:
   
   * Provide a unique id for that data type by implementing a special function. For example for box data type it is the function  :kbd:`public byte boxTypeId()`, for other data types the function name could be different and you will be obliged to implement it. 
   
-  * :kbd:`Map<Byte, BoxSerializer<Box<Proposition>>> customBoxSerializers = new HashMap<>()`; where key is data type id and value is CustomSerializer for those data type id.
+  * :kbd:`Map<Byte, BoxSerializer<Box<Proposition>>> customBoxSerializers = new HashMap<>();` where key is data type id and value is CustomSerializer for those data type id.
+  
+  * Add your custom serializer into the map, for example it could be something  like :kbd:`customBoxSerializers.put((byte)MY_CYSTOM_BOX_ID, (BoxSerializer) CustomBoxSerializer.getSerializer());`
+  
+  * Bind map with custom serializers to your application:
+   ::
+    TypeLiteral<HashMap<Byte, Common serializer type>() {})
+       .annotatedWith(Names.named(Bound property name))
+       .toInstance(Created map with custom serializers);
+ Where Common serializer type and Bound property name could have next values
+
 
 
 
