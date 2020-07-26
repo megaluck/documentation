@@ -403,7 +403,8 @@ As a result next JSON will be returned in case of error:
  Where "getNSecrets", "getNSecretOtherImplementation", "getAllSecretByEmptyHttpBody" are defined API end points; this::getNSecretsFunction, this::getNSecretOtherImplementationFunction, getAllSecretByEmptyHttpBodyFunction binded functions;
 GetSecretRequest.class -- class for defining type of HTTP request
 
-.. seealso:: This is a simple **seealso** note.
 
-
+.. warning::
+   test the check and go ahead anyway using the ``-s``
+   flag; **note that this may overwrite existing files**.
       
