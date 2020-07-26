@@ -29,19 +29,19 @@ In particular, any box could be logically split in two parts: Box and BoxData (b
 i.e. all operations like create/open etc. are performed on boxes. Box data contains information about the entity like value, proposition address and any custom data.
 Every box has its own unique boxId (do not be confused with box type id which are used for serialization). That box id is calculated for each box by next function:
 
-.. code-block:: java
+::
 
-public final byte[] id() {
-   if(id == null) {
-       id = Blake2b256.hash(Bytes.concat(
-               this instanceof CoinsBox ? coinsBoxFlag : nonCoinsBoxFlag,
-               Longs.toByteArray(value()),
-               proposition().bytes(),
-               Longs.toByteArray(nonce()),
-               boxData.customFieldsHash()));
-   }
-   return id;
-}
+	public final byte[] id() {
+	   if(id == null) {
+	       id = Blake2b256.hash(Bytes.concat(
+		       this instanceof CoinsBox ? coinsBoxFlag : nonCoinsBoxFlag,
+		       Longs.toByteArray(value()),
+		       proposition().bytes(),
+		       Longs.toByteArray(nonce()),
+		       boxData.customFieldsHash()));
+	   }
+	   return id;
+	}
 
 
 That id is used during transaction verification, so it is important to add custom data  into customFieldsHash()  function.
@@ -118,15 +118,15 @@ The last but not the least is user specific settings. User has the possibility t
 address/port, etc. To do this he should fill the configuration file in a HOCON notation. Configuration file consists of SDK required fields and application custom fields 
 if needed. Sidechain developers can use com.horizen.settings.SettingsReader utility class to extract Sidechain specific data and Config object itself to get custom parts.
 
-.. code-block:: java
+::
 
-class SettingsReader {
-    public SettingsReader (String userConfigPath, Optional<String> applicationConfigPath)
+	class SettingsReader {
+	    public SettingsReader (String userConfigPath, Optional<String> applicationConfigPath)
 
-    public SidechainSettings getSidechainSettings()
+	    public SidechainSettings getSidechainSettings()
 
-    public Config getConfig()
-}
+	    public Config getConfig()
+	}
 
 Moreover, if a specific sidechain contains general application settings that should be controlled only by the developer, it is possible to define basic application 
 config that can be passed as an argument to SettingsReader.
@@ -137,39 +137,39 @@ SidechainApp class
 
 The starting point of the SDK for each sidechain is the SidechainApp class. Every sidechain application should create an instance of SidechainApp with passing all required parameters to it and then execute the sidechain node flow:
 
-.. code-block:: java
+::
 
-class SidechainApp {
-	public SidechainApp(
-		// Settings:
-		SidechainSettings sidechainSettings,
-		
-		// Custom objects serializers:
-		HashMap<> customBoxSerializers,
-		HashMap<> customBoxDataSerializers,
-		HashMap<> customSecretSerializers,
-		HashMap<> customTransactionSerializers,
-		
-		// Application Node logic extensions:
-		ApplicationWallet applicationWallet,
-		ApplicationState applicationState,
-		
-		// Physical storages:
-		Storage secretStorage,
-		Storage walletBoxStorage,
-		Storage walletTransactionStorage,
-		Storage stateStorage,
-		Storage historyStorage,
-		Storage walletForgingBoxesInfoStorage,
-		Storage consensusStorage,
-		
-		// Custom API calls and Core API endpoints to disable:
-		List<ApplicationApiGroup> customApiGroups,
-		List<Pair<String, String>> rejectedApiPaths
-	)
-	
-	public void run()
-}
+	class SidechainApp {
+		public SidechainApp(
+			// Settings:
+			SidechainSettings sidechainSettings,
+
+			// Custom objects serializers:
+			HashMap<> customBoxSerializers,
+			HashMap<> customBoxDataSerializers,
+			HashMap<> customSecretSerializers,
+			HashMap<> customTransactionSerializers,
+
+			// Application Node logic extensions:
+			ApplicationWallet applicationWallet,
+			ApplicationState applicationState,
+
+			// Physical storages:
+			Storage secretStorage,
+			Storage walletBoxStorage,
+			Storage walletTransactionStorage,
+			Storage stateStorage,
+			Storage historyStorage,
+			Storage walletForgingBoxesInfoStorage,
+			Storage consensusStorage,
+
+			// Custom API calls and Core API endpoints to disable:
+			List<ApplicationApiGroup> customApiGroups,
+			List<Pair<String, String>> rejectedApiPaths
+		)
+
+		public void run()
+	}
 
 
 The SidechainApp instance can be instantiated directly or through Guice DI library.
