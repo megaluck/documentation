@@ -301,8 +301,107 @@ b) Define Car creation transaction.
     public void setBoxId(String boxId) {
         this.boxId = boxId;
     }
-}
+    }
 
+Request class shall have appropriate setters and getters for all class members, also class members' names define structure for related JSON structure according  jackson library so next JSON structure is expected to be set: 
+
+  ::
+  
+    {
+    "vin": "30124",
+    “year”: 1984,
+    “model”: “Lamborghini”“ color”: ”deep black”“ description”: ”best car in the world” "carProposition": "a5b10622d70f094b7276e04608d97c7c699c8700164f78e16fe5e8082f4bb2ac",
+    "fee": 1,
+    "boxId": "d59f80b39d24716b4c9a54cfed4bff8e6f76597a7b11761d0d8b7b27ddf8bd3c"
+    }
+
+Few interesting moments: setter input parameter could have differ type than set class member, it’s allow us to do all necessary conversation in setters; byte data is represented initially as a hex string, which converted to bytes by BytesUtils.fromHexString() function.
+
+2. Define response for Car creation transaction, result of transaction shall be defined by implementing SuccessResponse interface with class members which shall be returned as API response, all members shall have properly set getters, also response class shall have proper annotation @JsonView(Views.Default.class) thus jackson library is able correctly represent response class in JSON format. In our case we expect to return transaction bytes, so response class is next:
+
+  ::
+  
+    @JsonView(Views.Default.class)
+    class CarResponse implements SuccessResponse {
+    private final String createCarTxBytes;
+
+    public CarResponse(String createCarTxBytes) {
+        this.createCarTxBytes = createCarTxBytes;
+    }
+
+    public String carTxBytes() {
+        return createCarTxBytes;
+    }
+
+    public String getCreateCarTxBytes() {
+        return createCarTxBytes;
+    }
+    }
+
+3. Define Car creation transaction
+
+  :: 
+  
+    private ApiResponse createCar(SidechainNodeView view, CreateCarBoxRequest ent)
+
+As a first parameter we pass reference to SidechainNodeView, second reference is previously defined class on step 1 for representation of JSON request. 
+During transaction creation we need to do next:
+
+  * check is input box secret is present in our wallet at all
+  * is stored coins in that box is enough to pay fee
+  * calculate fee for change 
+  * create RegularBoxData for change for fee 
+  * create new CarBoxData according JSON request data
+  * create inputs from input box and outputs RegularBoxData for change and new CarBoxData  
+  * calculate additional data like timestamp
+  * get list of fake proof which are required to build message to be signed: List fakeProofs = Collections.nCopies(inputIds.size(), null);
+  * build transaction bytes to be signed instead of real proof put some fake proof into from the previous step. For transaction creation a special factory shall be used. Access     to that factory could be achieved by call getSidechainCoreTransactionFactory()function:
+    SidechainCoreTransaction unsignedTransaction =
+    getSidechainCoreTransactionFactory().create(inputIds, outputs, fakeProofs, ent.fee, timestamp);
+    byte[] messageToSign = unsignedTransaction.messageToSign();
+  * create proof by sign transaction by private key of input box
+  * create new transaction 
+  * add to the CarResponse created transaction bytes
+
+4. Define request for Car sell order transaction CreateCarSellOrderRequest  similar as it was done for Car creation transaction request
+
+5. Define response for Car sell order transaction CreateCarSellOrderResponce as it was done for Car creation transaction response
+
+6. Define Car Sell order transaction
+  private ApiResponse createCarSellOrder(SidechainNodeView view, CreateCarSellOrderRequest ent) 
+  Required actions are similar as it was done for Create Car transaction, but we don’t need to worry about fee, i.e. fee is set as 0. Main idea is a moving Car Box into        CarSellOrderBox
+  
+7. Define Car sell order response 
+As a result of Car sell order we want to get hex byte representation of that transaction
+
+8. Define request class for accepting Car Sell Order Transaction, with input:
+String carSellOrderId;
+String paymentRegularBoxId;
+PublicKey25519Proposition buyerProposition;
+
+9. Define response class for CarSellOrder transaction
+Response shall contains hex representation of transaction bytes, thus response class are next:
+
+  ::
+  
+    @JsonView(Views.Default.class)
+    class AcceptCarSellOrderResponce implements SuccessResponse {
+    private final String acceptedCarSellOrderTxBytes;
+
+    public AcceptCarSellOrderResponce(String acceptedCarSellOrderTxBytes) {
+        this.acceptedCarSellOrderTxBytes = acceptedCarSellOrderTxBytes;
+    }
+
+    public String acceptedCarSellOrderTxBytes() {
+        return acceptedCarSellOrderTxBytes;
+    }
+
+    public String getAcceptedCarSellOrderTxBytes() {
+        return acceptedCarSellOrderTxBytes;
+    }
+    }
+    
+10. Create AcceptCarSellorder transaction
 
 
 
