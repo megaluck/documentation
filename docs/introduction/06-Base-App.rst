@@ -47,8 +47,8 @@ Every box has its own unique boxId (do not be confused with box type id which ar
 	   return id;
 	}
 
-
-That id is used during transaction verification, so it is important to add custom data  into customFieldsHash()  function.
+.. note::
+	The id is used during transaction verification, so it is important to add custom data  into customFieldsHash()  function.
 
 Next boxes are provided by SDK:
   * RegularBox -- contains ZEN coins
