@@ -136,3 +136,12 @@ That new custom box data class require next:
   * Any Box Data class shall provide the way how to create a new Box for a given nonce. For that purpose override the function public CustomBox getBox(long nonce). 
 
 
+Custom Box Data Serializer class creation
+*****************************************
+
+SDK provide base class for Custom Box Data Serializer
+NoncedBoxDataSerializer<D extends NoncedBoxData> where D is type of serialized Custom Box Data
+So creation of Custom Box Data Serializer can be done in next way:
+ ::public class CustomBoxDataSerializer implements NoncedBoxDataSerializer<CustomBoxData>
+That new Custom Box Data Serializer require next:
+
