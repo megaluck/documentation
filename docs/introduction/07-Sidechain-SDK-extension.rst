@@ -11,22 +11,23 @@ As was described before serialization is performed via special Serializer class.
 shall declare those Serializers for SDK, thus SDK will be able to use proper serializer for custom data. So full actions for describe serialization/parsing for some
 CustomData are next:
 
-  * :kbd:`Implement BytesSerializable interface` for :kbd:`CustomData`, i.e. :kbd:` functions byte[] bytes()` and :kbd:`Serializer serializer()`, also implement :kbd:`public static CustomData parseBytes(byte[] bytes)` function for parsing from bytes
+* :kbd:`Implement BytesSerializable interface` for :kbd:`CustomData`, i.e. :kbd:` functions byte[] bytes()` and :kbd:`Serializer serializer()`, also implement :kbd:`public static CustomData parseBytes(byte[] bytes)` function for parsing from bytes
   
-  * Create :kbd:`CustomDataSerializer` and implement :kbd:`ScorexSerializer interface`, i.e. functions  :kbd:`void serialize(CustomData customData, Writer writer)` and :kbd:`CustomData parse(Reader reader)`;
+* Create :kbd:`CustomDataSerializer` and implement :kbd:`ScorexSerializer interface`, i.e. functions  :kbd:`void serialize(CustomData customData, Writer writer)` and :kbd:`CustomData parse(Reader reader)`;
   
-  * Provide a unique id for that data type by implementing a special function. For example for box data type it is the function  :kbd:`public byte boxTypeId()`, for other data types the function name could be different and you will be obliged to implement it. 
+* Provide a unique id for that data type by implementing a special function. For example for box data type it is the function  :kbd:`public byte boxTypeId()`, for other data types the function name could be different and you will be obliged to implement it. 
   
-  * :kbd:`Map<Byte, BoxSerializer<Box<Proposition>>> customBoxSerializers = new HashMap<>();` where key is data type id and value is CustomSerializer for those data type id.
+* :kbd:`Map<Byte, BoxSerializer<Box<Proposition>>> customBoxSerializers = new HashMap<>();` where key is data type id and value is CustomSerializer for those data type id.
   
-  * Add your custom serializer into the map, for example it could be something  like :kbd:`customBoxSerializers.put((byte)MY_CYSTOM_BOX_ID, (BoxSerializer) CustomBoxSerializer.getSerializer());`
+* Add your custom serializer into the map, for example it could be something  like :kbd:`customBoxSerializers.put((byte)MY_CYSTOM_BOX_ID, (BoxSerializer) CustomBoxSerializer.getSerializer());`
   
-  * Bind map with custom serializers to your application:
-   ::
-    TypeLiteral<HashMap<Byte, Common serializer type>() {})
+* Bind map with custom serializers to your application:
+::
+ TypeLiteral<HashMap<Byte, Common serializer type>() {})
        .annotatedWith(Names.named(Bound property name))
        .toInstance(Created map with custom serializers);
- Where Common serializer type and Bound property name could have next values
+       
+Where Common serializer type and Bound property name could have next values
 
 
 
