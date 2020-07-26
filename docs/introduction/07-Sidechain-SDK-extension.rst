@@ -404,7 +404,5 @@ As a result next JSON will be returned in case of error:
 GetSecretRequest.class -- class for defining type of HTTP request
 
 
-.. warning::
-   test the check and go ahead anyway using the ``-s``
-   flag; **note that this may overwrite existing files**.
+
       
