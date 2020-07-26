@@ -34,6 +34,7 @@ in the order presented here.
     05-Node-communication
     06-Base-App
     07-Sidechain-SDK-extension
+    08-Car-registry-tutorial
 
 Either way, you'll be able to find support and help from the numerous friendly
 members of the Horizen community,  on our Discord
