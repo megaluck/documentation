@@ -14,6 +14,7 @@ The command specifies where the first forward transfer coins are sent, as well a
 As a consequence of the sidechain declaration command, a unique sidechain id will be assigned to that sidechain, that from that moment on can be used for every operation related to that specific sidechain:
 
 ::
+   
    {
       "txid": "9e4676274f1ff9b3164de6e0d6492c4dfc1d564b0243a36208c6b7fe848f9d21",
       "scid": "2f7ed2e07ad78e52f43aafb85e242497f5a1da3539ecf37832a0a31ed54072c3",
