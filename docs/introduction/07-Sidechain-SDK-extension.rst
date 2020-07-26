@@ -100,22 +100,22 @@ SDK provide base class for any Box Data class:
 ::
   
   P extends Proposition -- Proposition type for the box, for common purposes PublicKey25519Proposition could be used as it used in regular boxes
-BD extends AbstractNoncedBoxData<P, B, BD>
+  BD extends AbstractNoncedBoxData<P, B, BD>
 
-- Definition of type for Box Data which contains all custom data for new custom box
+Definition of type for Box Data which contains all custom data for new custom box
 
 ::
   
   B extends AbstractNoncedBox<P, BD, B>
   
 Definition of type for Box itself, required for description inside of new Custom Box data 
-
-
 That base class provide next data by default:
+
 ::
 
   proposition of type P long value
 
-value of that box if required, that value is important in case if Box is coin Box, otherwise it will be used in custom logic only. In common case for non-Coin box it could be always equal 1 
+value of that box if required, that value is important in case if Box is coin Box, otherwise it will be used in custom logic only. 
+In common case for non-Coin box it could be always equal 1 
 
 
