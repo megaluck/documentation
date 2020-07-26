@@ -186,7 +186,7 @@ We can split SidechainApp arguments into 4 groups:
 	3. Application node extension of State and Wallet logic
 		* As was said above, State is a snapshot of all closed boxes of the blockchain at some moment of time. So when the next block arrives it should be validated by the State to prevent spending of non existing boxes or transaction inputs and outputs coin balances inconsistency. State can be extended by developers by introducing some logic in ApplicationState and ApplicationWallet. Seep appropriate chapters.
 	4. API extension was described in chapter 
-	5 Node communication
+	5. Node communication
 	
 	
 Inside the SDK we implemented a SimpleApp example, that was designed to demonstrate the basic SDK functionalities. It's the fastest way to play with our SDK.
