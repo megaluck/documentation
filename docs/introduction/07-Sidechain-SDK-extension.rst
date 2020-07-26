@@ -11,7 +11,7 @@ As was described before serialization is performed via special Serializer class.
 shall declare those Serializers for SDK, thus SDK will be able to use proper serializer for custom data. So full actions for describe serialization/parsing for some
 CustomData are next:
 
-* :kbd:`Implement BytesSerializable interface` for :kbd:`CustomData`, i.e. :kbd:` functions byte[] bytes()` and :kbd:`Serializer serializer()`, also implement :kbd:`public static CustomData parseBytes(byte[] bytes)` function for parsing from bytes
+* :kbd:`Implement BytesSerializable interface` for :kbd:`CustomData`, i.e. :kbd:`functions byte[] bytes()` and :kbd:`Serializer serializer()`, also implement :kbd:`public static CustomData parseBytes(byte[] bytes)` function for parsing from bytes
   
 * Create :kbd:`CustomDataSerializer` and implement :kbd:`ScorexSerializer interface`, i.e. functions  :kbd:`void serialize(CustomData customData, Writer writer)` and :kbd:`CustomData parse(Reader reader)`;
   
