@@ -32,14 +32,18 @@ Where Common serializer type and Bound property name could have next values
 
 
 
-+------------+------------+-----------+
-| Header 1   | Header 2   | Header 3  |
-+============+============+===========+
-| body row 1 | column 2   | column 3  |
-+------------+------------+-----------+
-| body row 2 | Cells may span columns.|
-+------------+------------+-----------+
-| body row 3 | Cells may  | - Cells   |
-+------------+ span rows. | - contain |
-| body row 4 |            | - blocks. |
-+------------+------------+-----------+
++--------------------------------+----------------------------------------+
+| Bound property name            | Common serializer type                 |
++================================+========================================+
+| CustomBoxSerializers           | BoxSerializer<Box<Proposition>>>       |  
++--------------------------------+----------------------------------------+
+| CustomBoxDataSerializers       | NoncedBoxDataSerializer<NoncedBoxData  |
+|                                | <Proposition, NoncedBox<Proposition>>> |           
++--------------------------------+----------------------------------------+
+| CustomSecretSerializers        | SecretSerializer<Secret>>              |           
++--------------------------------+----------------------------------------+
+| CustomProofSerializers         | ProofSerializer<Proof<Proposition>>    |        
++--------------------------------+----------------------------------------+
+| CustomTransactionSerializers   |  TransactionSerializer<BoxTransaction  |                                  
+|                                |  <Proposition, Box<Proposition>>>      |
++--------------------------------+----------------------------------------+
