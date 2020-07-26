@@ -59,4 +59,9 @@ For example:
 where  :kbd:`BoxSerializer<Box<Proposition>>>`  -- common serializer type :kbd:`"CustomBoxSerializers"` - bound property name 
 :kbd:`customBoxSerializers` - created map with all defined custom serializers. Overall we have the next expected type and property name.
 
+Custom box creation
+*******************
+
+  
+
 
