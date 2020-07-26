@@ -62,6 +62,5 @@ where  :kbd:`BoxSerializer<Box<Proposition>>>`  -- common serializer type :kbd:`
 Custom box creation
 *******************
 
-  
-
+  a) SDK Box extension Overview
 
