@@ -64,3 +64,26 @@ Transactions which allow to perform next boxes transitions
 |                              +--------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------+--------------------+---------------------------------------------------------------------------------------------------------------------+
 |                              | buyerProposition                                             | Buyer proposition where money shall be sent                                                                                               |                    |                                                                                                                     |
 +------------------------------+--------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------+--------------------+---------------------------------------------------------------------------------------------------------------------+
+
+Car registry implementation
+***************************
+
+First of all we need to define new boxes. 
+As described before, a Car Box is a non-coin box. As defined before we need Car Box Data class as well for describing custom data. So we need to define CarBox and CarBoxData as separate classes for setting proper way to serialization/deserialization. 
+
+So overall next classes will be created:
+
+  ::
+    
+    public class CarBox extends AbstractNoncedBox<PublicKey25519Proposition, CarBoxData, CarBox>
+ 
+  ::
+    
+    public class CarBoxSerializer implements BoxSerializer<CarBox>
+
+  ::
+    
+    public class CarBoxData extends AbstractNoncedBoxData<PublicKey25519Proposition, CarBox, CarBoxData>
+
+
+
