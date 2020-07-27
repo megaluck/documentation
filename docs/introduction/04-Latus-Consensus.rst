@@ -19,6 +19,7 @@ The connection between Mainchain and Sidechain nodes is established via a websoc
 
 The Latus consensus, including MainchainBlock synchronization and all forging logic and functionality, is implemented out-of-the-box by the SDK Core, and developers do not need to make any change to this. The forging process can be fully managed through the API interface provided by the SDK (see the next topic).
 
-Default Latus consensus parameters:
+Default Latus consensus parameters
+==================================
   * Seconds in one slot - 120, i.e. one block could be generated in two minutes
   * Number of slots in one consensus Epoch - 720, i.e. new nonce is generated (and thus forging stake holder could check slot leader possability) every 720 * 120 =  86400 seconds, i.e. 24 hours.
