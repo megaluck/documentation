@@ -47,7 +47,7 @@ Every box has its own unique boxId (do not be confused with box type id which is
 .. note::
 	The id is used during transaction verification, so it is important to add custom data  into customFieldsHash()  function.
 
-The following boxes are provided by SDK:
+The following Coin-Box types are provided by SDK:
   * **RegularBox** -- contains ZEN coins
   * **ForgerBox** -- contains ZEN coins are used for forging 
   * **WithdrawalRequestBox** -- contain ZEN coins are used to backward transfer, i.e. move coins back to the mainchain  
