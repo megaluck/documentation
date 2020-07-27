@@ -51,7 +51,7 @@ The following Coin-Box types are provided by SDK:
   * **RegularBox** -- contains ZEN coins
   * **ForgerBox** -- contains ZEN coins are used for forging 
   * **WithdrawalRequestBox** -- contain ZEN coins are used to backward transfer, i.e. move coins back to the mainchain  
-SDK developer could declare his own Boxes, please refer to SDK extension chapter.
+An SDK developer can declare his own Boxes, please refer to SDK extension section.
 
 Transactions
 ************
