@@ -16,4 +16,5 @@
     height: 100%;
     max-width: 1200px !important;
     margin: auto;
+    float: left;
 }
