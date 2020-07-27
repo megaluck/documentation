@@ -10,7 +10,8 @@ A Node consists of 4 main elements: “**History**,” “**State**,” “**Wal
 Concept of a BOX
 ****************
 
-A box is a cryptographic object that was closed with some secret key(s) and that can be opened (i.e. spent, it cannot be opened again) by the owner of those keys. A box generalizes the concept of Bitcoin’s UTXOs.
+A box generalizes the concept of Bitcoin’s UTXOs.
+A box is a cryptographic object that can be was created with some secret keys. This box can be opened(spent) by the owner of those secret keys. Once opened by the owner of the secret keys the box may not be opened again.
 
 Node Main elements & intro to a "NodeView"
 ******************************************
