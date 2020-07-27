@@ -3,6 +3,7 @@ The Cross-Chain Transfer Protocol
 *********************************
 
 The Cross-Chain Transfer Protocol (“CCTP”) defines the communication between the mainchain and sidechain(s). It is a 2-way peg protocol that allows sending coins from Mainchain to a Sidechain, and vice versa.
+
 At a high level, it defines two basic operations:
    
    * **Forward Transfer**
