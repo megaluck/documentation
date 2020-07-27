@@ -17,29 +17,24 @@ timeout -- Timeout on API requests in seconds
 ..  note:: There are many ways to send API requests to a Sidechain node (in fact any REST client could be used):
 
 
-
   * Embedded swagger client: Sending HTTP requests via a  swagger client which is already embedded in the Sidechain Node. So you could run in your browser “IP:port” as defined in your configuration file, and select any of the commands shown there. For example: 
-  
   .. image:: /images/swagger.png
    :alt: Swagger
-   
    
   * `Postman <https://www.postman.com/>`__ Collaboration Platform for API Development
   
 
 
  
-Default BASE API
-================
+Default standard API:
 
 Standard APi is organized in the following 5 groups:
+ * block -- Sidechain block operations like find best blockId, find blockId by block height etc. Also here you could find forging related commands like starting/stopping automatically forging, get information about forging like last epoch and slot index. Automatic forging gets current time to convert it into appropriate slot/epoch index, thus if by some reason Sidechain node skip the correct timeslot for whole consensus epoch when forging in automatic mode will always fail. Also, Sidechain will be considered as deceased, as described before, i.e. communication between  Sidechain and mainchain is no longer possible. However forging a block with manual set epoch/slot index is possible by API call /block/generate, it could be useful in case if Sidechain is run in isolated mode.
 
- * **block** -- Sidechain block operations like find best blockId, find blockId by block height etc. Also here you could find forging related commands like starting/stopping automatically forging, get information about forging like last epoch and slot index. Automatic forging gets current time to convert it into appropriate slot/epoch index, thus if by some reason Sidechain node skip the correct timeslot for whole consensus epoch when forging in automatic mode will always fail. Also, Sidechain will be considered as deceased, as described before, i.e. communication between  Sidechain and mainchain is no longer possible. However forging a block with manual set epoch/slot index is possible by API call /block/generate, it could be useful in case if Sidechain is run in isolated mode.
+ * transaction -- Sidechain transaction operations like find all transactions, create a transaction, without sending into memory pool, send transaction into memory pool, etc.
 
- * **transaction** -- Sidechain transaction operations like find all transactions, create a transaction, without sending into memory pool, send transaction into memory pool, etc.
-
- * **wallet** -- Sidechain wallet operations. Wallet operation could take optional parameter boxType for example in /wallet/balance API request. Box type could take as parameter RegularBox, ForgerBox etc., i.e. you could type here class name for required box type (in case of custom box type you oblige to use fully qualified class name ). If box type is not matter then just omit that parameter, i.e. in case of  /wallet/balance just use an empty body.
+ * wallet -- Sidechain wallet operations. Wallet operation could take optional parameter boxType for example in /wallet/balance API request. Box type could take as parameter RegularBox, ForgerBox etc., i.e. you could type here class name for required box type (in case of custom box type you oblige to use fully qualified class name ). If box type is not matter then just omit that parameter, i.e. in case of  /wallet/balance just use an empty body.
  
- * **node** --Sidechain node operations like connect to the node, see all connections, etc.
+ * node --Sidechain node operations like connect to the node, see all connections, etc.
  
- * **mainchain** -- Sidechain mainchain operations like get the best MC header included in Sidechain.
+ * mainchain -- Sidechain mainchain operations like get the best MC header included in Sidechain.
