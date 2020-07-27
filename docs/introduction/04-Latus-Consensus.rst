@@ -4,6 +4,9 @@ Latus Consensus
 
 As we have just seen, the Cross-Chain Transfer Protocol does not impose any requirements on the Sidechain architectural design other than the need to support the protocol itself. Having said that, the Horizen Sidechain SDK does offer a ready made implementation of the Latus consensus, which is a Proof of Stake (“PoS”)  consensus based on the Ouroboros Praos protocol.
 
+Consensus Epochs & Forging
+===========================
+
 In Latus, the chain is split into “consensus epochs”; each epoch is made of a predefined number of time slots. Each slot is assigned to slot leaders, which are then authorized to generate (“forge”) a block during that slot. So the protocol operates in a synchronous environment where each slot spans over a specific amount of time (e.g. 20 seconds).
 Slot leaders of a particular consensus epoch are chosen randomly before the epoch begins from the set of all sidechain forging stakeholders. The forging stake is a subset of all the coins managed by a sidechain. In fact each sidechain participant who wants to be a Forger, must have some forging stake - i.e. a set of “ForgerBoxes” assigned to him. ForgerBox is a particular kind of Box that contains an amount of coins locked for forging, and some specific data used by the forger to prove its block producing eligibility associated with that stake amount. The total amount of coins staked in ForgerBoxes is the total Forging Stake amount.
 The possibility of being a slot leader increases with the percentage of forging stake owned. It's possible to have more than one slot leader per slot; if more than one block is propagated, only one will be accepted by each node; the consensus rules will make sure that conflicting chains will eventually converge to a winning chain. Conversely, a consensus epoch could empty slots, if their slot leader (or leaders) did not create and propagate blocks for them.
