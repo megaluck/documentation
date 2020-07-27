@@ -43,8 +43,8 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = u'Horizen Sidechains SDK'
-copyright = u'2014, Read the Docs'
+project = u'Horizen SidechainsSDK'
+copyright = u'© 2020 Horizen. All rights reserved.'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
