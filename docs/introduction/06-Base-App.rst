@@ -112,7 +112,7 @@ Node interconnection is organized as a peer-to-peer network. Over the network, t
 Physical storage
 ****************
 
-Physical storage. SDK introduces the unified physical storage interface for this and default implementation based on LevelDB library. Sidechain developers can decide to use the default solution or to provide the custom one. For example, he can decide to use some encrypted storage or some SQL database or even cloud solution.
+Physical storage. The SDK introduces the unified physical storage interface, this and default implementation is based on the LevelDB library. Sidechain developers can decide to use the default solution or to provide the custom one. For example, the developer can decide to use some encrypted storage or some SQL database or even a cloud solution.
 
 User specific settings
 **********************
