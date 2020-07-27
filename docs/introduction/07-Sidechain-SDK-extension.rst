@@ -119,19 +119,19 @@ That base class provide next data by default:
 value of that box if required, that value is important in case if Box is coin Box, otherwise it will be used in custom logic only. 
 In common case for non-Coin box it could be always equal 1 
 
-So creation of new Custom Box Data will be created in next way:
-public class CustomBoxData extends AbstractNoncedBoxData<PublicKey25519Proposition, CustomBox, CustomBoxData>
+So the creation of new Custom Box Data will be created in following way:
+``public class CustomBoxData extends AbstractNoncedBoxData<PublicKey25519Proposition, CustomBox, CustomBoxData>``
 
-That new custom box data class require next:
+The new custom box data class  requires the following:
 
 1. Custom data definition
   * Custom data itself
-  * Hash of all added custom data shall be returned in public byte[] customFieldsHash() function, otherwise custom data will not be “protected”, i.e. some malicious actor        could change custom data during transaction creation. 
+  * Hash of all added custom data shall be returned in ``public byte[] customFieldsHash()`` method, otherwise custom data will not be “protected”, i.e. some malicious actor        could change custom data during transaction creation. 
     
 2. Serialization definition
   * Serialization to bytes shall be provided by Custom Box Data by overriding and implementation function public byte[] bytes(). That function shall serialize proposition, value and any added custom data.
-  * Additionally definition of Custom Box Data id for serialization by overriding public byte boxDataTypeId()function, please check the serialization chapter for more information about using ids. 
-  * Override public NoncedBoxDataSerializer serializer() function with proper Custom Box Data serializer. Parsing Custom Box Data from bytes could be defined in that class as well, please refer to the serialization chapter for more information about it
+  * Additionally definition of Custom Box Data id for serialization by overriding public byte boxDataTypeId() method, please check the serialization chapter for more information about using ids. 
+  * Override public NoncedBoxDataSerializer serializer() method with proper Custom Box Data serializer. Parsing Custom Box Data from bytes could be defined in that class as well, please refer to the serialization chapter for more information about it
 
 3. Custom Box creation
   * Any Box Data class shall provide the way how to create a new Box for a given nonce. For that purpose override the function public CustomBox getBox(long nonce). 
@@ -150,12 +150,10 @@ That new Custom Box Data Serializer require next:
 
   1. Definition of function for writing Custom Box Data into the Scorex Writer by implementation of public void serialize(CustomBoxData boxData, Writer writer)function.
 
-
   2. Definition of function for reading Custom Box Data from Scorex Reader
 by implementation of function public CustomBoxData parse(Reader reader)
-Class shall be converted to singleton, for example it could be done in next way:
 
-  3. Class shall be converted to singleton, for example it could be done in next way:
+  3. Class shall be converted to singleton, for example it can be done in following way:
 
 ::
   
@@ -177,30 +175,31 @@ SDK provide base class for creation Custom Box:
 :code:`public class CustomBox extends AbstractNoncedBox<PublicKey25519Proposition, CustomBoxData, CustomBoxBox>`
 
 As a parameters for **AbstractNoncedBox** three template parameters shall be provided:
-:code:`P extends Proposition`- Proposition type for the box, for common purposes 
+``P extends Proposition``- Proposition type for the box, for common purposes 
 PublicKey25519Proposition could be used as it used in regular boxes
-BD extends AbstractNoncedBoxData<P, B, BD> -- Definition of type for Box Data which contains all custom data for new custom box
-B extends AbstractNoncedBox<P, BD, B> -- Definition of type for Box itself, required for description inside of new Custom Box data.
+``BD extends AbstractNoncedBoxData<P, B, BD>`` -- Definition of type for Box Data which contains all custom data for new custom box
+``B extends AbstractNoncedBox<P, BD, B>`` -- Definition of type for Box itself, required for description inside of new Custom Box data.
 
 The Custom Box itself require implementation of next functionality:
+
   1. Serialization definition
 
-    * Box itself shall provide the way to be serialized into bytes, thus function public byte[] bytes() shall be implemented 
-    * Function public static CarBox parseBytes(byte[] bytes) for creation of a new Car Box object from bytes, 
-    * Providing box type id by implementation of function  public byte boxTypeId() which return custom box type id. And, finally, proper serializer for the Custom Box shall be returned by implementation of function public BoxSerializer serializer()
+    * Box itself shall provide the way to be serialized into bytes, thus method ``public byte[] bytes()`` shall be implemented 
+    * Method ``public static CarBox parseBytes(byte[] bytes)`` for creation of a new Car Box object from bytes, 
+    * Providing box type id by implementation of method ``public byte boxTypeId()`` which return custom box type id. And, finally, proper serializer for the Custom Box shall be returned by implementation of method ``public BoxSerializer serializer()``
 
 Custom Box Serializer Class
 ###########################
 
-SDK provide base class for Custom Box Serializer
-BoxSerializer<B extends Box> where B is type of serialized Custom Box
-So creation of Custom Box Serializer can be done in next way:
- public class CustomBoxSerializer implements NoncedBoxSerializer<CustomBox>
-That new Custom Box Serializer require next:
+SDK provides base class for ``Custom Box Serializer
+BoxSerializer<B extends Box>`` where B is type of serialized Custom Box
+So creation of **Custom Box Serializer** can be done in next way:
+ ``public class CustomBoxSerializer implements NoncedBoxSerializer<CustomBox>``
+The new Custom Box Serializer requires the following:
 
-  1. Definition of function for writing Custom Box into the Scorex Writer by implementation of public void serialize(CustomBox box, Writer writer)function.
-  2. Definition of function for reading Custom Box from Scorex Reader
-by implementation of function public CustomBox parse(Reader reader)
+  1. Definition of method for writing Custom Box into the Scorex Writer by implementation of public void serialize(CustomBox box, Writer writer)method.
+  2. Definition of method for reading Custom Box from Scorex Reader
+by implementation of method public CustomBox parse(Reader reader)
   3. Class shall be converted to singleton, for example it could be done in next way:
 
     ::
@@ -285,7 +284,7 @@ Custom API creation
 
 At this point MyCustomApi will be included in the API route, but we still need to declare the HTTP address. To do that, please:
 
-  1. Override the basepath() function -
+  1. Override the basepath() method -
   
     ::
     
