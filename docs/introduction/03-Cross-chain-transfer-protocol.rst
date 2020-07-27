@@ -28,10 +28,14 @@ As a consequence of the sidechain declaration command, a unique sidechain id wil
 
 
 Forward Transfer
+================
+
 A forward transfer sends coins from the mainchain to a sidechain. The Horizen mainchain supports a “Forward Transfer” transaction type, that specifies the sidechain destination (sidechain id and receiver address) and the amounts of ZEN coins to be sent. From a mainchain perspective, the transferred coins are simply destroyed, they only increase by that amount the total balance of that particular sidechain.
 On the Sidechain side, the SDK provides all the functionalities that support Forward Transfers, so that a transferred amount is “converted” into a new Sidechain Box.
 
 Backward Transfer
+=================
+
 A backward transfer moves coins back from a sidechain to a mainchain destination.
 A Backward Transfer is initiated by a Withdrawal Request, a sidechain transaction issued by the coin owners. The request specifies the mainchain destination, and the amount. More precisely, the withdrawal request owner will create a WithdrawalRequestBox that destroys the specified amount of coins in Sidechain. This is not enough to move those coins back to the mainchain though: we need to wait the end of the withdrawal epoch, when all the coins specified in that epoch’s Withdrawal Requests are listed in a single Certificate, that is the propagated to the Mainchain.
 The Certificate includes a succinct cryptographic proof that the rules associated with the declared verifying key have been respected. Certificates are processed by Mainchain consensus, which recreates the coins as specified by the certificate, only checking that the proof verifies, and that the coins received by a sidechain are not  more than the amount sent to it.
