@@ -106,8 +106,8 @@ Provide access to history, i.e. blocks not only from active chain but from forks
 Network layer
 *************
 
-Network layer can be divided into communication between Nodes and communication between the node and user.
-Nodes interconnection organized as a peer-to-peer network. Over the network, SDK has the protocol of nodes handshaking, blockchain synchronization, and transactions transmission.
+The network layer can be divided into communication between Nodes and communication between the node and user.
+Node interconnection is organized as a peer-to-peer network. Over the network, the SDK handles the handshake, blockchain synchronization, and transaction transmission.
 
 Physical storage
 ****************
