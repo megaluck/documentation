@@ -47,7 +47,7 @@ The core logic of State, Wallet and Memory Pool can instead be extended by sidec
 
  * The logic to accept transactions in “Memory Pool” can be also extended, e.g. transaction incompatibility rules to address possible custom data conflicts.
 
-As mentioned before, the “Box” is an important element, as it is designed as an object that contains some data, e.g. an amount of ZEN coins, or data of a custom object (such as a car’s plate as we’ll see in Chapter 9), associated with some conditions (called “Proposition”) that protect them from being spent but by a party (or parties) able to satisfy that proposition. Usually, the ability to satisfy a Proposition is given by knowledge of some data (“called “Secret”), that can be used to produce a “Proof” that satisfies the Proposition and opens the Box, so that it can be spent. 
+As mentioned before, the “Box” is an important element, as it is designed as an object that contains some data, e.g. an amount of ZEN coins, or data of a custom object (such as a car’s plate as we’ll see in Chapter 9), associated with some conditions (called “Proposition”) that protect them from being spent other than by a party (or parties) able to satisfy that proposition. Usually, the ability to satisfy a Proposition is given by knowledge of some data (“called “Secret”), that can be used to produce a “Proof” that satisfies the Proposition and opens the Box, so that it can be spent. 
 
 If we translate the above into bitcoin-like terminology, a UTXO is a Box, a locking script of an output is a Proposition, e.g. a P2PK unlocking script, the signature is the proof, and its associated private key is a Secret.
 
