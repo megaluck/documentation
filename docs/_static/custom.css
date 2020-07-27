@@ -32,3 +32,13 @@
     background: #041742 !important;
     z-index: 200;
 }
+.rst-versions .rst-current-version {
+    padding: 12px;
+    background-color: #272525;
+    display: block;
+    text-align: right;
+    font-size: 90%;
+    cursor: pointer;
+    color: #041742 !important;
+    *zoom: 1;
+}
