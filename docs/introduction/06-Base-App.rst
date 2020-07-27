@@ -2,8 +2,8 @@
 Base App
 ========
 
-SidechainsSDK provides to the developers implemented Consensus Protocol and Crosschain Transfer Protocol, but not only.
-Additionally to this SDK provides basic transactions, network layer, data storing and node configuration, as well as entry points for any custom extension.
+SidechainsSDK provides to the developers an out of the box implementation of the Latus Consensus Protocol and the Crosschain Transfer Protocol.
+Additionally to this, the SDK provides basic transactions, network layer, data storage and node configuration, as well as entry points for any custom extension.
 
 
 Secret / Proof / Proposition
