@@ -4,8 +4,10 @@ The Cross-Chain Transfer Protocol
 
 The Cross-Chain Transfer Protocol (“CCTP”) defines the communication between the mainchain and sidechain(s). It is a 2-way peg protocol that allows sending coins from Mainchain to a Sidechain, and vice versa.
 At a high level, it defines two basic operations:
-• Forward Transfer, and
-• Backward Transfer.
+   
+   * **Forward Transfer**
+   * **Backward Transfer**
+   
 While all Sidechains know and follow the Mainchain, which is an established and stable reality, Mainchain needs to be made aware of the existence of every sidechain. So, Sidechains first must be declared in Mainchain.
 We can declare a new Sidechain by using the following RPC command:
 sc_create withdrawalEpochLength "address" amount "verification key" "vrfPublickKey" "genSysConstant"
