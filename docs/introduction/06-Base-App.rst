@@ -22,13 +22,13 @@ Boxes
 *****
 
 Data in a sidechain is meant to be represented as a Box, that we can see as data kept “closed” by a Proposition, that can be open only with the Proposition’s Secret(s).
-The Sidechain SDK offers two different Box types: Coin Box and non-Coin Box. Non-Coin box represents some unique entity which could be transferred between different owners,
-for example they could be sold. Coin box is a box which contains ZEN, examples of Coin box are RegularBox and ForgingBox. Coin Box can be used to add custom data to an object
+The Sidechain SDK offers two different Box types: Coin Box and non-Coin Box. A Non-Coin box represents a unique entity which can be transferred between different owners,
+for example it can be sold. A Coin box is a box which contains ZEN, examples of a Coin box are RegularBox and ForgingBox. A Coin Box can be used to add custom data to an object
 that represents some coins, i.e. that holds an intrinsic defined value. As an example, a developer would extend a Coin Box to manage a time lock on a UTXO, e.g. to implement 
 some kind of smart contract.
-In particular, any box could be logically split in two parts: Box and BoxData (box data are included in the box). Box itself represents the entity in blockchain, 
+In particular, any box could be logically split in two parts: Box and BoxData (box data is included in the box). The Box itself represents the entity in the blockchain, 
 i.e. all operations like create/open etc. are performed on boxes. Box data contains information about the entity like value, proposition address and any custom data.
-Every box has its own unique boxId (do not be confused with box type id which are used for serialization). That box id is calculated for each box by next function:
+Every box has its own unique boxId (do not be confused with box type id which is used for serialization). That box id is calculated for each box by next function:
 
 ::
 
