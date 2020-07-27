@@ -16,17 +16,13 @@ timeout -- Timeout on API requests in seconds
 
 ..  note:: There are many ways to send API requests to a Sidechain node (in fact any REST client could be used):
 
-
-  * Embedded swagger client: Sending HTTP requests via a  swagger client which is already embedded in the Sidechain Node. So you could run in your browser “IP:port” as defined in your configuration file, and select any of the commands shown there. For example: 
+* Embedded swagger client: Sending HTTP requests via a  swagger client which is already embedded in the Sidechain Node. So you could run in your browser “IP:port” as defined in your configuration file, and select any of the commands shown there. For example: 
+  
   .. image:: /images/swagger.png
    :alt: Swagger
-   
-   
-   
+
   * `Postman <https://www.postman.com/>`__ Collaboration Platform for API Development
   
-
-
  
 Default standard API:
 
