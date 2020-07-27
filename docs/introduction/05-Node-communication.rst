@@ -14,11 +14,12 @@ api-key-hash -- Authentication header must be a string that hashes to the field 
 
 timeout -- Timeout on API requests in seconds
 
-There are many ways to send API requests to a Sidechain node (in fact any REST client could be used):
+..  note:: There are many ways to send API requests to a Sidechain node (in fact any REST client could be used):
 
   * Embedded swagger client: Sending HTTP requests via a  swagger client which is already embedded in the Sidechain Node. So you could run in your browser “IP:port” as defined in your configuration file, and select any of the commands shown there. For example: 
   .. image:: /images/swagger.png
    :alt: Swagger
+   
   * `Postman <https://www.postman.com/>`_ Collaboration Platform for API Development
   
 
