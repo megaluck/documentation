@@ -86,7 +86,7 @@ SidechainNodeView is a provider to current Node state including NodeWallet, Node
 Memory Pool
 ***********
 
-Contains not submitted transactions
+A mempool is a node's mechanism for storing information on unconfirmed transactions. It acts as a sort of waiting room for transactions that have not yet been included in a block
 
 Node wallet
 ***********
