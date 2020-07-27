@@ -26,9 +26,11 @@ timeout -- Timeout on API requests in seconds
 
 
  
-Default standard API:
+Default BASE API
+================
 
 Standard APi is organized in the following 5 groups:
+
  * **block** -- Sidechain block operations like find best blockId, find blockId by block height etc. Also here you could find forging related commands like starting/stopping automatically forging, get information about forging like last epoch and slot index. Automatic forging gets current time to convert it into appropriate slot/epoch index, thus if by some reason Sidechain node skip the correct timeslot for whole consensus epoch when forging in automatic mode will always fail. Also, Sidechain will be considered as deceased, as described before, i.e. communication between  Sidechain and mainchain is no longer possible. However forging a block with manual set epoch/slot index is possible by API call /block/generate, it could be useful in case if Sidechain is run in isolated mode.
 
  * **transaction** -- Sidechain transaction operations like find all transactions, create a transaction, without sending into memory pool, send transaction into memory pool, etc.
