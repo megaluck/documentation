@@ -42,3 +42,11 @@
     color: #27AE60;
     *zoom: 1;
 }
+body {
+    font-family: proxima-nova,sans-serif;
+    font-weight: normal;
+    color: #404040;
+    min-height: 100%;
+    overflow-x: hidden;
+    background: #edf0f2;
+}
