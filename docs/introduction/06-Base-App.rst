@@ -76,7 +76,7 @@ Because the SDK is based on Scorex we implement the Scorex way of data serializa
   * Serializer  itself works with Reader/Writer which are wrappers on byte stream. 
   * Scorex Reader and Writer also implements some functionality like reading/parsing data of integer/long/string etc. 
   * Serialization and parsing itself implemented in data class by implementation byte[] bytes() (required by BytesSerializable interface) and implementation static function for parsing bytes public static Data parseBytes(byte[] bytes)
-  * Also, for correct parse purposes, special bytes as a unique id of data type is put at the beginning of the byte stream (it done automatically), thus any serialized data shall provide a unique id. Specific serializers shall be set for those unique ids during dependency injection setting as well as custom Serializer shall be put into Custom Serializers Map which are defined at AppModule. Please refer to SDK extension section for more information
+  * Also, for correct parse purposes, special bytes such as a unique id of data type is put at the beginning of the byte stream (it is done automatically), thus any serialized data shall provide a unique id. Specific serializers shall be set for those unique ids during dependency injection setting as well as custom Serializer shall be put into Custom Serializers Map which are defined at AppModule. Please refer to SDK extension section for more information
 
 SidechainNodeView
 *****************
