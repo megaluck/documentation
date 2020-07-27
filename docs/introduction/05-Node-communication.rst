@@ -21,7 +21,7 @@ timeout -- Timeout on API requests in seconds
   .. image:: /images/swagger.png
    :alt: Swagger
    
-  * `Postman <https://www.postman.com/>`_ Collaboration Platform for API Development
+  * `Postman <https://www.postman.com/>`__ Collaboration Platform for API Development
   
 
 
