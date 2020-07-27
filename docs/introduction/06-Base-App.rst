@@ -59,8 +59,8 @@ SDK developer could declare his own Boxes, please refer to SDK extension chapter
 Transactions
 ************
 
-There are two basic transactions: MC2SCAggregatedTransaction and SidechainCoreTransaction.
-MC2SCAggregatedTransaction is actually an implementation of Forward Transfer and can be only added as a part of some MainchainBlock reference data during synchronization with Mainchain.
+There are two basic transactions: `MC2SCAggregatedTransaction<https://github.com/HorizenOfficial/Sidechains-SDK/blob/master/sdk/src/main/java/com/horizen/transaction/MC2SCAggregatedTransaction.java>`_ and `SidechainCoreTransaction<https://github.com/HorizenOfficial/Sidechains-SDK/blob/master/sdk/src/main/java/com/horizen/transaction/SidechainCoreTransaction.java>`_.
+MC2SCAggregatedTransaction is the implementation of Forward Transfer and can be only added as a part of some MainchainBlock reference data during synchronization with Mainchain.
 When Forger is going to produce a sidechain block and some new mainchain block appears, the forger recreates that mainchain block as a reference that will contain sidechain 
 related data. So, if some Forward Transfer exists in the mainchain block, it will be included into MC2SCAggregatedTransaction and added as a part of the reference.
 SidechainCoreTransaction is the transaction, which can be created by anyone to send coins inside sidechain, create forging stakes or perform withdrawal requests
