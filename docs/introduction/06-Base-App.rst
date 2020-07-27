@@ -117,7 +117,7 @@ Physical storage. The SDK introduces the unified physical storage interface, thi
 User specific settings
 **********************
 
-The user has the ability to define custom conforiguration options for exaple, a specific path to the node data storage, wallet seed, node name and api server 
+The user has the ability to define custom configuration options for example, a specific path to the node data storage, wallet seed, node name and api server 
 address/port, etc. To do this he should fill the configuration file in a `HOCON notation
 <https://github.com/lightbend/config/blob/master/HOCON.md/>`_. The configuration file consists of the SDK required fields and application custom fields 
 if needed. Sidechain developers can use com.horizen.settings.SettingsReader utility class to extract Sidechain specific data and Config object itself to get custom parts.
