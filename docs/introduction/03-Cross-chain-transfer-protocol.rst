@@ -30,7 +30,7 @@ As a consequence of the sidechain declaration command, a unique sidechain id wil
 Forward Transfer
 ================
 
-A forward transfer sends coins from the mainchain to a sidechain. The Horizen mainchain supports a “Forward Transfer” transaction type, that specifies the sidechain destination (sidechain id and receiver address) and the amounts of ZEN coins to be sent. From a mainchain perspective, the transferred coins are simply destroyed, they represented in the total balance of that particular sidechain.
+A forward transfer sends coins from the mainchain to a sidechain. The Horizen mainchain supports a “Forward Transfer” transaction type, that specifies the sidechain destination (sidechain id and receiver address) and the amounts of ZEN coins to be sent. From a mainchain perspective, the transferred coins are destroyed, they are only represented in the total balance of that particular sidechain.
 On the Sidechain side, the SDK provides all the functionalities that support Forward Transfers, so that a transferred amount is “converted” into a new Sidechain Box.
 
 Backward Transfer
