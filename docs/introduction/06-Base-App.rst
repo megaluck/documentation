@@ -70,7 +70,7 @@ property as a specific Box using SidechainCoreTransaction. Please refer to SDK e
 Serialization
 *************
 
-Due SDK is based on Scorex, Scorex way for serialization of data is implemented in SDK.. 
+Because the SDK is based on Scorex we implement the Scorex way of data serialization. 
   * Any serialized data like Box/BoxData/Secret/Proof/Transaction implements Scorex BytesSerializable interface/trait.
   * BytesSerializable declare functions byte[] bytes() and Serializer serializer(). 
   * Serializer  itself works with Reader/Writer which are wrappers on byte stream. 
