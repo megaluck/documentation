@@ -10,7 +10,9 @@ At a high level, it defines two basic operations:
    * **Backward Transfer**
    
 While all Sidechains know and follow the Mainchain, which is an established and stable reality, Mainchain needs to be made aware of the existence of every sidechain. So, Sidechains first must be declared in Mainchain.
+
 We can declare a new Sidechain by using the following RPC command:
+
 ``sc_create withdrawalEpochLength "address" amount "verification key" "vrfPublickKey" "genSysConstant"``
 
 The command specifies where the first forward transfer coins are sent, as well as the epoch length, that defines the frequency, in blocks, of the backward transfers submissions (see the “backward transfers” paragraph below). The sc_create command also includes the cryptographic key to receive coins back from a Sidechain. The verification key guarantees that the received coins were processed according to a matching proving system.
