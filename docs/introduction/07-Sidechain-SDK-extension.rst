@@ -196,10 +196,10 @@ So creation of **Custom Box Serializer** can be done in next way:
  ``public class CustomBoxSerializer implements NoncedBoxSerializer<CustomBox>``
 The new Custom Box Serializer requires the following:
 
-  1. Definition of method for writing Custom Box into the Scorex Writer by implementation of public void serialize(CustomBox box, Writer writer)method.
-  2. Definition of method for reading Custom Box from Scorex Reader
-by implementation of method public CustomBox parse(Reader reader)
-  3. Class shall be converted to singleton, for example it could be done in next way:
+  1. Definition of method for writing *Custom Box* into the Scorex Writer by implementation of ```public void serialize(CustomBox box, Writer writer)``` method.
+  2. Definition of method for reading *Custom Box* from Scorex Reader
+by implementation of method ```public CustomBox parse(Reader reader) ```
+  3. Class shall be converted to singleton, for example it could be done in following way:
 
     ::
     
@@ -217,12 +217,12 @@ by implementation of method public CustomBox parse(Reader reader)
 Specific actions for extension of Coin-box
 ###########################################
 
-Coin box is created and extended as a usual non-coin box, only one additional action is required: Coin box class shall also implements interface CoinsBox<P extends PublicKey25519Proposition> interface without any additional function implementations, i.e. it is a mixin interface.
+Coin box is created and extended as a usual non-coin box, only one additional action is required: *Coin box class* shall also implements interface CoinsBox<P extends PublicKey25519Proposition> interface without any additional function implementations, i.e. it is a mixin interface.
 
 Transaction extension
 #####################
 
-Transaction in SDK is represented by public abstract class BoxTransaction<P extends Proposition, B extends Box<P>> extends Transaction class. That class provides access to data like which boxes will be created, unlockers for input boxes, fee, etc. SDK developer could add custom transaction check by implement custom ApplicationState (see appropriate chapter for it)
+Transaction in SDK is represented by ```public abstract class BoxTransaction<P extends Proposition, B extends Box<P>> extends Transaction``` class. That class provides access to data like which boxes will be created, unlockers for input boxes, fee, etc. SDK developer could add custom transaction check by implement *custom ApplicationState* 
 
 ApplicationState and Wallet
 ###########################
@@ -245,13 +245,13 @@ For example, the custom application may have the possibility to tokenize cars by
 
 Overall next custom state checks could be done here:
 
-  * public boolean validate(SidechainStateReader stateReader, SidechainBlock block) --  any custom block validation could be done here if function return false then block will note be accepted by Sidechain Node at all
+  * ```public boolean validate(SidechainStateReader stateReader, SidechainBlock block)``` --  any custom block validation could be done here if function return false then block will note be accepted by Sidechain Node at all
   
-  * public boolean validate(SidechainStateReader stateReader, BoxTransaction<Proposition, Box<Proposition>> transaction) -- any custom checks for transaction could be done here, if function return false then transaction is assumed as invalid and for example will not be included in a memory pool. 
+  * ```public boolean validate(SidechainStateReader stateReader, BoxTransaction<Proposition, Box<Proposition>> transaction)``` -- any custom checks for transaction could be done here, if function return false then transaction is assumed as invalid and for example will not be included in a memory pool. 
 
-  * public Try<ApplicationState> onApplyChanges(SidechainStateReader stateReader, byte[] version, List<Box<Proposition>> newBoxes, List<byte[]> boxIdsToRemove) -- any specific action after block applying in State could be defined here.
+  * ```public Try<ApplicationState> onApplyChanges(SidechainStateReader stateReader, byte[] version, List<Box<Proposition>> newBoxes, List<byte[]> boxIdsToRemove)``` -- any specific action after block applying in State could be defined here.
   
-  * public Try<ApplicationState> onRollback(byte[] version) -- any specific action after rollback of State (for example in case of fork/invalid block) could be defined here
+  * ```public Try<ApplicationState> onRollback(byte[] version)``` -- any specific action after rollback of State (for example in case of fork/invalid block) could be defined here
   
 Application Wallet 
 ##################
@@ -333,11 +333,11 @@ Setters are defined to expect data from JSON. So, for the given MyCustomRequest 
 
   3. Define a function to process the HTTP request: Currently we support three types of function’s signature:
   
-      * ApiResponse custom_function_name(Custom_HTTP_request_type) -- a function that by default does not have access to SidechainNodeView. To have access to SidechainNodeViewHolder, this special call should be used: getFunctionsApplierOnSidechainNodeView().applyFunctionOnSidechainNodeView(Function<SidechainNodeView, T> function)
+      * ApiResponse ```custom_function_name(Custom_HTTP_request_type)``` -- a function that by default does not have access to *SidechainNodeView*. To have access to *SidechainNodeViewHolder*, this special call should be used: ```getFunctionsApplierOnSidechainNodeView().applyFunctionOnSidechainNodeView(Function<SidechainNodeView, T> function)```
       
-      * ApiResponse custom_function_name(SidechainNodeView, Custom_HTTP_request_type) -- a function that offers by default access to SidechainNodeView
+      * ```ApiResponse custom_function_name(SidechainNodeView, Custom_HTTP_request_type)``` -- a function that offers by default access to SidechainNodeView
       
-      * ApiResponse custom_function_name(SidechainNodeView) -- a function to process empty HTTP requests, i.e. JSON body shall be empty
+      * ```ApiResponse custom_function_name(SidechainNodeView)``` -- a function to process empty HTTP requests, i.e. JSON body shall be empty
       
 Inside those functions all required action could be defined, and with them also function response results. Responses could be based on SuccessResponse or ErrorResponse interfaces. The JSON response will be formatted by using the defined getters.  
 
@@ -399,8 +399,8 @@ As a result next JSON will be returned in case of error:
       routes.add(bindPostRequest("getAllSecretByEmptyHttpBody", this::getAllSecretByEmptyHttpBodyFunction));
       return routes;
       
- Where "getNSecrets", "getNSecretOtherImplementation", "getAllSecretByEmptyHttpBody" are defined API end points; this::getNSecretsFunction, this::getNSecretOtherImplementationFunction, getAllSecretByEmptyHttpBodyFunction binded functions;
-GetSecretRequest.class -- class for defining type of HTTP request
+ Where "*getNSecrets*", "*getNSecretOtherImplementation*", "*getAllSecretByEmptyHttpBody*" are defined API end points; *this::getNSecretsFunction*, *this::getNSecretOtherImplementationFunction*, *getAllSecretByEmptyHttpBodyFunction* binded functions;
+*GetSecretRequest.class* -- class for defining type of HTTP request
 
 
 
