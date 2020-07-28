@@ -141,8 +141,8 @@ deployment of a complete blockchain much easier and faster.
 
     introduction/index
     how_to/index
-    reference/index
     topics/index
+    reference/index
     contributing/index
     upgrade/index
     user/index
