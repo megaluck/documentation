@@ -217,12 +217,12 @@ by implementation of method ```public CustomBox parse(Reader reader) ```
 Specific actions for extension of Coin-box
 ###########################################
 
-Coin box is created and extended as a usual non-coin box, only one additional action is required: *Coin box class* shall also implements interface CoinsBox<P extends PublicKey25519Proposition> interface without any additional function implementations, i.e. it is a mixin interface.
+A Coin box is created and extended as a usual non-coin box, only one additional action is required: *Coin box class* shall also implement interface CoinsBox<P extends PublicKey25519Proposition> interface without any additional function implementations, i.e. it is a mixin interface.
 
 Transaction extension
 #####################
 
-Transaction in SDK is represented by ```public abstract class BoxTransaction<P extends Proposition, B extends Box<P>> extends Transaction``` class. That class provides access to data like which boxes will be created, unlockers for input boxes, fee, etc. SDK developer could add custom transaction check by implement *custom ApplicationState* 
+Transaction in the SDK is represented by ```public abstract class BoxTransaction<P extends Proposition, B extends Box<P>> extends Transaction``` class. That class provides access to data like which boxes will be created, unlockers for input boxes, fee, etc. SDK developer could add custom transaction check by implementing *custom ApplicationState* 
 
 ApplicationState and Wallet
 ###########################
@@ -241,13 +241,13 @@ ApplicationState and Wallet
     Try<ApplicationState> onRollback(byte[] version);
     }
 
-For example, the custom application may have the possibility to tokenize cars by creation of Box entries - let’s call them CarBox. Each CarBox token should represent a unique car by having a unique *VIN* (Vehicle Identification Number). To do this Sidechain developer may define ApplicationState where to keep the list of actual VINs and reject transactions with CarBox tokens with VIN already existing in the system.
+For example, the custom application may have the possibility to tokenize cars by creation of Box entries - let’s call them CarBox. Each CarBox token should represent a unique car by having a unique *VIN* (Vehicle Identification Number). To do this Sidechain developer may define ApplicationState to store the list of actual VINs and reject transactions with CarBox tokens with VIN already existing in the system.
 
-Overall next custom state checks could be done here:
+The next custom state checks could be done here:
 
-  * ```public boolean validate(SidechainStateReader stateReader, SidechainBlock block)``` --  any custom block validation could be done here if function return false then block will note be accepted by Sidechain Node at all
+  * ```public boolean validate(SidechainStateReader stateReader, SidechainBlock block)``` --  any custom block validation could be done here. If the function return's false then block will note be accepted by Sidechain Node at all.
   
-  * ```public boolean validate(SidechainStateReader stateReader, BoxTransaction<Proposition, Box<Proposition>> transaction)``` -- any custom checks for transaction could be done here, if function return false then transaction is assumed as invalid and for example will not be included in a memory pool. 
+  * ```public boolean validate(SidechainStateReader stateReader, BoxTransaction<Proposition, Box<Proposition>> transaction)``` -- any custom checks for transaction could be done here, if function return's false then transaction is assumed as invalid and for example will not be included in a memory pool. 
 
   * ```public Try<ApplicationState> onApplyChanges(SidechainStateReader stateReader, byte[] version, List<Box<Proposition>> newBoxes, List<byte[]> boxIdsToRemove)``` -- any specific action after block applying in State could be defined here.
   
@@ -256,7 +256,7 @@ Overall next custom state checks could be done here:
 Application Wallet 
 ##################
 
-The Wallet by default keeps user secret info and related balances. The actual data is updated when the new block is applied to the chain or when some blocks are reverted. Developers can specify custom secret types that will be processed by Wallet. But it may be not enough, so he may extend the logic using ApplicationWallet:
+The Wallet by default keeps user secret info and related balances. The actual data is updated when a new block is applied to the chain or when some blocks are reverted. Developers can specify custom secret types that will be processed by Wallet. The developer may extend the logic using ApplicationWallet:
 
 ::
 
@@ -267,7 +267,7 @@ The Wallet by default keeps user secret info and related balances. The actual da
     void onRollback(byte[] version);
   }
 
-For example, some developer needs to have some event-based data, like an auction slot that belongs to him and will start in 10 blocks and will expire in 100 blocks. So in ApplicationWallet he will additionally keep this event-based info and will react when a new block is going to be applied (onChangeBoxes method execution) to activate or deactivate that slot in ApplicationWallet.
+For example, a developer needs to have some event-based data, like an auction slot that belongs to him and will start in 10 blocks and will expire in 100 blocks. So in ApplicationWallet he will additionally keep this event-based info and will react when a new block is going to be applied (onChangeBoxes method execution) to activate or deactivate that slot in ApplicationWallet.
 
 
 Custom API creation 
@@ -281,7 +281,7 @@ Custom API creation
 
     3. Create a new instance of the class MyCustomApi, and then add it to customApiGroups 
 
-At this point MyCustomApi will be included in the API route, but we still need to declare the HTTP address. To do that, please:
+At this point MyCustomApi will be included in the API route, but we still need to declare the HTTP address. To do that:
 
   1. Override the basepath() method -
   
@@ -294,7 +294,7 @@ At this point MyCustomApi will be included in the API route, but we still need t
 Where "myCustomAPI" is part of the HTTP path for that API group 
 
 
-  2.  Define HTTP request classes -- i.e. the json body in the HTTP request will be converted to that request class. For example, if as “request” we want to have byte array data with some integer value, we could define the following class:
+  2.  Define HTTP request classes -- i.e. the json body in the HTTP request will be converted to that request class. For example, if as “request” we want to use byte array data with some integer value, we could define the following class:
   
   ::
   
