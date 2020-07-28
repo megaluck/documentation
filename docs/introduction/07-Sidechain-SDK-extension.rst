@@ -179,7 +179,7 @@ PublicKey25519Proposition could be used as it used in regular boxes
 ``BD extends AbstractNoncedBoxData<P, B, BD>`` -- Definition of type for Box Data which contains all custom data for new custom box
 ``B extends AbstractNoncedBox<P, BD, B>`` -- Definition of type for Box itself, required for description inside of new Custom Box data.
 
-The Custom Box itself require implementation of following functionality:
+The Custom Box itself require's implementation of following functionality:
 
   1. Serialization definition
 
