@@ -145,7 +145,7 @@ So creation of a Custom Box Data Serializer can be done in following way:
 
 :code:`public class CustomBoxDataSerializer implements NoncedBoxDataSerializer<CustomBoxData>`
 
-That new Custom Box Data Serializer require's next:
+That new Custom Box Data Serializer require's the following:
 
   1. Definition of function for writing Custom Box Data into the Scorex Writer by implementation of ``public void serialize(CustomBoxData boxData, Writer writer)`` method.
 
@@ -169,7 +169,7 @@ by implementation of function public CustomBoxData parse(Reader reader)
 Custom Box class creation
 #########################
 
-SDK provide base class for creation Custom Box:
+The SDK provides base class for creation of a Custom Box:
 
 :code:`public class CustomBox extends AbstractNoncedBox<PublicKey25519Proposition, CustomBoxData, CustomBoxBox>`
 
@@ -179,7 +179,7 @@ PublicKey25519Proposition could be used as it used in regular boxes
 ``BD extends AbstractNoncedBoxData<P, B, BD>`` -- Definition of type for Box Data which contains all custom data for new custom box
 ``B extends AbstractNoncedBox<P, BD, B>`` -- Definition of type for Box itself, required for description inside of new Custom Box data.
 
-The Custom Box itself require implementation of next functionality:
+The Custom Box itself require implementation of following functionality:
 
   1. Serialization definition
 
@@ -190,7 +190,7 @@ The Custom Box itself require implementation of next functionality:
 Custom Box Serializer Class
 ###########################
 
-SDK provides base class for ``Custom Box Serializer
+The SDK provides base class for ``Custom Box Serializer
 BoxSerializer<B extends Box>`` where B is type of serialized Custom Box
 So creation of **Custom Box Serializer** can be done in next way:
  ``public class CustomBoxSerializer implements NoncedBoxSerializer<CustomBox>``
