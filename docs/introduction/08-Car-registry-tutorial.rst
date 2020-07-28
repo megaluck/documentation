@@ -54,7 +54,7 @@ Transactions which allow to perform next boxes transitions
 |                              +--------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------+--------------------+---------------------------------------------------------------------------------------------------------------------+
 |                              | Vehicle identification number and any other car related data | Identification of the new car                                                                                                             |                    |                                                                                                                     |
 +------------------------------+--------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------+--------------------+---------------------------------------------------------------------------------------------------------------------+
-| Car sell Order transaction   | Car Box                                                      | Box which identify car for selling, initial car box will be opened and no longer is valid, thus in any case new Car Box shall be created  | Car sell order Box | Representation of car in sell state, also contains additional information like seller coin box proposition address  |
+| Car sell Order transaction   | Car Box                                                      | Box which identifies a car for selling, initial car box will be opened and no longer is valid, thus in any case new Car Box shall be created  | Car sell order Box | Representation of car in sell state, also contains additional information like seller coin box proposition address  |
 |                              +--------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------+--------------------+---------------------------------------------------------------------------------------------------------------------+
 |                              | Seller proposition for coin box                              | Where money will be sent to                                                                                                               |                    |                                                                                                                     |
 +------------------------------+--------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------+--------------------+---------------------------------------------------------------------------------------------------------------------+
@@ -105,7 +105,7 @@ So overall next classes will be created:
 Implementation of CarBoxData
 ****************************
   
-  CarBoxData is implemented according description from “Custom Box Data Creation” chapter as public class CarBoxData extends AbstractNoncedBoxData<PublicKey25519Proposition, CarBox, CarBoxData> with custom data as:
+  CarBoxData is implemented according to the description from “Custom Box Data Creation” chapter as public class CarBoxData extends AbstractNoncedBoxData<PublicKey25519Proposition, CarBox, CarBoxData> with custom data as:
 
     ::
     
@@ -130,7 +130,7 @@ Implementation of CarBoxData
          );
         }
 
-1. Serialization is implemented as SDK developer, as described before, shall include proposition and value into serialization. Ordering is not important.
+1. Serialization is implemented by the SDK developer, as described before, shall include proposition and value into serialization. Ordering is not important.
 2. CarBoxData shall have a value parameter as a Scorex limitation, but in our business logic CarBoxData does not use that data at all because each car is unique and doesn't have any inherent value. Thus value is hidden, i.e. value is not present in the constructor parameter and just set by default to “1” in the class constructor.
 3. public byte[] customFieldsHash() shall be implemented because we introduce some new custom data.
 
@@ -143,11 +143,11 @@ public class CarBoxDataSerializer implements NoncedBoxDataSerializer<CarBoxData>
 Implementation of CarBox
 ************************
 
-CarBox is implemented according to description from “Custom Box Class creation” chapter as
+CarBox is implemented according to the description from “Custom Box Class creation” chapter as
 public class CarBox extends AbstractNoncedBox<PublicKey25519Proposition, CarBoxData, CarBox>
 Few comments about implementation:
 
-  1. As a serialization part SDK developer shall include long nonce as a part of serialization, thus serialization is implemented in next way:
+  1. A long nonce whould be included as a part of serialization, thus serialization is implemented in next way:
   
     :: 
         public byte[] bytes()
@@ -158,7 +158,7 @@ Few comments about implementation:
          );
         }
   
-  2. CarBox defines his own unique id by implementation of the function public byte boxTypeId(). Similar function is defined in CarBoxData but it is a different ids despite value returned in CarBox and CarBoxData is the same.
+  2. CarBox defines it's own unique id by implementation of the function public byte boxTypeId(). Similar function is defined in CarBoxData but it is a different id despite value returned in CarBox and CarBoxData is the same.
   
 
 Implementation of CarBoxSerializer
@@ -175,7 +175,7 @@ CarSellOrderData is implemented according description from “Custom Box Data Cr
 private final PublicKey25519Proposition sellerProposition;
 private final BigInteger vin;
 
-Few comments about implementation:
+Comments about implementation:
   1. Proposition and value shall be included in serialization as it done in CarBoxData 
   2. Id of that box data shall different than in CarBoxData   
 
@@ -197,7 +197,7 @@ public class CarSellOrder extends AbstractNoncedBox<PublicKey25519Proposition, C
 Extend API by creating new transactions Car creation transaction and Car sell Order transaction
 ***********************************************************************************************
 
-For our purpose we need to define two transaction  Car creation transaction and Car sell Order transaction  so according custom API extension manual we shall do next: 
+For our purpose we need to define two transaction's, a Car creation transaction and a Car sell Order transaction according to the custom API extensionas below: 
 
 a) Create a new class CarApi which extends ApplicationApiGroup class, add that new class to Route by it in SimpleAppModule, like described in Custom API manual. In our case it is done in CarRegistryAppModule by 
 
@@ -215,7 +215,7 @@ a) Create a new class CarApi which extends ApplicationApiGroup class, add that n
 b) Define Car creation transaction.
 
   1. Defining request class/JSON request body
-     As input for the transaction we expected: 
+     As input for the transaction we expect: 
      Regular box id  as input for paying fee; 
      Fee value; 
      Proposition address which will be recognized as a Car Proposition; 
@@ -302,7 +302,7 @@ b) Define Car creation transaction.
     }
     }
 
-Request class shall have appropriate setters and getters for all class members, also class members' names define structure for related JSON structure according  jackson library so next JSON structure is expected to be set: 
+Request class should have appropriate setters and getters for all class members, also class members' names define structure for related JSON structure according to the jackson library so JSON structure is expected: 
 
   ::
   
@@ -314,9 +314,9 @@ Request class shall have appropriate setters and getters for all class members, 
     "boxId": "d59f80b39d24716b4c9a54cfed4bff8e6f76597a7b11761d0d8b7b27ddf8bd3c"
     }
 
-Few interesting moments: setter input parameter could have differ type than set class member, it’s allow us to do all necessary conversation in setters; byte data is represented initially as a hex string, which converted to bytes by BytesUtils.fromHexString() function.
+Points to note: setter input parameter could have different type than set class member, it allow's us to do all necessary conversation in setters; byte data is represented initially as a hex string, which converted to bytes by BytesUtils.fromHexString() function.
 
-2. Define response for Car creation transaction, result of transaction shall be defined by implementing SuccessResponse interface with class members which shall be returned as API response, all members shall have properly set getters, also response class shall have proper annotation @JsonView(Views.Default.class) thus jackson library is able correctly represent response class in JSON format. In our case we expect to return transaction bytes, so response class is next:
+2. Define response for Car creation transaction. The result of transaction shall be defined by implementing SuccessResponse interface with class members which will be returned as API response, all members should have properly settters and getters, also response class shall have proper annotation @JsonView(Views.Default.class) thus jackson library is able correctly represent response class in JSON format. In our case we expect to return transaction bytes, so response class is next:
 
   ::
   
@@ -347,7 +347,7 @@ As a first parameter we pass reference to SidechainNodeView, second reference is
 During transaction creation we need to do next:
 
   * check is input box secret is present in our wallet at all
-  * is stored coins in that box is enough to pay fee
+  * check if enough coins are stored in that box to pay fee
   * calculate fee for change 
   * create RegularBoxData for change for fee 
   * create new CarBoxData according JSON request data
