@@ -23,7 +23,7 @@ CustomData are the following:
 
 * Add your custom serializer into the map, for example it could be something  like ``customBoxSerializers.put((byte)MY_CUSTOM_BOX_ID, (BoxSerializer) CustomBoxSerializer.getSerializer());``
   
-* Bind map with custom serializers to your application:
+* Bind map with custom serializers to your application in the app model class:
 ::
  
  TypeLiteral<HashMap<Byte, Common serializer type>() {})
