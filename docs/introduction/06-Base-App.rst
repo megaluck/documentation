@@ -186,7 +186,7 @@ We can split SidechainApp arguments into 4 groups:
 		  be required to create custom Box and BoxData types. These custom objects will be managed by the SDK to be sent through 
 		  the network or stored to the disk. In both cases the SDK should know how to serialize a custom object to bytes and how to restore 
 		  it back. To maintain this, sidechain developers should specify custom object serializers and add them to custom...Serializers map
-		  following the specific rules (see chapter 9 Code your own dApp...)
+		  following the specific rules.
 	3. Application node extension of State and Wallet logic
 		* As was said above, State is a snapshot of all closed boxes of the blockchain at some moment of time. So when the next block arrives it should be validated by the State to prevent spending of non existing boxes or transaction inputs and outputs coin balances inconsistency. State can be extended by developers by introducing some logic in ApplicationState and ApplicationWallet. Seep appropriate chapters.
 	4. API extension was described in chapter 
