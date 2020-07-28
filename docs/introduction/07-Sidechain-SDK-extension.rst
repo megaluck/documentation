@@ -116,8 +116,7 @@ That base class provide next data by default:
 
   proposition of type P long value
 
-value of that box if required, that value is important in case if Box is coin Box, otherwise it will be used in custom logic only. 
-In common case for non-Coin box it could be always equal 1 
+If the box type is a Coin-Box then this value is required and will contain data such as coin value. In the case of a Non-Coin box this value would only be used in custom logic and cannot be null. Typically we would set this value to 1.
 
 So the creation of new Custom Box Data will be created in following way:
 ``public class CustomBoxData extends AbstractNoncedBoxData<PublicKey25519Proposition, CustomBox, CustomBoxData>``
