@@ -19,7 +19,7 @@ Another example of a non-coin box is a car which is being sold. We need another 
 seller proposition address etc. For the money representation a standard Regular Box is used (Regular box is coin box), that box is provided by SDK. Besides new entities CarBox
 and CarSellOrder we also need to define a way for creating/destroying those new entities. For that purpose new transactions can be defined: transaction for creating new car, 
 transaction which move CarBox to CarSellOrder, transaction which declares a car sale, i.e. moving CarSellOrder to the new CarBox. All created transactions are not put into the
-memory pool automatically, so a raw transaction in hex representation by creating a /transaction/sendTransaction API request. In summary we will add next car boxes and 
+memory pool automatically, so a raw transaction in hex representation by added by creating a /transaction/sendTransaction API request. In summary we will add next car boxes and 
 transactions:
 
 Entities: 
