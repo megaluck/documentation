@@ -89,7 +89,7 @@ To build a real application, a developer will need more to do more than just rec
 Custom Box Data class creation
 ##############################
 
-SDK provides base class for any Box Data class: 
+The SDK provides base class for any Box Data class: 
 
 ::
 
