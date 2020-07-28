@@ -343,8 +343,8 @@ Inside those functions all required action could be defined, and with them also 
 
   4. Add response classes
 
-As a result of an API request some result shall be sent back via HTTP response. In a common case we could have two different types of  responses: operation is successful and some error had appeared during processing of the API request. SDK provides next way to declare those API responses:
-For successful response implement SuccessResponse interface with data to be returned. That data shall be accessible via getters. Also that class shall have next annotation which requires for marshaling and correct convertation to JSON: @JsonView(Views.Default.class) . You could define here some other custom class for JSON marshaling. For example if some string shall be returned then next response class could be defined:
+As a result of an API request the result shall be sent back via HTTP response. In a common case we could have two different types of response: operation is successful oe some error had appeared during processing of the API request. SDK provides next way to declare those API responses:
+For a successful response implement SuccessResponse interface with data to be returned. That data shall be accessible via getters. Also that class shall have next annotation which requires for marshaling and correct convertation to JSON: @JsonView(Views.Default.class) . You could define here some other custom class for JSON marshaling. For example if a string should be returned then next response class could be defined:
 
   ::
   
@@ -361,13 +361,13 @@ For successful response implement SuccessResponse interface with data to be retu
     }
     }
 
-In such case API response will be represented in next JSON form:
+In such case API response will be represented in the following JSON format:
 
   ::
   
     {"result": {“response” : “response from CustomSuccessResponse object”}}
     
-In case if something going wrong and error shall be returned then response shall implements ErrorResponse interface which by default have next functions to be implemented:
+Error response should implement the ErrorResponse interface which by default should have the next functions to be implemented:
 
 ```public String code()``` -- error code
 
