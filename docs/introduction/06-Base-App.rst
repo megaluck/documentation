@@ -196,7 +196,7 @@ We can split SidechainApp arguments into 4 groups:
 Inside the SDK we implemented a SimpleApp example, that was designed to demonstrate the basic SDK functionalities. It's the fastest way to play with our SDK.
 SimpleApp has no custom logic at all: no custom boxes and transactions, no custom API and with empty ApplicationState and ApplicationWallet.
 
-SimpleApp requires a single argument to start: the path to the user configuration file.
+The SimpleApp requires a single argument to start: the path to the user configuration file.
 Under the hood it has to parse its config file using SettingsReader, and then initialize and run SidechainApp
 
 	
