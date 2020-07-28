@@ -147,7 +147,7 @@ So creation of Custom Box Data Serializer can be done in next way:
 
 That new Custom Box Data Serializer require next:
 
-  1. Definition of function for writing Custom Box Data into the Scorex Writer by implementation of public void serialize(CustomBoxData boxData, Writer writer)function.
+  1. Definition of function for writing Custom Box Data into the Scorex Writer by implementation of ``public void serialize(CustomBoxData boxData, Writer writer)`` method.
 
   2. Definition of function for reading Custom Box Data from Scorex Reader
 by implementation of function public CustomBoxData parse(Reader reader)
