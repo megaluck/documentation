@@ -24,3 +24,4 @@ Default Latus consensus parameters
 
   * Seconds in one slot - 120, i.e. one block could be generated in two minutes
   * Number of slots in one consensus Epoch - 720, i.e. new nonce is generated (and thus forging stake holder could check slot leader possability) every 720 * 120 =  86400 seconds, i.e. 24 hours.
+  * BlockSize Limit 2MB
