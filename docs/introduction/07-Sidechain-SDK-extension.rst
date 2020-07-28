@@ -65,7 +65,7 @@ Custom box creation
 
   a) SDK Box extension Overview
 
-To build a real application, a developer will need more than just receive, transfer and send coins back. A distributed app, built on a sidechain, will typically have to define some custom data that the sidechain users will be able to exchange according to a defined logic. Creation of new Boxes requires definition of new four classes. We will use name Custom Box as a definition for some abstract custom Box:
+To build a real application, a developer will need more to do more than just receive, transfer and send coins back. A distributed app, built on a sidechain, will typically have to define some custom data that the sidechain users will be able to exchange according to a defined logic. Creation of new Boxes requires definition of new four classes. We will use name Custom Box as a definition for some abstract custom Box:
 
 
 +---------------------------------------+------------------------------------------------------------------------------------+
