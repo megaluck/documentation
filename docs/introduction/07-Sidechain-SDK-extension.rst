@@ -139,13 +139,13 @@ The new custom box data class  requires the following:
 Custom Box Data Serializer class creation
 #########################################
 
-SDK provide base class for Custom Box Data Serializer
+The SDK provides a base class for Custom Box Data Serializer
 NoncedBoxDataSerializer<D extends NoncedBoxData> where D is type of serialized Custom Box Data
-So creation of Custom Box Data Serializer can be done in next way:
+So creation of a Custom Box Data Serializer can be done in following way:
 
 :code:`public class CustomBoxDataSerializer implements NoncedBoxDataSerializer<CustomBoxData>`
 
-That new Custom Box Data Serializer require next:
+That new Custom Box Data Serializer require's next:
 
   1. Definition of function for writing Custom Box Data into the Scorex Writer by implementation of ``public void serialize(CustomBoxData boxData, Writer writer)`` method.
 
