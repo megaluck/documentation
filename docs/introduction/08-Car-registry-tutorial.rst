@@ -139,7 +139,6 @@ Implementation of CarBoxDataSerializer
 
 CarBoxDataSerializer is implemented according to the description from “Custom Box Data Serializer Creation” chapter as 
 public class CarBoxDataSerializer implements NoncedBoxDataSerializer<CarBoxData>. 
-Nothing special to note about.
 
 Implementation of CarBox
 ************************
@@ -167,7 +166,7 @@ Implementation of CarBoxSerializer
 
 CarBoxSerializer is implemented according to the description from “Custom Box Data Serializer Creation” chapter as 
 public class CarBoxSerializer implements BoxSerializer<CarBox>. 
-Nothing special to note about.
+
 
 Implementation of CarSellOrderData
 **********************************
@@ -186,14 +185,14 @@ Implementation of CarSellOrderDataSerializer
 
 CarSellOrderDataSerializer is implemented according to the description from “Custom Box Data Serializer Creation” chapter as 
 public class CarSellOrderDataSerializer implements NoncedBoxDataSerializer<CarSellOrderData>. 
-Nothing special to note about.
+
 
 Implementation of CarSellOrder
 ******************************
 
 CarSellorder is implemented according to description from “Custom Box Class creation” chapter as
 public class CarSellOrder extends AbstractNoncedBox<PublicKey25519Proposition, CarSellOrderData, CarSellOrder>
-Nothing special to note about.
+
 
 Extend API by creating new transactions Car creation transaction and Car sell Order transaction
 ***********************************************************************************************
