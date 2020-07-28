@@ -369,11 +369,11 @@ In such case API response will be represented in next JSON form:
     
 In case if something going wrong and error shall be returned then response shall implements ErrorResponse interface which by default have next functions to be implemented:
 
-public String code() -- error code
+```public String code()``` -- error code
 
-public String description() -- error description 
+```public String description()``` -- error description 
 
-public Option<Throwable> exception() -- Caught exception during API processing
+```public Option<Throwable> exception()``` -- Caught exception during API processing
 
 As a result next JSON will be returned in case of error:
 
