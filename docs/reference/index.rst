@@ -5,7 +5,7 @@ Projects list
 +++++++++++++
 https://gist.github.com/rxaviers/7360908
 
-:fire:
+|:fire:|
 
 
 |:arrows_counterclockwise:|
