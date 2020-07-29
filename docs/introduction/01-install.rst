@@ -19,9 +19,6 @@ Requirements
 
 Horizen Sidechain SDK requires Java 8  or newer (Java 11 recommended), Scala 2.12.10+ or newer, and the latest version of `zend_oo <https://github.com/ZencashOfficial/zend_oo>`_.
 
-.. |test| raw:: html
-  <a href="http://geoiptool.com" target="_blank">check your location here</a>
-
 
 *************************
 Installing on Windows OS:
