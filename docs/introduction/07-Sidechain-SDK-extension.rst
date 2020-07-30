@@ -228,17 +228,17 @@ That new Custom Box Data Serializer require's the following:
 
   3. Class shall be converted to singleton, for example it can be done in following way:
 
-::
-  
-  private static final CustomBoxDataSerializer serializer = new CustomBoxDataSerializer();
+     ::
+        
+      private static final CustomBoxDataSerializer serializer = new CustomBoxDataSerializer();
 
-  private CustomBoxDataSerializer() {
-  super();
-  }
+      private CustomBoxDataSerializer() {
+      super();
+      }
 
-  public static CustomBoxDataSerializer getSerializer() {
-  return serializer;
-  }
+      public static CustomBoxDataSerializer getSerializer() {
+      return serializer;
+      }
   
 Custom Box class creation
 #########################
