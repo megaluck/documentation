@@ -1,6 +1,6 @@
-=======================
+========================
 Sidechains SDK extension
-=======================
+========================
 
 
 Data serialization
@@ -14,6 +14,7 @@ CustomData are the following:
 For CustomData
 ::
   Implement BytesSerializable interface 
+  
 i.e. 
 ::
   functions byte[] bytes() 
@@ -264,7 +265,9 @@ The Custom Box itself requires implementation of following functionality:
 
   1. Serialization definition
 
-    * Box itself shall provide the way to be serialized into bytes, thus method ``public byte[] bytes()`` shall be implemented 
+    * The box itself provides the way to be serialized into bytes, thus method 
+      ::
+       public byte[] bytes()`` shall be implemented 
     * Method for creation of a new Car Box object from bytes
       ::
        public static CarBox parseBytes(byte[] bytes)
