@@ -243,23 +243,39 @@ That new Custom Box Data Serializer require's the following:
 Custom Box class creation
 #########################
 
-The SDK provides base class for creation of a Custom Box:
+The SDK provides a base class for creation of a Custom Box:
+::
+ public class CustomBox extends AbstractNoncedBox<PublicKey25519Proposition, CustomBoxData, CustomBoxBox>
 
-:code:`public class CustomBox extends AbstractNoncedBox<PublicKey25519Proposition, CustomBoxData, CustomBoxBox>`
+As parameters for **AbstractNoncedBox** three template parameters shall be provided:
+- Proposition type for the box, for common purposes. PublicKey25519Proposition could be used as it used in regular boxes
+  ::
+  P extends Proposition
 
-As a parameters for **AbstractNoncedBox** three template parameters shall be provided:
-``P extends Proposition``- Proposition type for the box, for common purposes 
-PublicKey25519Proposition could be used as it used in regular boxes
-``BD extends AbstractNoncedBoxData<P, B, BD>`` -- Definition of type for Box Data which contains all custom data for new custom box
-``B extends AbstractNoncedBox<P, BD, B>`` -- Definition of type for Box itself, required for description inside of new Custom Box data.
+- Definition of type for Box Data which contains all custom data for a new custom box
+  ::
+   BD extends AbstractNoncedBoxData<P, B, BD>
+
+- Definition of type for Box itself, required for description inside of new Custom Box data.
+  ::
+   B extends AbstractNoncedBox<P, BD, B>
 
 The Custom Box itself require's implementation of following functionality:
 
   1. Serialization definition
 
     * Box itself shall provide the way to be serialized into bytes, thus method ``public byte[] bytes()`` shall be implemented 
-    * Method ``public static CarBox parseBytes(byte[] bytes)`` for creation of a new Car Box object from bytes, 
-    * Providing box type id by implementation of method ``public byte boxTypeId()`` which return custom box type id. And, finally, proper serializer for the Custom Box shall be returned by implementation of method ``public BoxSerializer serializer()``
+    * Method for creation of a new Car Box object from bytes
+      ::
+       public static CarBox parseBytes(byte[] bytes)
+
+    * Providing box type id by implementation of the following method which return's a custom box type id
+      ::
+       public byte boxTypeId()
+
+    And, finally, aserializer for the Custom Box shall be returned by implementation of the following method 
+    ::
+     public BoxSerializer serializer()
 
 Custom Box Serializer Class
 ###########################
