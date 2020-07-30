@@ -5,6 +5,7 @@ Node communication
 Communication  between a user and a sidechain node is supported out of the box via HTTP POST requests API methods. Custom applications could extend them to add new, remove existing and and/or replace core behaviours.
 
 The API configuration can be found in the sidechain configuration file.
+
 For example see the restApi section of the following file for the SimpleApp.
 
 .. code:: bash
