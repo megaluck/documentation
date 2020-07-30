@@ -13,6 +13,9 @@
 .wy-nav-content {
    // background: rgb(122, 115, 115);
 }
+.wy-nav-content-wrap {
+    background: rgba(0,0,0,0.05) !important; 
+}
 .rst-versions .rst-current-version {
     background-color: #041742 !important;
 }
