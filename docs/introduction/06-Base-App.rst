@@ -12,10 +12,20 @@ Secret / Proof / Proposition
 * **Secret / Proof / Proposition** - SDK uses its own terms for secret key / public key / signed message and provides various types of them.
 * **Secret** -  Private key 
 * **Proof** -  Signed message
-* SDK provides implementations for Secret / Proof / Proposition:
-  * Curve 25519 (PrivateKey25519/PublicKey25519Proposition/Signature25519)
-  * VRF based on  ginger-lib (VrfSecretKey/VrfPublicKey/VrfProof)
-  * Schnorr based on ginger-lib (SchnorrSecret/SchnorrPropostion/SchnorrProof)
+* SDK provides implementations for Secret / Proof / Proposition
+
+  * Curve 25519
+	- PrivateKey25519
+	- PublicKey25519Proposition
+	- Signature25519
+  * VRF based on  ginger-lib 
+  	- VrfSecretKey
+	- VrfPublicKey 
+	- VrfProof
+  * Schnorr based on ginger-lib 
+  	- SchnorrSecret 
+	- SchnorrPropostion
+	- SchnorrProof
 
 
 Boxes
