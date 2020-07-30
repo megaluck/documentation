@@ -112,12 +112,9 @@ Sidechain Node API spec
                             header of request
    :statuscode 200: no error
    :statuscode 404: there's no user
-   
-   
-|
-______
-|   
-   
+
+_____
+
    .. http:post:: /block/findLastIds/
    
 *Returns an array with the ids of the last x blocks*  
@@ -159,5 +156,9 @@ ______
             ]
          }
       }
+
+_____
+
+teste
    
 
