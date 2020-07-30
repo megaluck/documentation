@@ -8,5 +8,5 @@ Reference
     :maxdepth: 2
     :numbered:
 
-    01-scnode_rpc
+    01-scnode-rpc
 
