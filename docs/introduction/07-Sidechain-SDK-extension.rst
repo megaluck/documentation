@@ -222,10 +222,9 @@ That new Custom Box Data Serializer require's the following:
      ::
       public void serialize(CustomBoxData boxData, Writer writer)
 
-  2. Definition of function for reading Custom Box Data from Scorex Readervby implementation of the function 
-     .. code:: java
-
-        public CustomBoxData parse(Reader reader)
+  2. Definition of function for reading Custom Box Data from Scorex Reader by implementation of the function 
+     ::
+      public CustomBoxData parse(Reader reader)
 
   3. Class shall be converted to singleton, for example it can be done in following way:
 
@@ -323,7 +322,12 @@ A Coin box is created and extended as a usual non-coin box, only one additional 
 Transaction extension
 #####################
 
-Transaction in the SDK is represented by ```public abstract class BoxTransaction<P extends Proposition, B extends Box<P>> extends Transaction``` class. That class provides access to data like which boxes will be created, unlockers for input boxes, fee, etc. SDK developer could add custom transaction check by implementing *custom ApplicationState* 
+Transaction in the SDK is represented by the following class.
+::
+ public abstract class BoxTransaction<P extends Proposition, B extends Box<P>>
+ 
+This class provides access to data such as which boxes will be created, unlockers for input boxes, fee, etc. 
+SDK developer could add custom transaction check by implementing *custom ApplicationState* 
 
 ApplicationState and Wallet
 ###########################
