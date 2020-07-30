@@ -110,5 +110,28 @@ Sidechain Node API spec
                             header of request
    :statuscode 200: no error
    :statuscode 404: there's no user
+   
+   
+   .. http:post:: /block/findLastIds/
+   
+   **Parameters**
 
+   +---------+--------+----------+-------------------------------+
+   | Name    | Type   | Required |          Description          |
+   +=========+========+==========+===============================+
+   |  number |  int   |   yes    | Retrieves x number of blocks  |
+   +---------+--------+----------+-------------------------------+
+   
+   **Example request**:
+
+.. tabs::
+
+   .. tab:: Bash
+
+      curl -X POST "http://127.0.0.1:9085/block/findLastIds" -H "accept: application/json" -H "Content-Type: application/json" -d "{\"number\":1}"
+      
+      
+   **Example response**:
+   
+   
 
