@@ -224,6 +224,7 @@ That new Custom Box Data Serializer require's the following:
 
   2. Definition of function for reading Custom Box Data from Scorex Readervby implementation of the function 
      .. code::java
+     
         public CustomBoxData parse(Reader reader)
 
   3. Class shall be converted to singleton, for example it can be done in following way:
@@ -283,7 +284,7 @@ Custom Box Serializer Class
 The SDK provides base class for a custom box serializer below, where B is type of serialized Custom Box
 ::
  Custom Box Serializer BoxSerializer<B extends Box>
- 
+
 So creation of **Custom Box Serializer** can be done in the following way:
 ::
  public class CustomBoxSerializer implements NoncedBoxSerializer<CustomBox>
