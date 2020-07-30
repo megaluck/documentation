@@ -32,15 +32,15 @@ CustomData are the following:
    Map<Byte, BoxSerializer<Box<Proposition>>> customBoxSerializers = new HashMap<>();
 * Add your custom serializer into the map, for example it could be something  like 
 
-   .. code:: java
+ .. code:: java
 
-     customBoxSerializers.put((byte)MY_CUSTOM_BOX_ID, (BoxSerializer) CustomBoxSerializer.getSerializer());  
+   customBoxSerializers.put((byte)MY_CUSTOM_BOX_ID, (BoxSerializer) CustomBoxSerializer.getSerializer());  
 * Bind map with custom serializers to your application in the app model class:
-::
- 
- TypeLiteral<HashMap<Byte, Common serializer type>() {})
-       .annotatedWith(Names.named(Bound property name))
-       .toInstance(Created map with custom serializers);
+  ::
+
+   TypeLiteral<HashMap<Byte, Common serializer type>() {})
+         .annotatedWith(Names.named(Bound property name))
+         .toInstance(Created map with custom serializers);
        
 Where **Common serializer type** and **Bound property name** can have the following values 
 
