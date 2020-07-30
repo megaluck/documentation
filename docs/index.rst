@@ -140,9 +140,5 @@ deployment of a complete blockchain much easier and faster.
     :hidden:
 
     introduction/index
-    how_to/index
-    topics/index
     reference/index
-    contributing/index
-    upgrade/index
-    user/index
+
