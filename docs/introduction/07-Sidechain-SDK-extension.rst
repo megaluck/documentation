@@ -222,8 +222,9 @@ That new Custom Box Data Serializer require's the following:
      ::
       public void serialize(CustomBoxData boxData, Writer writer)
 
-  2. Definition of function for reading Custom Box Data from Scorex Reader
-by implementation of function public CustomBoxData parse(Reader reader)
+  2. Definition of function for reading Custom Box Data from Scorex Readervby implementation of the function 
+     ::
+      public CustomBoxData parse(Reader reader)
 
   3. Class shall be converted to singleton, for example it can be done in following way:
 
@@ -232,11 +233,11 @@ by implementation of function public CustomBoxData parse(Reader reader)
   private static final CustomBoxDataSerializer serializer = new CustomBoxDataSerializer();
 
   private CustomBoxDataSerializer() {
-   super();
+  super();
   }
 
   public static CustomBoxDataSerializer getSerializer() {
-   return serializer;
+  return serializer;
   }
   
 Custom Box class creation
