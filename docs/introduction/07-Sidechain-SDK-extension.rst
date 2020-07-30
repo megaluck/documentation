@@ -186,12 +186,25 @@ The new custom box data class  requires the following:
     method, otherwise custom data will not be “protected”, i.e. some malicious actor        could change custom data during transaction creation. 
     
 2. Serialization definition
-  * Serialization to bytes shall be provided by Custom Box Data by overriding and implementing the method ```public byte[] bytes()```. That method will serialize the proposition, value and any added custom data.
-  * Additionally definition of Custom Box Data id for serialization by overriding ```public byte boxDataTypeId()``` method, please check the serialization chapter for more information about using ids. 
-  * Override ```public NoncedBoxDataSerializer serializer()``` method with proper **Custom Box Data serializer**. Parsing Custom Box Data from bytes could be defined in that class as well, please refer to the serialization section for more information about it
+  * Serialization to bytes shall be provided by Custom Box Data by overriding and implementing the method 
+    ::
+     public byte[] bytes() 
+
+    That method will serialize the proposition, value and any added custom data.
+  * Additionally definition of Custom Box Data id for serialization by overriding 
+    ::
+     public byte boxDataTypeId()
+    
+    method, please check the serialization chapter for more information about using ids. 
+  * Override 
+    ::
+     public NoncedBoxDataSerializer serializer() 
+    method with proper **Custom Box Data serializer**. Parsing Custom Box Data from bytes could be defined in that class as well, please refer to the serialization section for more information about it
 
 3. Custom Box creation
-  * Any Box Data class shall provide the way how to create a new Box for a given nonce. For that purpose override the method ```public CustomBox getBox(long nonce)```. 
+  * Any Box Data class shall provide the way how to create a new Box for a given nonce. For that purpose override the method 
+    ::
+     public CustomBox getBox(long nonce) 
 
 
 Custom Box Data Serializer class creation
