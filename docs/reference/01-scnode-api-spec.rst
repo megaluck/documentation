@@ -114,24 +114,24 @@ Sidechain Node API spec
    
    .. http:post:: /block/findLastIds/
    
-   **Parameters**
+**Parameters**
 
-   +---------+--------+----------+-------------------------------+
-   | Name    | Type   | Required |          Description          |
-   +=========+========+==========+===============================+
-   |  number |  int   |   yes    | Retrieves x number of blocks  |
-   +---------+--------+----------+-------------------------------+
++---------+--------+----------+-------------------------------+
+| Name    | Type   | Required |          Description          |
++=========+========+==========+===============================+
+|  number |  int   |   yes    | Retrieves x number of blocks  |
++---------+--------+----------+-------------------------------+
    
-   **Example request**:
+**Example request**:
 
-.. tabs::
+   .. tabs::
 
-   .. tab:: Bash
+      .. tab:: Bash
 
-      curl -X POST "http://127.0.0.1:9085/block/findLastIds" -H "accept: application/json" -H "Content-Type: application/json" -d "{\"number\":1}"
+         curl -X POST "http://127.0.0.1:9085/block/findLastIds" -H "accept: application/json" -H "Content-Type: application/json" -d "{\"number\":1}"
       
       
-   **Example response**:
+**Example response**:
    
    
 
