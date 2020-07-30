@@ -136,7 +136,7 @@ html_favicon = 'images/Horizen_favicon_32x32.png'
 # so a file named "default.css" will overwrite the builtin "default.css".
 html_static_path = ['_static']
 html_js_files = ['js/target_blank.js','js/expand_tabs.js']
-html_css_files = []
+html_css_files = ['custom.css']
 # The name of an image file (within the static path) to use as favicon of the
 # docs.  This file should be a Windows icon file (.ico) being 16x16 or 32x32
 # pixels large.
