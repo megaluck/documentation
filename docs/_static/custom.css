@@ -11,3 +11,6 @@
 .wy-nav-side {
     background: #041742 !important;
 }
+.rst-versions .rst-current-version {
+    background-color: #041742 !important;
+}
