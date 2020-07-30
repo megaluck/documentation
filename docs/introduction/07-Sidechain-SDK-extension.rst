@@ -1,5 +1,5 @@
 =======================
-Sidechain SDK extension
+Sidechains SDK extension
 =======================
 
 
@@ -322,7 +322,7 @@ A Coin box is created and extended as a usual non-coin box, only one additional 
 Transaction extension
 #####################
 
-Transaction in the SDK is represented by the following class.
+A transaction in the SDK is represented by the following class.
 ::
  public abstract class BoxTransaction<P extends Proposition, B extends Box<P>>
  
@@ -332,19 +332,19 @@ SDK developer could add custom transaction check by implementing *custom Applica
 ApplicationState and Wallet
 ###########################
 
- ApplicationState:
+ApplicationState:
  
-  ::
-  
-    interface ApplicationState {
-    boolean validate(SidechainStateReader stateReader, SidechainBlock block);
+::
 
-    boolean validate(SidechainStateReader stateReader, BoxTransaction<Proposition, Box<Proposition>> transaction);
+  interface ApplicationState {
+  boolean validate(SidechainStateReader stateReader, SidechainBlock block);
 
-    Try<ApplicationState> onApplyChanges(SidechainStateReader stateReader, byte[] version, List<Box<Proposition>> newBoxes, List<byte[]> boxIdsToRemove);
+  boolean validate(SidechainStateReader stateReader, BoxTransaction<Proposition, Box<Proposition>> transaction);
 
-    Try<ApplicationState> onRollback(byte[] version);
-    }
+  Try<ApplicationState> onApplyChanges(SidechainStateReader stateReader, byte[] version, List<Box<Proposition>> newBoxes, List<byte[]> boxIdsToRemove);
+
+  Try<ApplicationState> onRollback(byte[] version);
+  }
 
 For example, the custom application may have the possibility to tokenize cars by creation of Box entries - let’s call them CarBox. Each CarBox token should represent a unique car by having a unique *VIN* (Vehicle Identification Number). To do this Sidechain developer may define ApplicationState to store the list of actual VINs and reject transactions with CarBox tokens with VIN already existing in the system.
 
