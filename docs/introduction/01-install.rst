@@ -27,7 +27,11 @@ Installing on Windows OS:
   1. Install Java JDK version 11 (link)
   2. Install Scala 2.12.10+ (link)
   3. Install Git (link)
-  4. Clone the Sidechains-SDK git repository (link): git clone git@github.com:ZencashOfficial/Sidechains-SDK.git
+  4. Clone the Sidechains-SDK git repository 
+
+  ..code::Bash
+    git clone git@github.com:ZencashOfficial/Sidechains-SDK.git
+    
   5. As IDE, please install and use IntelliJ IDEA Community Edition (link) In the IDE, please also install the Intellij Scala plugin: in the Settings->Plugins tab, select it from the marketplace: 
   
   .. image:: /images/intellij.png
