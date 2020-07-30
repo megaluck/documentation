@@ -49,7 +49,12 @@ Installing on Linux OS:
   1. Install Java JDK version 11 (link)
   2. Install Scala 2.12.10+ (link)
   3. Install Git (link)
-  4. Clone the Sidechains-SDK git repository (link): git clone git@github.com:ZencashOfficial/Sidechains-SDK.git
+  4. Clone the Sidechains-SDK git repository 
+  
+  .. code:: Bash
+  
+     git clone git@github.com:ZencashOfficial/Sidechains-SDK.git
+     
   5. As IDE, please install and use IntelliJ IDEA Community Edition (link) In the IDE, please also install the Intellij Scala plugin: in the Settings->Plugins tab, select it from the marketplace: 
   
   .. image:: /images/intellij.png
@@ -67,7 +72,12 @@ Sidechain SDK Components:
 As a result of step 8, three jar files will be generated:
   
   * **sdk/target/Sidechains-SDK-0.2.0.jar** - the main SDK jar file, that contains all the necessary classes and components;
-  * **tools/sctool/target/Sidechains-SDK-ScBootstrappingTools-0.2.0.jar** - executable bootstrap tool. It is used to create the configuration of the new Sidechain. You can find all available commands and examples of usage in the examples/simpleapp/mc_sc_workflow_example.md file;   
+  * **tools/sctool/target/Sidechains-SDK-ScBootstrappingTools-0.2.0.jar** - executable bootstrap tool. It is used to create the configuration of the new Sidechain. You can find all available commands and examples of usage here
+  
+  ..  code:: Bash
+  
+      examples/simpleapp/mc_sc_workflow_example.md file;   
+      
   * **examples/simpleapp/target/Sidechains-SDK-simpleapp-0.2.0.jar** - in contains a Sidechain application example. You can find more details in the examples/simpleapp/readme.md file.
 
   
