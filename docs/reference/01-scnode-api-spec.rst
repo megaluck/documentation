@@ -1,15 +1,20 @@
 Sidechain Node API spec
 ~~~~~~~~~~~~~~~~~~~~~~
+=====
+block
+=====
+
+Sidechain Block operations
 
 .. http:post:: /block/findById/
 
 **Parameters**
 
-+---------+----------+------------------+
-| Name    | Required | Description      |
-+=========+==========+==================+
-| blockId | yes      | Find block by ID |
-+---------+----------+------------------+
++---------+--------+----------+------------------+
+| Name    | Type   | Required | Description      |
++=========+========+==========+==================+
+| blockId | String | yes      | Find block by ID |
++---------+--------+----------+------------------+
 
 **Example request**:
 
