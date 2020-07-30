@@ -4,7 +4,7 @@ Sidechain Node API spec
 block
 =====
 
-Sidechain Block operations
+**Sidechain Block operations**
 
 .. http:post:: /block/findById/
 
