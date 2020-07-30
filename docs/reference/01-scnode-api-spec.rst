@@ -101,18 +101,6 @@ Sidechain Node API spec
          }
       }      
 
-
-   :query sort: one of ``hit``, ``created-at``
-   :query offset: offset number. default is 0
-   :query limit: limit number. default is 30
-   :reqheader Accept: the response content type depends on
-                      :mailheader:`Accept` header
-   :reqheader Authorization: optional OAuth token to authenticate
-   :resheader Content-Type: this depends on :mailheader:`Accept`
-                            header of request
-   :statuscode 200: no error
-   :statuscode 404: there's no user
-
 _____
 
    .. http:post:: /block/findLastIds/
