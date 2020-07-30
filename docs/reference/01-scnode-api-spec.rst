@@ -111,16 +111,17 @@ Sidechain Node API spec
    :statuscode 200: no error
    :statuscode 404: there's no user
    
+____
    
    .. http:post:: /block/findLastIds/
    
 **Parameters**
 
-+---------+--------+----------+-------------------------------+
-| Name    | Type   | Required |          Description          |
-+=========+========+==========+===============================+
-|  number |  int   |   yes    | Retrieves x number of blocks  |
-+---------+--------+----------+-------------------------------+
++---------+--------+----------+----------------------------------------+
+| Name    | Type   | Required |          Description                   |
++=========+========+==========+========================================+
+|  number |  int   |   yes    | Retrieves the last x number of blocks  |
++---------+--------+----------+----------------------------------------+
    
 **Example request**:
 
