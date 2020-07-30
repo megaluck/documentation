@@ -20,7 +20,8 @@ CustomData are the following:
 * Provide a unique id for that data type by implementing a special function. For example for box data type it is the function  ``public byte boxTypeId()``, for other data types the function name could be different and you will be obliged to implement it. 
   
 * ::
-   Map<Byte, BoxSerializer<Box<Proposition>>> customBoxSerializers = new HashMap<>();``
+
+   Map<Byte, BoxSerializer<Box<Proposition>>> customBoxSerializers = new HashMap<>();
 
 * Add your custom serializer into the map, for example it could be something  like 
 
