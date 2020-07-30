@@ -196,7 +196,8 @@ The SDK provides a base class for Custom Box Data Serializer
 NoncedBoxDataSerializer<D extends NoncedBoxData> where D is type of serialized Custom Box Data
 So creation of a Custom Box Data Serializer can be done in following way:
 
-:code:`public class CustomBoxDataSerializer implements NoncedBoxDataSerializer<CustomBoxData>`
+::
+  public class CustomBoxDataSerializer implements NoncedBoxDataSerializer<CustomBoxData>
 
 That new Custom Box Data Serializer require's the following:
 
