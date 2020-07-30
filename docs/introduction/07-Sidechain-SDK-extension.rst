@@ -22,7 +22,7 @@ and
 ::
   Serializer serializer() 
 
-also implement th function
+also implement the function
 ::
   public static CustomData parseBytes(byte[] bytes) 
 
