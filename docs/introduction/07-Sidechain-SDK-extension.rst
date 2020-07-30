@@ -179,7 +179,11 @@ The new custom box data class  requires the following:
 
 1. Custom data definition
   * Custom data itself
-  * Hash of all added custom data shall be returned in ``public byte[] customFieldsHash()`` method, otherwise custom data will not be “protected”, i.e. some malicious actor        could change custom data during transaction creation. 
+  * Hash of all added custom data shall be returned in 
+    ::
+     public byte[] customFieldsHash()
+     
+    method, otherwise custom data will not be “protected”, i.e. some malicious actor        could change custom data during transaction creation. 
     
 2. Serialization definition
   * Serialization to bytes shall be provided by Custom Box Data by overriding and implementing the method ```public byte[] bytes()```. That method will serialize the proposition, value and any added custom data.
