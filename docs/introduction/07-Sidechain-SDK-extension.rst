@@ -15,13 +15,18 @@ CustomData are the following:
   
 * Create ``CustomDataSerializer``Class and implement ``ScorexSerializer interface``, and implement the following methods:  ``void serialize(CustomData customData, Writer writer)`` and ``CustomData parse(Reader reader)``;
 
-* In your AppModule class (i.e. class which extends  AbstractModule, in SimpleApp it is SimpleAppModule) define Custom Serializer map, for example for boxes it could be ```Map<Byte, BoxSerializer<Box<Proposition>>> customBoxSerializers = new HashMap<>();``` where key is data type id and value is CustomSerializer for those data type id.
+* In your AppModule class (i.e. class which extends  AbstractModule, in SimpleApp it is SimpleAppModule) define Custom Serializer map, for example for boxes it could be 
+  ::
+
+    Map<Byte, BoxSerializer<Box<Proposition>>> customBoxSerializers = new HashMap<>(); 
+  
+  where key is data type id and value is CustomSerializer for those data type id.
   
 * Provide a unique id for that data type by implementing a special function. For example for box data type it is the function  
 
-::
+  ::
 
-  public byte boxTypeId()
+    public byte boxTypeId()
   
   for other data types the function name could be different and you will be obliged to implement it. 
   
