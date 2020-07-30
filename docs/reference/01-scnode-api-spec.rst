@@ -112,8 +112,9 @@ Sidechain Node API spec
    :statuscode 404: there's no user
    
    
-_____
-   
+|
+______
+|   
    
    .. http:post:: /block/findLastIds/
    
