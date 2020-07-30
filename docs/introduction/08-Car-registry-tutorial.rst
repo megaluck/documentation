@@ -149,14 +149,15 @@ Few comments about implementation:
 
   1. A long nonce whould be included as a part of serialization, thus serialization is implemented in next way:
   
-    :: 
-        public byte[] bytes()
+    ::
+      public byte[] bytes()
         {
          return Bytes.concat(
              Longs.toByteArray(nonce),
              CarBoxDataSerializer.getSerializer().toBytes(boxData)
-         );
+        );
         }
+        
   
   2. CarBox defines it's own unique id by implementation of the function public byte boxTypeId(). Similar function is defined in CarBoxData but it is a different id despite value returned in CarBox and CarBoxData is the same.
   
