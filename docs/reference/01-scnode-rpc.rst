@@ -3,9 +3,11 @@ Projects
 
 .. http:post:: /block/findById/
 
++---------+----------+------------------+
 | Name    | Required | Description      |
-|---------|----------|------------------|
++=========+==========+==================+
 | blockId | yes      | Find block by ID |
++---------+----------+------------------+
 
 **Example request**:
 
