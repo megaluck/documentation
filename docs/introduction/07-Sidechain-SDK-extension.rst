@@ -223,8 +223,8 @@ That new Custom Box Data Serializer require's the following:
       public void serialize(CustomBoxData boxData, Writer writer)
 
   2. Definition of function for reading Custom Box Data from Scorex Readervby implementation of the function 
-     .. code::java
-     
+     .. code:: java
+
         public CustomBoxData parse(Reader reader)
 
   3. Class shall be converted to singleton, for example it can be done in following way:
