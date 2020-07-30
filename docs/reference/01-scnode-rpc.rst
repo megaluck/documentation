@@ -8,9 +8,9 @@ Projects
 
       curl -X POST "http://127.0.0.1:9085/block/findById" -H "accept: application/json" -H "Content-Type: application/json" -d "{\"blockId\":\"0...6\"}"
 
-   
+   |
    **Example response**:
-|
+
    .. sourcecode:: http
 
       HTTP/1.1 200 OK
