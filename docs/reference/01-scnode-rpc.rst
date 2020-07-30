@@ -6,7 +6,7 @@ Projects
 
    .. tab:: Bash
 
-      curl -X POST "http://127.0.0.1:9085/block/findById" -H "accept: application/json" -H "Content-Type: application/json" -d "{\"blockId\":\"055..e2a6\"}"
+      curl -X POST "http://127.0.0.1:9085/block/findById" -H "accept: application/json" -H "Content-Type: application/json" -d "{\"blockId\":\"0...6\"}"
 
    
    **Example response**:
@@ -97,16 +97,3 @@ Projects
    :statuscode 404: there's no user
 
 
-.. tabs::
-
-   .. tab:: Apples
-
-      Apples are green, or sometimes red.
-
-   .. tab:: Pears
-
-      Pears are green.
-
-   .. tab:: Oranges
-
-      Oranges are orange.
