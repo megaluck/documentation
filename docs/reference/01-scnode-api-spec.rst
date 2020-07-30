@@ -7,6 +7,8 @@ Sidechain Node API spec
 
 .. http:post:: /block/findById/
 
+*Find Block by ID*
+
 **Parameters**
 
 +---------+--------+----------+------------------+
@@ -117,6 +119,8 @@ ______
 |   
    
    .. http:post:: /block/findLastIds/
+   
+*Returns an array with the ids of the last x blocks*  
    
 **Parameters**
 
