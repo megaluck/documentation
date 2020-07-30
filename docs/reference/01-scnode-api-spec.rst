@@ -1,7 +1,9 @@
-Projects
-~~~~~~~~
+Sidechain Node API spec
+~~~~~~~~~~~~~~~~~~~~~~
 
 .. http:post:: /block/findById/
+
+**Parameters**
 
 +---------+----------+------------------+
 | Name    | Required | Description      |
