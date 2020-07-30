@@ -13,20 +13,7 @@ CustomData are the following:
 
 ``Implement BytesSerializable interface`` for ``CustomData``, i.e. ``functions byte[] bytes()`` and ``Serializer serializer()``, also implement ``public static CustomData parseBytes(byte[] bytes)`` function for parsing from bytes
   
-* Create 
-  Create class
-  
-.. code:: java
-   
-   CustomDataSerializer
-   
-and implement 
-
-.. code:: java 
-    
-   ScorexSerializer interface
-
-and implement the following methods:  ``void serialize(CustomData customData, Writer writer)`` and ``CustomData parse(Reader reader)``;
+* Create ``CustomDataSerializer``Class and implement ``ScorexSerializer interface``, and implement the following methods:  ``void serialize(CustomData customData, Writer writer)`` and ``CustomData parse(Reader reader)``;
 
 * In your AppModule class (i.e. class which extends  AbstractModule, in SimpleApp it is SimpleAppModule) define Custom Serializer map, for example for boxes it could be ```Map<Byte, BoxSerializer<Box<Proposition>>> customBoxSerializers = new HashMap<>();``` where key is data type id and value is CustomSerializer for those data type id.
   
