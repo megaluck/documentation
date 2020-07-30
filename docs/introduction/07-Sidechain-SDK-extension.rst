@@ -260,7 +260,7 @@ As parameters for **AbstractNoncedBox** three template parameters shall be provi
   ::
    B extends AbstractNoncedBox<P, BD, B>
 
-The Custom Box itself require's implementation of following functionality:
+The Custom Box itself requires implementation of following functionality:
 
   1. Serialization definition
 
@@ -273,22 +273,32 @@ The Custom Box itself require's implementation of following functionality:
       ::
        public byte boxTypeId()
 
-    And, finally, aserializer for the Custom Box shall be returned by implementation of the following method 
+    And, finally, a serializer for the Custom Box shall be returned by implementation of the following method 
     ::
      public BoxSerializer serializer()
 
 Custom Box Serializer Class
 ###########################
 
-The SDK provides base class for ``Custom Box Serializer
-BoxSerializer<B extends Box>`` where B is type of serialized Custom Box
-So creation of **Custom Box Serializer** can be done in next way:
- ``public class CustomBoxSerializer implements NoncedBoxSerializer<CustomBox>``
+The SDK provides base class for a custom box serializer below, where B is type of serialized Custom Box
+::
+ Custom Box Serializer BoxSerializer<B extends Box>
+ 
+So creation of **Custom Box Serializer** can be done in the following way:
+::
+ public class CustomBoxSerializer implements NoncedBoxSerializer<CustomBox>
+
 The new Custom Box Serializer requires the following:
 
-  1. Definition of method for writing *Custom Box* into the Scorex Writer by implementation of ```public void serialize(CustomBox box, Writer writer)``` method.
+  1. Definition of method for writing *Custom Box* into the Scorex Writer by implementation of the following.
+     ::
+      public void serialize(CustomBox box, Writer writer)
+
   2. Definition of method for reading *Custom Box* from Scorex Reader
-by implementation of method ```public CustomBox parse(Reader reader) ```
+     by implementation of the following 
+     ::
+      public CustomBox parse(Reader reader)
+
   3. Class shall be converted to singleton, for example it could be done in following way:
 
     ::
