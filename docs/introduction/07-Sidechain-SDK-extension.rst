@@ -11,7 +11,22 @@ Serialization is performed via special Serializer class. Any custom data, beside
 shall declare those Serializers for the SDK, thus SDK will be able to use proper serializer for custom data. The steps to describe serialization/parsing for some
 CustomData are the following:
 
-``Implement BytesSerializable interface`` for ``CustomData``, i.e. ``functions byte[] bytes()`` and ``Serializer serializer()``, also implement ``public static CustomData parseBytes(byte[] bytes)`` function for parsing from bytes
+For CustomData
+::
+  Implement BytesSerializable interface 
+i.e. 
+::
+  functions byte[] bytes() 
+  
+and 
+::
+  Serializer serializer() 
+
+also implement th function
+::
+  public static CustomData parseBytes(byte[] bytes) 
+
+for parsing from bytes.
   
 * Create 
   ::
