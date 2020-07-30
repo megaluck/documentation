@@ -10,7 +10,7 @@ Projects
 
    
    **Example response**:
-
+|
    .. sourcecode:: http
 
       HTTP/1.1 200 OK
