@@ -17,15 +17,17 @@ CustomData are the following:
   ::
     CustomDataSerializer 
   
- Class and implement 
+Class and implement 
+ 
    ::
     ScorexSerializer interface
   
- and implement the following methods:  
+and implement the following methods:  
+ 
   ::
     void serialize(CustomData customData, Writer writer) 
   
- and 
+and 
   ::
     CustomData parse(Reader reader);
 
