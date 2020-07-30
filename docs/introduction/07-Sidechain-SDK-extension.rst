@@ -14,18 +14,18 @@ CustomData are the following:
 ``Implement BytesSerializable interface`` for ``CustomData``, i.e. ``functions byte[] bytes()`` and ``Serializer serializer()``, also implement ``public static CustomData parseBytes(byte[] bytes)`` function for parsing from bytes
   
 * Create 
-::
-  CustomDataSerializer 
+  ::
+    CustomDataSerializer 
   
  Class and implement 
- ::
-  ScorexSerializer interface
+   ::
+    ScorexSerializer interface
   
-  and implement the following methods:  
+ and implement the following methods:  
   ::
     void serialize(CustomData customData, Writer writer) 
   
-  and 
+ and 
   ::
     CustomData parse(Reader reader);
 
