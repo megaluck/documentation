@@ -18,7 +18,7 @@ Projects
       Content-Type: text/javascript
 
       {
-   "result":{
+      "result":{
       "blockHex":"string",
       "block":{
          "id":"string",
@@ -81,8 +81,8 @@ Projects
             "code":"string",
             "description":"string",
             "detail":"string"
-            }
-            }
+         }
+      }
 
 
    :query sort: one of ``hit``, ``created-at``
