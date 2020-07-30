@@ -10,6 +10,6 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc sollicitudin sem i
     :maxdepth: 2
     :numbered:
 
-    01-scnode-rpc
+    01-scnode-api-spec
     
 
