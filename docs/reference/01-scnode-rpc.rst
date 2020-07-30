@@ -18,71 +18,71 @@ Projects
       Content-Type: text/javascript
 
       {
-      "result":{
-      "blockHex":"string",
-      "block":{
-         "id":"string",
-         "parentId":"string",
-         "timestamp":0,
-         "mainchainBlocks":[
-            {
-               "header":{
-                  "mainchainHeaderBytes":"string",
-                  "version":0,
-                  "hashPrevBlock":"string",
-                  "hashMerkleRoot":"string",
-                  "hashReserved":"string",
-                  "hashSCMerkleRootsMap":"string",
-                  "time":0,
-                  "bits":0,
-                  "nonce":"string",
-                  "solution":"string"
-               },
-               "sidechainRelatedAggregatedTransaction":{
-                  "id":"string",
-                  "fee":0,
-                  "timestamp":0,
-                  "mc2scTransactionsMerkleRootHash":"string",
-                  "newBoxes":[
-                     {
-                        "id":"string",
-                        "proposition":{
-                           "publicKey":"string"
-                        },
-                        "value":0,
-                        "nonce":0,
-                        "activeFromWithdrawalEpoch":0,
-                        "typeId":0
-                     }
-                  ]
-               },
-               "merkleRoots":[
+         "result":{
+            "blockHex":"string",
+            "block":{
+               "id":"string",
+               "parentId":"string",
+               "timestamp":0,
+               "mainchainBlocks":[
                   {
-                     "key":"string",
-                     "value":"string"
+                     "header":{
+                        "mainchainHeaderBytes":"string",
+                        "version":0,
+                        "hashPrevBlock":"string",
+                        "hashMerkleRoot":"string",
+                        "hashReserved":"string",
+                        "hashSCMerkleRootsMap":"string",
+                        "time":0,
+                        "bits":0,
+                        "nonce":"string",
+                        "solution":"string"
+                     },
+                     "sidechainRelatedAggregatedTransaction":{
+                        "id":"string",
+                        "fee":0,
+                        "timestamp":0,
+                        "mc2scTransactionsMerkleRootHash":"string",
+                        "newBoxes":[
+                           {
+                              "id":"string",
+                              "proposition":{
+                                 "publicKey":"string"
+                              },
+                              "value":0,
+                              "nonce":0,
+                              "activeFromWithdrawalEpoch":0,
+                              "typeId":0
+                           }
+                        ]
+                     },
+                     "merkleRoots":[
+                        {
+                           "key":"string",
+                           "value":"string"
+                        }
+                     ]
                   }
-               ]
-            }
-            ],
-            "sidechainTransactions":[
-            {
+               ],
+               "sidechainTransactions":[
+                  {
 
+                  }
+               ],
+               "forgerPublicKey":{
+                  "publicKey":"string"
+               },
+               "signature":{
+                  "signature":"string"
+               }
             }
-            ],
-            "forgerPublicKey":{
-            "publicKey":"string"
-            },
-            "signature":{
-            "signature":"string"
-            }
-            }
-            },
-            "error":{
+         },
+         "error":{
             "code":"string",
             "description":"string",
             "detail":"string"
          }
-      }
+      }      
 
 
    :query sort: one of ``hit``, ``created-at``
