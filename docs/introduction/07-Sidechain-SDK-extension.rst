@@ -98,8 +98,20 @@ Example:
        .annotatedWith(Names.named("CustomBoxSerializers"))
        .toInstance(customBoxSerializers);
 
-where  ``BoxSerializer<Box<Proposition>>>``  - common serializer type ``"CustomBoxSerializers"`` - bound property name 
-``customBoxSerializers`` - created map with all defined custom serializers. Overall we have the next expected type and property name.
+where  
+common serializer type
+::
+  BoxSerializer<Box<Proposition>>>
+
+bound property name 
+::
+  "CustomBoxSerializers"
+
+created map with all defined custom serializers
+::
+  customBoxSerializers 
+
+Overall we have the next expected type and property name.
 
 Custom box creation
 ###################
