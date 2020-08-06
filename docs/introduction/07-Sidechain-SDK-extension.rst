@@ -11,24 +11,65 @@ Serialization is performed via special Serializer class. Any custom data, beside
 shall declare those Serializers for the SDK, thus SDK will be able to use proper serializer for custom data. The steps to describe serialization/parsing for some
 CustomData are the following:
 
-``Implement BytesSerializable interface`` for ``CustomData``, i.e. ``functions byte[] bytes()`` and ``Serializer serializer()``, also implement ``public static CustomData parseBytes(byte[] bytes)`` function for parsing from bytes
-  
-* Create ``CustomDataSerializer``Class and implement ``ScorexSerializer interface``, and implement the following methods:  ``void serialize(CustomData customData, Writer writer)`` and ``CustomData parse(Reader reader)``;
-
-* In your AppModule class (i.e. class which extends  AbstractModule, in SimpleApp it is SimpleAppModule) define Custom Serializer map, for example for boxes it could be ```Map<Byte, BoxSerializer<Box<Proposition>>> customBoxSerializers = new HashMap<>();``` where key is data type id and value is CustomSerializer for those data type id.
-  
-* Provide a unique id for that data type by implementing a special function. For example for box data type it is the function  ``public byte boxTypeId()``, for other data types the function name could be different and you will be obliged to implement it. 
-  
-* ``Map<Byte, BoxSerializer<Box<Proposition>>> customBoxSerializers = new HashMap<>();``
-
-* Add your custom serializer into the map, for example it could be something  like ``customBoxSerializers.put((byte)MY_CUSTOM_BOX_ID, (BoxSerializer) CustomBoxSerializer.getSerializer());``
-  
-* Bind map with custom serializers to your application in the app model class:
+For CustomData
 ::
- 
- TypeLiteral<HashMap<Byte, Common serializer type>() {})
-       .annotatedWith(Names.named(Bound property name))
-       .toInstance(Created map with custom serializers);
+  Implement BytesSerializable interface 
+i.e. 
+::
+  functions byte[] bytes() 
+  
+and 
+::
+  Serializer serializer() 
+
+also implement the function
+::
+  public static CustomData parseBytes(byte[] bytes) 
+
+for parsing from bytes.
+  
+* Create 
+  ::
+    CustomDataSerializer 
+
+  Class and implement 
+  ::
+    ScorexSerializer interface
+
+  and implement the following methods:  
+  ::
+    void serialize(CustomData customData, Writer writer) 
+
+  and 
+  ::
+    CustomData parse(Reader reader);
+
+* In your AppModule class (i.e. class which extends  AbstractModule, in SimpleApp it is SimpleAppModule) define Custom Serializer map, for example for boxes it could be 
+  ::
+
+    Map<Byte, BoxSerializer<Box<Proposition>>> customBoxSerializers = new HashMap<>(); 
+  
+  where key is data type id and value is CustomSerializer for those data type id.
+  
+* Provide a unique id for that data type by implementing a special function. For example for box data type it is the function  
+  ::
+
+    public byte boxTypeId()
+  for other data types the function name could be different and you will be obliged to implement it.  
+* ::
+
+   Map<Byte, BoxSerializer<Box<Proposition>>> customBoxSerializers = new HashMap<>();
+* Add your custom serializer into the map, for example it could be something  like 
+
+ .. code:: java
+
+   customBoxSerializers.put((byte)MY_CUSTOM_BOX_ID, (BoxSerializer) CustomBoxSerializer.getSerializer());  
+* Bind map with custom serializers to your application in the app model class:
+  ::
+
+   TypeLiteral<HashMap<Byte, Common serializer type>() {})
+         .annotatedWith(Names.named(Bound property name))
+         .toInstance(Created map with custom serializers);
        
 Where **Common serializer type** and **Bound property name** can have the following values 
 
@@ -57,8 +98,20 @@ Example:
        .annotatedWith(Names.named("CustomBoxSerializers"))
        .toInstance(customBoxSerializers);
 
-where  ``BoxSerializer<Box<Proposition>>>``  - common serializer type ``"CustomBoxSerializers"`` - bound property name 
-``customBoxSerializers`` - created map with all defined custom serializers. Overall we have the next expected type and property name.
+where  
+common serializer type
+::
+  BoxSerializer<Box<Proposition>>>
+
+bound property name 
+::
+  "CustomBoxSerializers"
+
+created map with all defined custom serializers
+::
+  customBoxSerializers 
+
+Overall we have the next expected type and property name.
 
 Custom box creation
 ###################
@@ -143,7 +196,8 @@ The SDK provides a base class for Custom Box Data Serializer
 NoncedBoxDataSerializer<D extends NoncedBoxData> where D is type of serialized Custom Box Data
 So creation of a Custom Box Data Serializer can be done in following way:
 
-:code:`public class CustomBoxDataSerializer implements NoncedBoxDataSerializer<CustomBoxData>`
+::
+  public class CustomBoxDataSerializer implements NoncedBoxDataSerializer<CustomBoxData>
 
 That new Custom Box Data Serializer require's the following:
 

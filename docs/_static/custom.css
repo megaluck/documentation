@@ -19,3 +19,6 @@
 .rst-versions .rst-current-version {
     background-color: #041742 !important;
 }
+.highlight {
+    background: #e8ecef;
+}
