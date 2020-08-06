@@ -14,6 +14,43 @@ identification number, model, production year, color (etc)...
 A car owner should be able to prove their ownership of the cars without disclosing information about their identity. We also want users to sell and buy cars,
 with ZEN coins. 
 
+User stories:
+*************
+
+1
+**Q: I want to add my car to a Car Registry Sidechain.**
+
+A: Create a new Car Entry Box, that contains car identification information (Unique can identifier, VIN, manufactures, model, year, registration number) and certificate. Proposition in this box is my public key in this Sidechain. When I create box Sidechain should check car identification information and certificate to be unique in this Sidechain.
+
+2
+**Q: I want to create sell order to sell my car using Car Registry Sidechain.**
+
+A: I create a new Car Sell Order Box, that contains the price in coins and information from the Car Entry Box. So cars can exist in the Sidechain as a Car Entry Box or as a Car Sell Order, but not both at same time. Also this box contain the buyer’s public key. When I create a sell order Sidechain should check if there is no other active sell order with this Car Entry Box. Current Sell Order consists of the same information that consists in the Car Entry Box plus description.
+
+3
+**Q: I want to see all available Sell orders in Sidechain**
+
+A: Have additional storage, which is managed by ApplicationState and stores all Car Sell Orders. All these orders can be retrieved using new HTTP API call. 
+
+
+4
+**Q: I want to accept a sell order and buy the car.**
+
+A: By accepting sell order I create new transaction in the Sidechain, that creates new Car Entry Box with my public key as proposition and transfers coins amount from me to previous car owner.
+
+5
+**Q: I want to cancel my Car Sell Order.**
+
+A: I create new transaction, that contains Car Sell Order as input and Car Entry Box with my public key as proposition as output.
+
+6.
+**Q: I want to see my car entry boxes and car sell orders related to me (both created by me and proposed to me).**
+
+A: Implement new storage that will be managed by the application state to store this information. Implement a new HTTP API, that contains a new method to get this information.
+
+So, the starting point of the development process is the data representation. A car is an example of a non-coin box because it represents some entity, but not money. Another example of a non-coin box is a car which is selling. We need another box for a selling car because a common car box doesn't have additional data like sale price, seller proposition address etc. For the money representation standard Regular Box is used (Regular box is coin box), that box is provided by SDK. Besides new entities CarBox and CarSellOrder we also need to define a way for creating/destroying those new entities. For that purpose new transactions shall be defined: transaction for creating new car, transaction which move CarBox to CarSellOrder, transaction which declare car selling, i.e. moving CarSellOrder to the new CarBox. All created transactions are not put into the memory pool automatically, so a raw transaction in hex representation shall be put by /transaction/sendTransaction API request. In summary we will add next car boxes and transactions:
+
+
 So, the starting point of the development process is the data representation. A car is an example of a non-coin box because it represents an entity, but not money. 
 Another example of a non-coin box is a car which is being sold. We need another box for a selling a car because a common car box doesn't have additional data like sale price, 
 seller proposition address etc. For the money representation a standard Regular Box is used (Regular box is coin box), that box is provided by SDK. Besides new entities CarBox
