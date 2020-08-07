@@ -25,8 +25,8 @@ Installing on Windows OS:
 *************************
 
   1. Install Java JDK version 11 (`link <https://www.oracle.com/java/technologies/javase-jdk11-downloads.html>`_)
-  2. Install Scala 2.12.10+ (`link <https://www.scala-lang.org/download/2.12.10.html>`)
-  3. Install Git (`link <https://git-scm.com/downloads>`)
+  2. Install Scala 2.12.10+ (`link <https://www.scala-lang.org/download/2.12.10.html>`_)
+  3. Install Git (`link <https://git-scm.com/downloads>`_)
   4. Clone the Sidechains-SDK git repository 
 
   .. code:: Bash
@@ -47,8 +47,8 @@ Installing on Linux OS:
 ***********************
 
   1. Install Java JDK version 11 (`link <https://www.oracle.com/java/technologies/javase-jdk11-downloads.html>`_)
-  2. Install Scala 2.12.10+ (`link <https://www.scala-lang.org/download/2.12.10.html>`)
-  3. Install Git (`link <https://git-scm.com/downloads>`)
+  2. Install Scala 2.12.10+ (`link <https://www.scala-lang.org/download/2.12.10.html>`_)
+  3. Install Git (`link <https://git-scm.com/downloads>`_)
   4. Clone the Sidechains-SDK git repository 
   
   .. code:: Bash
