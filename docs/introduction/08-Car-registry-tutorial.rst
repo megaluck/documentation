@@ -173,6 +173,7 @@ Implementation of CarBoxData:
 CarBoxData is implemented according description from ``Custom Box Data Creation`` section as ``public class CarBoxData extends AbstractNoncedBoxData<PublicKey25519Proposition, CarBox, CarBoxData>`` with custom data as:
 
     ::
+    
         private final BigInteger vin;
         private final int year;
         private final String model;
