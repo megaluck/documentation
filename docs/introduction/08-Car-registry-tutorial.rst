@@ -150,12 +150,12 @@ This transaction allows us to buy a car or recall a car sell order.
 
         *Input parameters are:*
         
-            |``inputRegularBoxIds`` - list of regular boxes for payments like fee and purchasing the car 
-            |``inputRegularBoxProofs`` - appropriate list of proofs for box opening for each regular box in inputRegularBoxIds
-            |``outputRegularBoxesData`` - list of output regular boxes, used as change from paying fee, as well as a new regular box for payment for the car.
-            |``fee`` - transaction fee
-            |``timestamp`` - transaction timestamp
-            |``carBuyOrderInfo`` - information for buy car or recall car sell order.      
+            ``inputRegularBoxIds`` - list of regular boxes for payments like fee and purchasing the car 
+            ``inputRegularBoxProofs`` - appropriate list of proofs for box opening for each regular box in inputRegularBoxIds
+            ``outputRegularBoxesData`` - list of output regular boxes, used as change from paying fee, as well as a new regular box for payment for the car.
+            ``fee`` - transaction fee
+            ``timestamp`` - transaction timestamp
+            ``carBuyOrderInfo`` - information for buy car or recall car sell order.      
             
         *Output boxes:*
         
@@ -169,3 +169,9 @@ As described before, a Car Box is a non-coin box. As defined before we need Car 
 
 Implementation of CarBoxData:
 *****************************
+
+CarBoxData is implemented according description from “Custom Box Data Creation” chapter as ``public class CarBoxData extends AbstractNoncedBoxData<PublicKey25519Proposition, CarBox, CarBoxData>`` with custom data as:
+    private final BigInteger vin;
+    private final int year;
+    private final String model;
+    private final String color;
