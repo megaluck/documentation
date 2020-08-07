@@ -125,4 +125,26 @@ Transaction for declaring a car in the Sidechain, this transaction extends ``Abs
         
             New CarBox with new declared car
 
+SellCarTransaction 
+******************
+
+Transaction for starting selling of the car.
+
+         *Input parameters are:*
+         
+            ``inputRegularBoxIds`` - list of regular boxes for payments like fee and car buying
+            ``inputRegularBoxProofs`` - appropriate list of proofs for box opening for each regular box in inputRegularBoxIds
+            ``outputRegularBoxesData`` - list of output regular boxes, used as change from paying fee, as well as new regular box for payment for car.
+            ``fee`` -- transaction fee
+            ``timestamp`` - transaction timestamp
+            ``carSellOrderInfo`` - information about car selling, including such information as car description and specific proposition ``SellOrderProposition``.
+
+        *Output boxes:*
+         
+            CarSellOrderBox which represents the car to be sold, that box could be opened by the initial car owner or specified buyer in case if buyer buys that car.         
+
+BuyCarTransaction 
+*****************
+
+This transaction allows us to buy a car or recall a car sell order. 
 
