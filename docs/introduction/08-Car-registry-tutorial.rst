@@ -87,6 +87,23 @@ Special proposition and proof:
     b) **SellOrderSpendingProof** The proof that allows us to open and spend ``CarSellOrderBox`` in two different ways: opened by the buyer and thus buy the car or opened by the seller and thus recall car sell order. Such proof creation requires two different API calls but as a result, in both cases, we will have the same type of transaction with the same proof type. 
 
 
+Transactions:
+*************
+
+    a) **AbstractRegularTransaction** base custom transaction, all other custom transactions extend this base transaction. 
+    
+        *Input parameters are:*
+        
+            ``inputRegularBoxIds`` - list of regular boxes for payments like fee and car buying
+            ``inputRegularBoxProofs`` - appropriate list of proofs for box opening for each regular box in ``inputRegularBoxIds``
+            ``outputRegularBoxesData`` - list of output regular boxes, used as the change from paying a fee, as well as a new regular box for payment for the car.
+            ``fee`` - transaction fee
+            ``timestamp`` - transaction timestamp
+
+        *Output boxes:*
+        
+            Regular Boxes created by change or car payment 
+
 
 
 
