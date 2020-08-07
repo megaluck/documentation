@@ -76,7 +76,7 @@ As a result of step 8, three jar files will be generated:
   
   ..  code:: Bash
   
-      examples/simpleapp/mc_sc_workflow_example.md file;   
+      examples/simpleapp/mc_sc_workflow_example.md;   
       
   * **examples/simpleapp/target/Sidechains-SDK-simpleapp-0.2.0.jar** - in contains a sidechain application example. You can find more details in the examples/simpleapp/readme.md file.
 
