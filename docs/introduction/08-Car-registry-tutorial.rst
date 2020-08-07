@@ -90,8 +90,10 @@ Special proposition and proof:
 Transactions:
 #############
 
-AbstractRegularTransaction base custom transaction, all other custom transactions extend this base transaction. 
+AbstractRegularTransaction 
 **************************
+
+Base custom transaction, all other custom transactions extend this base transaction. 
 
         *Input parameters are:*
         
@@ -105,7 +107,9 @@ AbstractRegularTransaction base custom transaction, all other custom transaction
         
             Regular Boxes created by change or car payment 
 
+CarDeclarationTransaction
+*************************
 
-
+Transaction for declaring a car in the Sidechain, this transaction extends ``AbstractRegularTransaction`` thus some base functionality already is implemented. 
 
 
