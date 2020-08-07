@@ -24,14 +24,14 @@ Horizen Sidechain SDK requires Java 8  or newer (Java 11 recommended), Scala 2.1
 Installing on Windows OS:
 *************************
 
-  1. Install Java JDK version 11 (link)
-  2. Install Scala 2.12.10+ (link)
-  3. Install Git (link)
+  1. Install Java JDK version 11 (`link <https://www.oracle.com/java/technologies/javase-jdk11-downloads.html>`_)
+  2. Install Scala 2.12.10+ (`link <https://www.scala-lang.org/download/2.12.10.html>`)
+  3. Install Git (`link <https://git-scm.com/downloads>`)
   4. Clone the Sidechains-SDK git repository 
 
   .. code:: Bash
   
-     git clone git@github.com:ZencashOfficial/Sidechains-SDK.git
+     git clone git@github.com:HorizenOfficial/Sidechains-SDK.git
     
   5. As IDE, please install and use IntelliJ IDEA Community Edition (link) In the IDE, please also install the Intellij Scala plugin: in the Settings->Plugins tab, select it from the marketplace: 
   
@@ -46,9 +46,9 @@ Installing on Windows OS:
 Installing on Linux OS:
 ***********************
 
-  1. Install Java JDK version 11 (link)
-  2. Install Scala 2.12.10+ (link)
-  3. Install Git (link)
+  1. Install Java JDK version 11 (`link <https://www.oracle.com/java/technologies/javase-jdk11-downloads.html>`_)
+  2. Install Scala 2.12.10+ (`link <https://www.scala-lang.org/download/2.12.10.html>`)
+  3. Install Git (`link <https://git-scm.com/downloads>`)
   4. Clone the Sidechains-SDK git repository 
   
   .. code:: Bash
