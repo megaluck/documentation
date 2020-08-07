@@ -104,12 +104,25 @@ Base custom transaction, all other custom transactions extend this base transact
             ``timestamp`` - transaction timestamp
 
         *Output boxes:*
-        
+                
             Regular Boxes created by change or car payment 
 
 CarDeclarationTransaction
 *************************
 
 Transaction for declaring a car in the Sidechain, this transaction extends ``AbstractRegularTransaction`` thus some base functionality already is implemented. 
+
+        *Input parameters are:*
+        
+            ``inputRegularBoxIds`` -- list of regular boxes for payments like fee and car buying
+            ``inputRegularBoxProofs`` -- appropriate list of proofs for box opening for each regular box in inputRegularBoxIds
+            ``outputRegularBoxesData`` -- list of output regular boxes, used as change from paying a fee, as well as a new regular box for car payment.
+            ``fee`` -- transaction fee
+            ``timestamp`` -- transaction timestamp
+            ``outputCarBoxData`` -- box data which contains information about a new car.
+
+        *Output boxes:*
+        
+            New CarBox with new declared car
 
 
