@@ -6,7 +6,7 @@ Horizen Sidechains SDK Documentation
 Overview
 ********
 
-Horizen Sidechain SDK allows developers developers to quickly spin-up their own blockchain, customize business
+Horizen Sidechain SDK allows developers to quickly spin-up their own blockchain, customize business
 logic depending on use case, maintain interoperability with the mainchain native token (which acts as the medium of
 exchange between the whole ecosystem). 
 
