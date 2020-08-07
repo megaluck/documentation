@@ -9,6 +9,7 @@ At a high level, it defines two basic operations:
    * **forward transfer**
    * **backward transfer**
    
+
 While all sidechains know and follow the mainchain, which is an established and stable reality, the mainchain needs to be made aware of the existence of every sidechain. So, sidechains must be declared in mainchain first.
 
 We can declare a new sidechain by using the following RPC command:
@@ -32,15 +33,19 @@ As a consequence of the sidechain declaration command, a unique sidechain id wil
 Forward Transfer
 ================
 
+
 A forward transfer sends coins from the mainchain to a sidechain. The Horizen mainchain supports a forward transfer transaction type, that specifies the sidechain destination (sidechain id and receiver address) and the amounts of ZEN to be sent. From a mainchain perspective, the transferred coins are destroyed, they are only represented in the total balance of that particular sidechain.
 On the sidechain side, the SDK provides all the functionalities that support forward transfers, so that a transferred amount is “converted” into a new sidechain box.
+
 
 Backward Transfer
 =================
 
 A backward transfer moves coins back from a sidechain to a mainchain destination.
+
 A backward transfer is initiated by a **withdrawal request** which is a sidechain transaction issued by the coin owner. The request specifies the mainchain destination, and the amount. More precisely, the withdrawal request owner will create a WithdrawalRequestBox that destroys the specified amount of coins in a sidechain. This is not enough to move those coins back to the mainchain though. We need to wait the end of the withdrawal epoch, when all the coins specified in that epoch’s withdrawal requests are listed in a single certificate, that is the propagated to the mainchain.
 The certificate includes a succinct cryptographic proof that the rules associated with the declared verifying key have been respected. Certificates are processed by mainchain consensus, which recreates the coins specified by the certificate, only checking that the proof verifies and that the coins received by a sidechain are not  more than the amount sent to it.
+
 
 Summary
 =======

@@ -1,6 +1,6 @@
-=======================
-Sidechain SDK extension
-=======================
+========================
+Sidechains SDK extension
+========================
 
 
 Data serialization
@@ -14,6 +14,7 @@ CustomData are the following:
 For CustomData
 ::
   Implement BytesSerializable interface 
+  
 i.e. 
 ::
   functions byte[] bytes() 
@@ -172,21 +173,39 @@ That base class provide next data by default:
 If the box type is a Coin-Box then this value is required and will contain data such as coin value. In the case of a Non-Coin box this value would only be used in custom logic and cannot be null. Typically we would set this value to 1.
 
 So the creation of new Custom Box Data will be created in following way:
-``public class CustomBoxData extends AbstractNoncedBoxData<PublicKey25519Proposition, CustomBox, CustomBoxData>``
+::
+  public class CustomBoxData extends AbstractNoncedBoxData<PublicKey25519Proposition, CustomBox, CustomBoxData>
 
 The new custom box data class  requires the following:
 
 1. Custom data definition
   * Custom data itself
-  * Hash of all added custom data shall be returned in ``public byte[] customFieldsHash()`` method, otherwise custom data will not be “protected”, i.e. some malicious actor        could change custom data during transaction creation. 
+  * Hash of all added custom data shall be returned in 
+    ::
+     public byte[] customFieldsHash()
+     
+    method, otherwise custom data will not be “protected”, i.e. some malicious actor        could change custom data during transaction creation. 
     
 2. Serialization definition
-  * Serialization to bytes shall be provided by Custom Box Data by overriding and implementing the method ```public byte[] bytes()```. That method will serialize the proposition, value and any added custom data.
-  * Additionally definition of Custom Box Data id for serialization by overriding ```public byte boxDataTypeId()``` method, please check the serialization chapter for more information about using ids. 
-  * Override ```public NoncedBoxDataSerializer serializer()``` method with proper **Custom Box Data serializer**. Parsing Custom Box Data from bytes could be defined in that class as well, please refer to the serialization section for more information about it
+  * Serialization to bytes shall be provided by Custom Box Data by overriding and implementing the method 
+    ::
+     public byte[] bytes() 
+
+    That method will serialize the proposition, value and any added custom data.
+  * Additionally definition of Custom Box Data id for serialization by overriding 
+    ::
+     public byte boxDataTypeId()
+    
+    method, please check the serialization chapter for more information about using ids. 
+  * Override 
+    ::
+     public NoncedBoxDataSerializer serializer() 
+    method with proper **Custom Box Data serializer**. Parsing Custom Box Data from bytes could be defined in that class as well, please refer to the serialization section for more information about it
 
 3. Custom Box creation
-  * Any Box Data class shall provide the way how to create a new Box for a given nonce. For that purpose override the method ```public CustomBox getBox(long nonce)```. 
+  * Any Box Data class shall provide the way how to create a new Box for a given nonce. For that purpose override the method 
+    ::
+     public CustomBox getBox(long nonce) 
 
 
 Custom Box Data Serializer class creation
@@ -195,64 +214,94 @@ Custom Box Data Serializer class creation
 The SDK provides a base class for Custom Box Data Serializer
 NoncedBoxDataSerializer<D extends NoncedBoxData> where D is type of serialized Custom Box Data
 So creation of a Custom Box Data Serializer can be done in following way:
-
 ::
-  public class CustomBoxDataSerializer implements NoncedBoxDataSerializer<CustomBoxData>
+ public class CustomBoxDataSerializer implements NoncedBoxDataSerializer<CustomBoxData>
 
 That new Custom Box Data Serializer require's the following:
 
-  1. Definition of function for writing Custom Box Data into the Scorex Writer by implementation of ``public void serialize(CustomBoxData boxData, Writer writer)`` method.
+  1. Definition of function for writing Custom Box Data into the Scorex Writer by implementation of the following method.
+     ::
+      public void serialize(CustomBoxData boxData, Writer writer)
 
-  2. Definition of function for reading Custom Box Data from Scorex Reader
-by implementation of function public CustomBoxData parse(Reader reader)
+  2. Definition of function for reading Custom Box Data from Scorex Reader by implementation of the function 
+     ::
+      public CustomBoxData parse(Reader reader)
 
   3. Class shall be converted to singleton, for example it can be done in following way:
 
-::
-  
-  private static final CustomBoxDataSerializer serializer = new CustomBoxDataSerializer();
+     ::
+        
+      private static final CustomBoxDataSerializer serializer = new CustomBoxDataSerializer();
 
-  private CustomBoxDataSerializer() {
-   super();
-  }
+      private CustomBoxDataSerializer() {
+      super();
+      }
 
-  public static CustomBoxDataSerializer getSerializer() {
-   return serializer;
-  }
+      public static CustomBoxDataSerializer getSerializer() {
+      return serializer;
+      }
   
 Custom Box class creation
 #########################
 
-The SDK provides base class for creation of a Custom Box:
+The SDK provides a base class for creation of a Custom Box:
+::
+ public class CustomBox extends AbstractNoncedBox<PublicKey25519Proposition, CustomBoxData, CustomBoxBox>
 
-:code:`public class CustomBox extends AbstractNoncedBox<PublicKey25519Proposition, CustomBoxData, CustomBoxBox>`
+As parameters for **AbstractNoncedBox** three template parameters shall be provided:
+- Proposition type for the box, for common purposes. PublicKey25519Proposition could be used as it used in regular boxes
+  ::
+  P extends Proposition
 
-As a parameters for **AbstractNoncedBox** three template parameters shall be provided:
-``P extends Proposition``- Proposition type for the box, for common purposes 
-PublicKey25519Proposition could be used as it used in regular boxes
-``BD extends AbstractNoncedBoxData<P, B, BD>`` -- Definition of type for Box Data which contains all custom data for new custom box
-``B extends AbstractNoncedBox<P, BD, B>`` -- Definition of type for Box itself, required for description inside of new Custom Box data.
+- Definition of type for Box Data which contains all custom data for a new custom box
+  ::
+   BD extends AbstractNoncedBoxData<P, B, BD>
 
-The Custom Box itself require's implementation of following functionality:
+- Definition of type for Box itself, required for description inside of new Custom Box data.
+  ::
+   B extends AbstractNoncedBox<P, BD, B>
+
+The Custom Box itself requires implementation of following functionality:
 
   1. Serialization definition
 
-    * Box itself shall provide the way to be serialized into bytes, thus method ``public byte[] bytes()`` shall be implemented 
-    * Method ``public static CarBox parseBytes(byte[] bytes)`` for creation of a new Car Box object from bytes, 
-    * Providing box type id by implementation of method ``public byte boxTypeId()`` which return custom box type id. And, finally, proper serializer for the Custom Box shall be returned by implementation of method ``public BoxSerializer serializer()``
+    * The box itself provides the way to be serialized into bytes, thus method 
+      ::
+       public byte[] bytes()`` shall be implemented 
+    * Method for creation of a new Car Box object from bytes
+      ::
+       public static CarBox parseBytes(byte[] bytes)
+
+    * Providing box type id by implementation of the following method which return's a custom box type id
+      ::
+       public byte boxTypeId()
+
+    And, finally, a serializer for the Custom Box shall be returned by implementation of the following method 
+    ::
+     public BoxSerializer serializer()
 
 Custom Box Serializer Class
 ###########################
 
-The SDK provides base class for ``Custom Box Serializer
-BoxSerializer<B extends Box>`` where B is type of serialized Custom Box
-So creation of **Custom Box Serializer** can be done in next way:
- ``public class CustomBoxSerializer implements NoncedBoxSerializer<CustomBox>``
+The SDK provides base class for a custom box serializer below, where B is type of serialized Custom Box
+::
+ Custom Box Serializer BoxSerializer<B extends Box>
+
+So creation of **Custom Box Serializer** can be done in the following way:
+::
+ public class CustomBoxSerializer implements NoncedBoxSerializer<CustomBox>
+
 The new Custom Box Serializer requires the following:
 
-  1. Definition of method for writing *Custom Box* into the Scorex Writer by implementation of ```public void serialize(CustomBox box, Writer writer)``` method.
+  1. Definition of method for writing *Custom Box* into the Scorex Writer by implementation of the following.
+     ::
+      public void serialize(CustomBox box, Writer writer)
+
   2. Definition of method for reading *Custom Box* from Scorex Reader
-by implementation of method ```public CustomBox parse(Reader reader) ```
+     by implementation of the following 
+     ::
+      public CustomBox parse(Reader reader)
+
   3. Class shall be converted to singleton, for example it could be done in following way:
 
     ::
@@ -276,24 +325,29 @@ A Coin box is created and extended as a usual non-coin box, only one additional 
 Transaction extension
 #####################
 
-Transaction in the SDK is represented by ```public abstract class BoxTransaction<P extends Proposition, B extends Box<P>> extends Transaction``` class. That class provides access to data like which boxes will be created, unlockers for input boxes, fee, etc. SDK developer could add custom transaction check by implementing *custom ApplicationState* 
+A transaction in the SDK is represented by the following class.
+::
+ public abstract class BoxTransaction<P extends Proposition, B extends Box<P>>
+ 
+This class provides access to data such as which boxes will be created, unlockers for input boxes, fee, etc. 
+SDK developer could add custom transaction check by implementing *custom ApplicationState* 
 
 ApplicationState and Wallet
 ###########################
 
- ApplicationState:
+ApplicationState:
  
-  ::
-  
-    interface ApplicationState {
-    boolean validate(SidechainStateReader stateReader, SidechainBlock block);
+::
 
-    boolean validate(SidechainStateReader stateReader, BoxTransaction<Proposition, Box<Proposition>> transaction);
+  interface ApplicationState {
+  boolean validate(SidechainStateReader stateReader, SidechainBlock block);
 
-    Try<ApplicationState> onApplyChanges(SidechainStateReader stateReader, byte[] version, List<Box<Proposition>> newBoxes, List<byte[]> boxIdsToRemove);
+  boolean validate(SidechainStateReader stateReader, BoxTransaction<Proposition, Box<Proposition>> transaction);
 
-    Try<ApplicationState> onRollback(byte[] version);
-    }
+  Try<ApplicationState> onApplyChanges(SidechainStateReader stateReader, byte[] version, List<Box<Proposition>> newBoxes, List<byte[]> boxIdsToRemove);
+
+  Try<ApplicationState> onRollback(byte[] version);
+  }
 
 For example, the custom application may have the possibility to tokenize cars by creation of Box entries - let’s call them CarBox. Each CarBox token should represent a unique car by having a unique *VIN* (Vehicle Identification Number). To do this Sidechain developer may define ApplicationState to store the list of actual VINs and reject transactions with CarBox tokens with VIN already existing in the system.
 

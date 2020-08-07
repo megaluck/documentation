@@ -2,26 +2,29 @@
 Base App
 ========
 
-SidechainsSDK provides to the developers an out of the box implementation of the Latus Consensus Protocol and the Crosschain Transfer Protocol.
+Sidechain SDK provides to the developers an out of the box implementation of the Latus Consensus Protocol and the Crosschain Transfer Protocol.
 Additionally to this, the SDK provides basic transactions, network layer, data storage and node configuration, as well as entry points for any custom extension.
 
 
 Secret / Proof / Proposition
 ****************************
 
-* **Secret / Proof / Proposition** - SDK uses its own terms for secret key / public key / signed message and provides various types of them.
+* **Sidechain SDK** uses its own terms for secret key / public key / signed message and provides various types of them.
 * **Secret** -  Private key 
 * **Proof** -  Signed message
-* SDK provides implementations for Secret / Proof / Proposition
+
+* SDK provides the following implementations for Secret / Proof / Proposition
 
   * Curve 25519
 	- PrivateKey25519
 	- PublicKey25519Proposition
 	- Signature25519
+  
   * VRF based on  ginger-lib 
   	- VrfSecretKey
 	- VrfPublicKey 
 	- VrfProof
+  
   * Schnorr based on ginger-lib 
   	- SchnorrSecret 
 	- SchnorrPropostion
@@ -38,7 +41,7 @@ that represents some coins, i.e. that holds an intrinsic defined value. As an ex
 some kind of smart contract.
 In particular, any box could be logically split in two parts: Box and BoxData (box data is included in the box). The Box itself represents the entity in the blockchain, 
 i.e. all operations like create/open etc. are performed on boxes. Box data contains information about the entity like value, proposition address and any custom data.
-Every box has its own unique boxId (do not be confused with box type id which is used for serialization). That box id is calculated for each box by next function:
+Every box has its own unique boxId (not be confused with box type id which is used for serialization). That box id is calculated for each box by next function:
 
 ::
 
@@ -60,8 +63,9 @@ Every box has its own unique boxId (do not be confused with box type id which is
 The following Coin-Box types are provided by SDK:
   * **RegularBox** -- contains ZEN coins
   * **ForgerBox** -- contains ZEN coins are used for forging 
-  * **WithdrawalRequestBox** -- contain ZEN coins are used to backward transfer, i.e. move coins back to the mainchain  
-An SDK developer can declare his own Boxes, please refer to SDK extension section.
+  * **WithdrawalRequestBox** -- contain ZEN coins are used to backward transfer, i.e. move coins back to the mainchain.
+
+An SDK developer can declare custom Boxes, please refer to SDK extension section.
 
 Transactions
 ************
@@ -69,7 +73,7 @@ Transactions
 There are two basic transactions: `MC2SCAggregatedTransaction
 <https://github.com/HorizenOfficial/Sidechains-SDK/blob/master/sdk/src/main/java/com/horizen/transaction/MC2SCAggregatedTransaction.java>`_ and `SidechainCoreTransaction
 <https://github.com/HorizenOfficial/Sidechains-SDK/blob/master/sdk/src/main/java/com/horizen/transaction/SidechainCoreTransaction.java>`_.
-An MC2SCAggregatedTransaction is the implementation of Forward Transfer and can be only added as a part of the MainchainBlock reference data during synchronization with Mainchain.
+An MC2SCAggregatedTransaction is the implementation of Forward Transfer and can be only added as a part of the mainchain block reference data during synchronization with mainchain.
 When a Forger is going to produce a sidechain block and a new mainchain block appears, the forger will recreate that mainchain block as a reference that will contain sidechain 
 related data. So, if some Forward Transfer exists in the mainchain block, it will be included into the MC2SCAggregatedTransaction and added as a part of the reference.
 The SidechainCoreTransaction is the transaction, which can be created by anyone to send coins inside a sidechain, create forging stakes or perform withdrawal requests

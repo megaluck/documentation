@@ -11,7 +11,7 @@ Concept of a BOX
 ****************
 
 A box generalizes the concept of Bitcoin’s UTXOs.
-A box is a cryptographic object that can be was created with some secret keys. This box can be opened(spent) by the owner of those secret keys. Once opened by the owner of the secret keys the box may not be opened again.
+A box is a cryptographic object that can be created with some secret keys. This box can be open \ (spent) by the owner of those secret keys. Once opened by the owner of the secret keys the box may not be opened again.
 
 Node Main elements & intro to a "NodeView"
 ******************************************
@@ -25,8 +25,7 @@ Node Main elements & intro to a "NodeView"
   * **Wallet**
     * The “Wallet” has two main functionalities:
       1. It holds the Secret keys that belong to that specific Node.
-      2. It keeps track of objects that are of interest to this specific node, e.g. received coins (output boxes whose secret keys are known by the node) and views of them (e.g. balances).
-      
+      2. It keeps track of objects that are of interest to this specific node, e.g. received coins (output boxes whose secret keys are known by the node) and views of them (e.g. balances).      
   * **Memory Pool**
     * The “Memory pool” is a list of transactions that are known to the node but have not made it to a Sidechain block yet.
     
