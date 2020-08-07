@@ -190,4 +190,26 @@ Implementation of CarBoxDataSerializer:
 
 ``CarBoxDataSerializer`` is implemented according to the description from ``Custom Box Data Serializer Creation`` section as ``public class CarBoxDataSerializer implements NoncedBoxDataSerializer<CarBoxData>``. Nothing special to note about.
 
-        
+Implementation of CarBox:
+*************************
+
+ ``CarBox`` is implemented according to description from ``Custom Box Class creation`` section as ``public class CarBox extends AbstractNoncedBox<PublicKey25519Proposition, CarBoxData, CarBox>``
+
+Few comments about implementation:
+
+    1. As a serialization part SDK developer shall include ``long nonce`` as a part of serialization, thus serialization is implemented in the following way:
+    
+        ::
+            public byte[] bytes()
+            {
+             return Bytes.concat(
+                 Longs.toByteArray(nonce),
+                 CarBoxDataSerializer.getSerializer().toBytes(boxData)
+             );
+            }
+
+    2. ``CarBox`` defines his own unique id by implementation of the function ``public byte boxTypeId()``. Similar function is defined in ``CarBoxData`` but it is a different ids despite value returned in ``CarBox`` and ``CarBoxData`` is the same.
+
+
+
+
