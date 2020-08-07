@@ -95,9 +95,13 @@ Transactions:
         *Input parameters are:*
         
             ``inputRegularBoxIds`` - list of regular boxes for payments like fee and car buying
+            
             ``inputRegularBoxProofs`` - appropriate list of proofs for box opening for each regular box in ``inputRegularBoxIds``
+            
             ``outputRegularBoxesData`` - list of output regular boxes, used as the change from paying a fee, as well as a new regular box for payment for the car.
+            
             ``fee`` - transaction fee
+            
             ``timestamp`` - transaction timestamp
 
         *Output boxes:*
