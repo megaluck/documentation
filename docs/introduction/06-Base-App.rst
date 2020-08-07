@@ -2,17 +2,18 @@
 Base App
 ========
 
-SidechainsSDK provides to the developers an out of the box implementation of the Latus Consensus Protocol and the Crosschain Transfer Protocol.
+Sidechain SDK provides to the developers an out of the box implementation of the Latus Consensus Protocol and the Crosschain Transfer Protocol.
 Additionally to this, the SDK provides basic transactions, network layer, data storage and node configuration, as well as entry points for any custom extension.
 
 
 Secret / Proof / Proposition
 ****************************
 
-* **Secret / Proof / Proposition** - SDK uses its own terms for secret key / public key / signed message and provides various types of them.
+* **Sidechain SDK** uses its own terms for secret key / public key / signed message and provides various types of them.
 * **Secret** -  Private key 
 * **Proof** -  Signed message
-* SDK provides implementations for Secret / Proof / Proposition
+
+* SDK provides the following implementations for Secret / Proof / Proposition
 
   * Curve 25519
 	- PrivateKey25519
@@ -38,7 +39,7 @@ that represents some coins, i.e. that holds an intrinsic defined value. As an ex
 some kind of smart contract.
 In particular, any box could be logically split in two parts: Box and BoxData (box data is included in the box). The Box itself represents the entity in the blockchain, 
 i.e. all operations like create/open etc. are performed on boxes. Box data contains information about the entity like value, proposition address and any custom data.
-Every box has its own unique boxId (do not be confused with box type id which is used for serialization). That box id is calculated for each box by next function:
+Every box has its own unique boxId (not be confused with box type id which is used for serialization). That box id is calculated for each box by next function:
 
 ::
 
