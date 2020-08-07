@@ -170,8 +170,18 @@ As described before, a Car Box is a non-coin box. As defined before we need Car 
 Implementation of CarBoxData:
 *****************************
 
-CarBoxData is implemented according description from “Custom Box Data Creation” chapter as ``public class CarBoxData extends AbstractNoncedBoxData<PublicKey25519Proposition, CarBox, CarBoxData>`` with custom data as:
-    private final BigInteger vin;
-    private final int year;
-    private final String model;
-    private final String color;
+CarBoxData is implemented according description from ``Custom Box Data Creation`` section as ``public class CarBoxData extends AbstractNoncedBoxData<PublicKey25519Proposition, CarBox, CarBoxData>`` with custom data as:
+
+    ::
+        private final BigInteger vin;
+        private final int year;
+        private final String model;
+        private final String color;
+        
+Few comments about implementation:
+
+    1. Special marker ``@JsonView(Views.Default.class)`` are used during class declaration, that annotation allows SDK core do proper JSON serialization.
+    2. Serialization is implemented in  ``public byte[] bytes()`` method as well as parsing implemented in ``public static CarBoxData parseBytes(byte[] bytes)`` method. SDK developer, as described before, shall include the proposition and value into serialization/deserialization. Order doesn't matter. 
+    3. ``CarBoxData`` shall have a value parameter as a Scorex limitation, but in our business logic CarBoxData does not use that data at all because each car is unique and doesn't have any inherent value. Thus value is hidden, i.e. value is not present in the constructor parameter and just set by default to “1” in the class constructor.
+    4. ``public byte[] customFieldsHash()`` shall be implemented because we introduce some new custom data.
+        
