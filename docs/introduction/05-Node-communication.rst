@@ -6,7 +6,7 @@ Communication  between a user and a sidechain node is supported out of the box v
 
 The API configuration can be found in the sidechain configuration file.
 
-For example see the restApi section of the following file for the SimpleApp.
+For example see the restApi section of the following file for the SimpleApp:
 
 .. code:: bash
 
@@ -15,7 +15,7 @@ For example see the restApi section of the following file for the SimpleApp.
 
 The available options are:
 
-bindAddress -- “IP:port” address for sending HTTP request,e.g. "127.0.0.1:9085"
+bindAddress -- “IP:port” address for sending HTTP request, e.g. "127.0.0.1:9085"
 
 api-key-hash -- Authentication header must be a string that hashes to the field "api-key-hash" specified in each SC node conf file. Auth header could be empty If no api-key-hash is specified
 
