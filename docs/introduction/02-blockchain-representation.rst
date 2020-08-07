@@ -11,7 +11,7 @@ Concept of a BOX
 ****************
 
 A box generalizes the concept of Bitcoin’s UTXOs.
-A box is a cryptographic object that can be was created with some secret keys. This box can be opened(spent) by the owner of those secret keys. Once opened by the owner of the secret keys the box may not be opened again.
+A box is a cryptographic object that can be created with some secret keys. This box can be open \ (spent) by the owner of those secret keys. Once opened by the owner of the secret keys the box may not be opened again.
 
 Node Main elements & intro to a "NodeView"
 ******************************************
