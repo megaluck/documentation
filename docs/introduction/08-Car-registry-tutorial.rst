@@ -3,7 +3,7 @@ Car Registry Tutorial
 ====================================
 
 Car Registry App high level overview
-************************************
+####################################
 
 The Car Registry app is an example of a sidechain that implements specific custom data and logic. The purpose of the application is to manage a simplified service that keeps
 records of existing cars and their owners. It’s simplified as sidechain users will be able to register cars by simply paying a transaction fee, while in a real world scenario, 
@@ -15,7 +15,7 @@ A car owner should be able to prove their ownership of the cars without disclosi
 with ZEN coins. 
 
 User stories:
-*************
+#############
 
 1
 **Q: I want to add my car to a Car Registry Sidechain.**
@@ -78,7 +78,7 @@ So, the starting point of the development process is the data representation. A 
 +---------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 Special proposition and proof:
-******************************
+##############################
 
     a) **SellOrderProposition** Standard proposition only contains one public key, i.e. only one specific secret key could open that proposition. 
        However, for a sell order we need a way to open and spend the box in two different ways, so we need to specify a additional proposition/proof. 
@@ -88,20 +88,16 @@ Special proposition and proof:
 
 
 Transactions:
-*************
+#############
 
     a) **AbstractRegularTransaction** base custom transaction, all other custom transactions extend this base transaction. 
     
         *Input parameters are:*
         
             ``inputRegularBoxIds`` - list of regular boxes for payments like fee and car buying
-            
             ``inputRegularBoxProofs`` - appropriate list of proofs for box opening for each regular box in ``inputRegularBoxIds``
-            
             ``outputRegularBoxesData`` - list of output regular boxes, used as the change from paying a fee, as well as a new regular box for payment for the car.
-            
             ``fee`` - transaction fee
-            
             ``timestamp`` - transaction timestamp
 
         *Output boxes:*
