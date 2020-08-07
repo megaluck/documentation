@@ -184,4 +184,10 @@ Few comments about implementation:
     2. Serialization is implemented in  ``public byte[] bytes()`` method as well as parsing implemented in ``public static CarBoxData parseBytes(byte[] bytes)`` method. SDK developer, as described before, shall include the proposition and value into serialization/deserialization. Order doesn't matter. 
     3. ``CarBoxData`` shall have a value parameter as a Scorex limitation, but in our business logic CarBoxData does not use that data at all because each car is unique and doesn't have any inherent value. Thus value is hidden, i.e. value is not present in the constructor parameter and just set by default to “1” in the class constructor.
     4. ``public byte[] customFieldsHash()`` shall be implemented because we introduce some new custom data.
+    
+Implementation of CarBoxDataSerializer:
+***************************************
+
+``CarBoxDataSerializer`` is implemented according to the description from ``Custom Box Data Serializer Creation`` section as ``public class CarBoxDataSerializer implements NoncedBoxDataSerializer<CarBoxData>``. Nothing special to note about.
+
         
