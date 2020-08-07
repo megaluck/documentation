@@ -80,11 +80,12 @@ So, the starting point of the development process is the data representation. A 
 Special proposition and proof:
 ******************************
 
-    **a)** SellOrderProposition Standard proposition only contains one public key, i.e. only one specific secret key could open that proposition. 
+    a) **SellOrderProposition** Standard proposition only contains one public key, i.e. only one specific secret key could open that proposition. 
        However, for a sell order we need a way to open and spend the box in two different ways, so we need to specify a additional proposition/proof. 
-       SellOrderProposition contains two public keys: ownerPublicKeyBytes and buyerPublicKeyBytes. So theseller or buyer private keys could open that proposition.
+       SellOrderProposition contains two public keys: ```ownerPublicKeyBytes``` and ```buyerPublicKeyBytes```. So the seller or buyer private keys could open that proposition.
 
-  SellOrderSpendingProof that proof allows us to open and spend CarSellOrderBox in two different ways: open by buyer and thus buy the car or open by seller and thus recall car sell order. Such proof creation requires two different API calls but as a result, for both cases, we will have the same type of transaction with the same proof type. 
+    b) **SellOrderSpendingProof** The proof that allows us to open and spend ```CarSellOrderBox``` in two different ways: opened by the buyer and thus buy the car or opened by the seller and thus recall car sell order. 
+    Such proof creation requires two different API calls but as a result, in both cases, we will have the same type of transaction with the same proof type. 
 
 
 
