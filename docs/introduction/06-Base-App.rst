@@ -19,10 +19,12 @@ Secret / Proof / Proposition
 	- PrivateKey25519
 	- PublicKey25519Proposition
 	- Signature25519
+  
   * VRF based on  ginger-lib 
   	- VrfSecretKey
 	- VrfPublicKey 
 	- VrfProof
+  
   * Schnorr based on ginger-lib 
   	- SchnorrSecret 
 	- SchnorrPropostion
