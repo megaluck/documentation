@@ -164,3 +164,8 @@ This transaction allows us to buy a car or recall a car sell order.
 Car registry implementation
 ###########################
 
+First of all we need to define new boxes. 
+As described before, a Car Box is a non-coin box. As defined before we need Car Box Data class as well for describing custom data. So we need to define CarBox and CarBoxData as separate classes for setting proper way to serialization/deserialization. 
+
+Implementation of CarBoxData:
+*****************************
