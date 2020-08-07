@@ -90,8 +90,9 @@ Special proposition and proof:
 Transactions:
 #############
 
-    a) **AbstractRegularTransaction** base custom transaction, all other custom transactions extend this base transaction. 
-    
+AbstractRegularTransaction base custom transaction, all other custom transactions extend this base transaction. 
+**************************
+
         *Input parameters are:*
         
             ``inputRegularBoxIds`` - list of regular boxes for payments like fee and car buying
