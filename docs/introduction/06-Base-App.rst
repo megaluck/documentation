@@ -127,10 +127,9 @@ Physical storage. The SDK introduces the unified physical storage interface, thi
 User specific settings
 **********************
 
-The user has the ability to define custom configuration options for example, a specific path to the node data storage, wallet seed, node name and api server 
-address/port, etc. To do this he should fill the configuration file in a `HOCON notation
+The user can define custom configuration options, such as a specific path to the node data storage, wallet seed, node name and API server address/port. To do this, he should write into the configuration file in a `HOCON notation
 <https://github.com/lightbend/config/blob/master/HOCON.md/>`_. The configuration file consists of the SDK required fields and application custom fields 
-if needed. Sidechain developers can use com.horizen.settings.SettingsReader utility class to extract Sidechain specific data and Config object itself to get custom parts.
+if needed. Sidechain developers can use `com.horizen.settings.SettingsReader <https://github.com/ZencashOfficial/Sidechains-SDK/blob/master/sdk/src/main/java/com/horizen/settings/SettingsReader.java>`_ utility class to extract Sidechain specific data and Config object itself to get custom parts.
 
 ::
 
@@ -149,7 +148,7 @@ config that can be passed as an argument to SettingsReader.
 SidechainApp class
 ******************
 
-The starting point of the SDK for each sidechain is the SidechainApp class. Every sidechain application should create an instance of SidechainApp with passing all required parameters to it and then execute the sidechain node flow:
+The starting point of the SDK for each sidechain is the `SidechainApp class <https://github.com/ZencashOfficial/Sidechains-SDK/blob/master/sdk/src/main/scala/com/horizen/SidechainApp.scala>_`. Every sidechain application should create an instance of SidechainApp with passing all required parameters and then execute the sidechain node flow:
 
 ::
 
