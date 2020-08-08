@@ -15,6 +15,20 @@ CustomData are the following:
 * Create ``CustomDataSerializer`` and implement ``ScorexSerializer interface``, i.e. functions  ``void serialize(CustomData customData, Writer writer)`` and ``CustomData parse(Reader reader)``;
 * Provide a unique id for that data type by implementing a special function. List of data type and appropriate functions is next:
 
++-------------------------------+---------------------------+
+| Data type / Base class        | Function to be overridden |
++===============================+===========================+
+| interface Box                 | byte boxTypeId()          |
++-------------------------------+---------------------------+
+| interface NoncedBoxData       | byte boxDataTypeId()      |
++-------------------------------+---------------------------+
+| interface Proof               | byte proofTypeId()        |
++-------------------------------+---------------------------+
+| interface Secret              | byte secretTypeId()       |
++-------------------------------+---------------------------+
+| abstract class BoxTransaction | byte transactionTypeId()  |
++-------------------------------+---------------------------+
+
 
 * In your AppModule class (i.e. class which extends  AbstractModule, in SimpleApp it is SimpleAppModule) define Custom Serializer map, for example for boxes it could be 
   ::
