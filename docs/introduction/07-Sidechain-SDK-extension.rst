@@ -82,25 +82,25 @@ Custom box creation
 To build a real application, a developer will need more to do more than receive, transfer, and send coins back. A distributed app, built on a sidechain, will typically have to define some custom data that the sidechain users will be able to exchange according to a defined logic. The creation of new Boxes requires the definition of four new classes. We will use the name Custom Box as a definition for some abstract custom Box:  
 
 
-+---------------------------------------+------------------------------------------------------------------------------------+
-| Class type                            | Class description                                                                  |
-+=======================================+====================================================================================+
-| Custom Box Data class                 | -- Contains all custom data definitions plus proposition for Box                   |
-|                                       | -- Provide required information for serialization of Box Data                      |
-|                                       | -- Define the way for creation new Custom Box from current Custom Box Data         |
-+---------------------------------------+------------------------------------------------------------------------------------+
-| Custom Box Data Serializer Singleton  | -- Define the way how to parse bytes from Reader into Custom Box Data object       |
-|                                       | -- Define the way how to put boxData object into Writer Parsing function used in a |
-|                                       |    Serializer class can be put in that class as well. However, it can be defined   |
-|                                       |    somewhere else                                                                  |
-+---------------------------------------+------------------------------------------------------------------------------------+
-| Custom Box                            | Representation new entity in Sidechain, contains appropriate Custom Box Data class |
-+---------------------------------------+------------------------------------------------------------------------------------+
-| Custom Box Serializer Singleton       | -- Define the way how to parse bytes from Reader into Box object                   |
-|                                       | -- Define the way how to put boxData object into Writer Parsing function used in a |
-|                                       |    Serializer class can be put in that class as well. However, it can be defined   |
-|                                       |    somewhere else                                                                  |
-+---------------------------------------+------------------------------------------------------------------------------------+
++--------------------------------------+------------------------------------------------------------------------------------+
+| Class type                           | Class description                                                                  |
++======================================+====================================================================================+
+| Custom Box Data class                | -- Contains all custom data definitions plus proposition for Box                   |
+|                                      | -- Provide required information for serialization of Box Data                      |
+|                                      | -- Define the way for creation new Custom Box from current Custom Box Data         |
++--------------------------------------+------------------------------------------------------------------------------------+
+| Custom Box Data Serializer Singleton | -- Define the way how to parse bytes from Reader into Custom Box Data object       |
+|                                      | -- Define the way how to put boxData object into Writer Parsing function used in a |
+|                                      |     Serializer class can be put in that class as well. However, it can be defined  |
+|                                      |     somewhere else                                                                 |
++--------------------------------------+------------------------------------------------------------------------------------+
+| Custom Box                           | Representation new entity in Sidechain, contains appropriate Custom Box Data class |
++--------------------------------------+------------------------------------------------------------------------------------+
+| Custom Box Serializer Singleton      | -- Define the way how to parse bytes from Reader into Box object                   |
+|                                      | -- Define the way how to put boxData object into Writer Parsing function used in a |
+|                                      |     Serializer class can be put in that class as well. However, it can be defined  |
+|                                      |     somewhere else                                                                 |
++--------------------------------------+------------------------------------------------------------------------------------+
 
 Custom Box Data class creation
 ##############################
