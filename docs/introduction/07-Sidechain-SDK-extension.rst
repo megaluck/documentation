@@ -11,39 +11,10 @@ Serialization is performed via a special Serializer class. Any custom data needs
 and needs to declare those Serializers for the SDK. Thus SDK will be able to use proper Serializer for custom data. The steps to describe serialization/parsing for some
 CustomData are the following:
 
-For CustomData
-::
-  Implement BytesSerializable interface 
-  
-i.e. 
-::
-  functions byte[] bytes() 
-  
-and 
-::
-  Serializer serializer() 
+  * Implement `BytesSerializable<https://github.com/ScorexFoundation/Scorex/blob/master/src/main/scala/scorex/core/serialization/BytesSerializable.scala>`_ interface for *CustomData*, i.e.  ``functions byte[] bytes()`` and ``Serializer serializer()`` (which shall return CustomDataSerializer), also implement ``public static CustomData parseBytes(byte[] bytes)`` function for parsing from bytes
+  * Create ``CustomDataSerializer`` and implement ``ScorexSerializer interface``, i.e. functions  ``void serialize(CustomData customData, Writer writer)`` and ``CustomData parse(Reader reader)``;
+  * Provide a unique id for that data type by implementing a special function. List of data type and appropriate functions is next:
 
-also implement the function
-::
-  public static CustomData parseBytes(byte[] bytes) 
-
-for parsing from bytes.
-  
-* Create 
-  ::
-    CustomDataSerializer 
-
-  Class and implement 
-  ::
-    ScorexSerializer interface
-
-  and implement the following methods:  
-  ::
-    void serialize(CustomData customData, Writer writer) 
-
-  and 
-  ::
-    CustomData parse(Reader reader);
 
 * In your AppModule class (i.e. class which extends  AbstractModule, in SimpleApp it is SimpleAppModule) define Custom Serializer map, for example for boxes it could be 
   ::
