@@ -112,29 +112,24 @@ The SDK provides base class for any Box Data class:
   AbstractNoncedBoxData<P extends Proposition, B extends AbstractNoncedBox<P, BD, B>, BD extends AbstractNoncedBoxData<P, B, BD>>
 
 
-where
+**where**
 
-::
+``P extends Proposition`` -- Proposition type for the box, for common purposes ``PublicKey25519Proposition`` can be used as it used in regular boxes
   
-  P extends Proposition -- Proposition type for the box, for common purposes PublicKey25519Proposition could be used as it used in regular boxes
-  BD extends AbstractNoncedBoxData<P, B, BD>
+``BD extends AbstractNoncedBoxData<P, B, BD>`` -- Definition of type for Box Data which contains all custom data for a new custom box
 
-Definition of type for Box Data which contains all custom data for new custom box
+``B extends AbstractNoncedBox<P, BD, B>`` -- Definition of type for Box itself, required for description inside of new Custom Box data 
 
-::
-  
-  B extends AbstractNoncedBox<P, BD, B>
-  
-Definition of type for Box itself, required for description inside of new Custom Box data 
-That base class provide next data by default:
+
+That base class provides the following data by default:
 
 ::
 
   proposition of type P long value
 
-If the box type is a Coin-Box then this value is required and will contain data such as coin value. In the case of a Non-Coin box this value would only be used in custom logic and cannot be null. Typically we would set this value to 1.
+If the box type is a Coin-Box then this value is required and will contain data such as coin value. In the case of a Non-Coin box it will be used in custom logic only. As a common practice for non-Coin box you can set it always equal to 1 
 
-So the creation of new Custom Box Data will be created in following way:
+So the creation of new Custom Box Data will be created in the following way:
 ::
   public class CustomBoxData extends AbstractNoncedBoxData<PublicKey25519Proposition, CustomBox, CustomBoxData>
 
@@ -142,33 +137,17 @@ The new custom box data class  requires the following:
 
 1. Custom data definition
   * Custom data itself
-  * Hash of all added custom data shall be returned in 
-    ::
-     public byte[] customFieldsHash()
-     
-    method, otherwise custom data will not be “protected”, i.e. some malicious actor        could change custom data during transaction creation. 
+  * Hash of all added custom data shall be returned in "public byte[] customFieldsHash() "function, otherwise, custom data will not be "protected," i.e., some malicious actor can change custom data during transaction creation.  
     
 2. Serialization definition
-  * Serialization to bytes shall be provided by Custom Box Data by overriding and implementing the method 
-    ::
-     public byte[] bytes() 
-
-    That method will serialize the proposition, value and any added custom data.
-  * Additionally definition of Custom Box Data id for serialization by overriding 
-    ::
-     public byte boxDataTypeId()
-    
-    method, please check the serialization chapter for more information about using ids. 
-  * Override 
-    ::
-     public NoncedBoxDataSerializer serializer() 
-    method with proper **Custom Box Data serializer**. Parsing Custom Box Data from bytes could be defined in that class as well, please refer to the serialization section for more information about it
+  * Serialization to bytes shall be provided by Custom Box Data by overriding and implementing the method ``public byte[] bytes()`` this function serializes the proposition, value and any added custom data.
+  * Additionally definition of Custom Box Data id for serialization by overriding ``public byte boxDataTypeId()`` function, please check the serialization section for more information about using ids. 
+  * Override ``public NoncedBoxDataSerializer serializer()`` function with proper **Custom Box Data serializer**. Parsing Custom Box Data from bytes can be defined in that class as well, please refer to the serialization section for more information about it
 
 3. Custom Box creation
-  * Any Box Data class shall provide the way how to create a new Box for a given nonce. For that purpose override the method 
+  * Any Box Data class shall provide the way how to create a new Box for a given nonce. For that purpose override the function 
     ::
      public CustomBox getBox(long nonce) 
-
 
 Custom Box Data Serializer class creation
 #########################################
