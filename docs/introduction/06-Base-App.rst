@@ -278,6 +278,8 @@ injected_variable_name could be differrent
 |        .toInstance(rejectedApiPaths);``                                                                                |                                                                                                                                                                                                                                                                                               |
 +------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
+TBD leaving it here
+**ALTERNATIVE TO THE TABLE**[]]]]]]][[[[[[[[[
 .. container:: twocol
 
     .. container:: leftside
@@ -288,27 +290,26 @@ injected_variable_name could be differrent
 
         text on right column
 
-
 We can split SidechainApp arguments into 4 groups:
 	1. Settings
-		* The instance of SidechainSettings is retrieved by custom application via SettingsReader as was described above.
+		* The instance of SidechainSettings is retrieved by custom application via SettingsReader, as was described above.
 	2. Custom objects serializers
-		* To add custom business logic. For example, tokenization of real-estate properties will 
-		  be required to create custom Box and BoxData types. These custom objects will be managed by the SDK to be sent through 
-		  the network or stored to the disk. In both cases the SDK should know how to serialize a custom object to bytes and how to restore 
-		  it back. To maintain this, sidechain developers should specify custom object serializers and add them to custom...Serializers map
-		  following the specific rules.
+		* Developers will want to add their custom business logic. For example, tokenization of real-estate properties will
+		  be required to create custom Box and BoxData types. These custom objects must be somehow managed by SDK to be sent through the network 
+		  or stored to the disk. In both cases, SDK should know how to serialize a custom object to bytes and how to restore it.
+		  To maintain this, sidechain developers should specify custom objects serializers and add them to 
+		  custom...Serializer map following the specific rules (see section **XXXXXX** Code your dApp...)
 	3. Application node extension of State and Wallet logic
-		* As was said above, State is a snapshot of all closed boxes of the blockchain at some moment of time. So when the next block arrives it should be validated by the State to prevent spending of non existing boxes or transaction inputs and outputs coin balances inconsistency. State can be extended by developers by introducing some logic in ApplicationState and ApplicationWallet. Seep appropriate chapters.
+		* As was said above, State is a snapshot of all closed boxes of the blockchain at some moment. So when the next block arrives, the ApplicationState validates the block to prevent the spending of non-existing boxes or transaction inputs and outputs coin balances inconsistency. Developers can extend State by introducing additional logic in ApplicationState and ApplicationWallet. Seep appropriate sections.
 	4. **API extension** - TO BE LINKED  
 	5. **Node communication** TO BE LINKED
 	
 	
-Inside the SDK we implemented a SimpleApp example, that was designed to demonstrate the basic SDK functionalities. It's the fastest way to play with our SDK.
-SimpleApp has no custom logic at all: no custom boxes and transactions, no custom API and with empty ApplicationState and ApplicationWallet.
+Inside the SDK, we implemented a SimpleApp example designed to demonstrate the basic SDK functionalities. It is the fastest way to get started with our SDK.
+SimpleApp has no custom logic: no custom boxes and transactions, no custom API, and an empty ApplicationState and ApplicationWallet.
 
 The SimpleApp requires a single argument to start: the path to the user configuration file.
-Under the hood it has to parse its config file using SettingsReader, and then initialize and run SidechainApp
+Under the hood, it has to parse its config file using SettingsReader, and then initialize and run SidechainApp.
 
 	
 
