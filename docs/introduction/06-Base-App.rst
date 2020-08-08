@@ -148,7 +148,7 @@ config that can be passed as an argument to SettingsReader.
 SidechainApp class
 ******************
 
-The starting point of the SDK for each sidechain is the `SidechainApp class <https://github.com/ZencashOfficial/Sidechains-SDK/blob/master/sdk/src/main/scala/com/horizen/SidechainApp.scala>_`. Every sidechain application should create an instance of SidechainApp with passing all required parameters and then execute the sidechain node flow:
+The starting point of the SDK for each sidechain is the `SidechainApp class <https://github.com/ZencashOfficial/Sidechains-SDK/blob/master/sdk/src/main/scala/com/horizen/SidechainApp.scala>`_. Every sidechain application should create an instance of SidechainApp with passing all required parameters and then execute the sidechain node flow:
 
 ::
 
