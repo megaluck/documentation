@@ -20,14 +20,12 @@ Secret / Proof / Proposition
 	- PublicKey25519Proposition
 	- Signature25519
   
-  * VRF based on  `ginger-lib
-<https://github.com/HorizenOfficial/ginger-lib>`_ 
+  * VRF based on  `ginger-lib<https://github.com/HorizenOfficial/ginger-lib>`_ 
   	- VrfSecretKey
 	- VrfPublicKey 
 	- VrfProof
   
-  * Schnorr based on `ginger-lib
-<https://github.com/HorizenOfficial/ginger-lib>`_ 
+  * Schnorr based on `ginger-lib<https://github.com/HorizenOfficial/ginger-lib>`_ 
   	- SchnorrSecret 
 	- SchnorrPropostion
 	- SchnorrProof
