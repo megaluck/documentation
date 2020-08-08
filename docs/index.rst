@@ -111,7 +111,7 @@ deployment of a complete blockchain much easier and faster.
     :maxdepth: 2
     :hidden:
 
-    introduction/index
     overview/index
+    introduction/index
     reference/index
 
