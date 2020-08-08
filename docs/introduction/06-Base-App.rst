@@ -39,6 +39,7 @@ Data in a sidechain is meant to be represented as a Box, that we can see as data
 The Sidechain SDK offers two different Box types: Coin Box and non-Coin Box. A Non-Coin box represents a unique entity that can be transferred between different owners. A Coin box is a box that contains ZEN, examples of a Coin box are RegularBox and ForgingBox. A Coin Box can add custom data to an object that represents some coins, i.e., that it holds an intrinsic defined value. For example, a developer would extend a Coin Box to manage a time lock on a UTXO, e.g., to implement smart contract logic.
 In particular, any box can be split into two parts: Box and BoxData (box data is included in the Box). The Box itself represents the entity in the blockchain, 
 i.e., all operations such as create/open. are performed on boxes. Box data contains information about the entity like value, proposition address, and any custom data.
+
 Every Box has its unique boxId (not be confused with box type id, which is used for serialization). That box id is calculated for each Box by the following function in the SDK core:
 
 ::
@@ -71,24 +72,21 @@ Transactions
 There are two basic transactions: `MC2SCAggregatedTransaction
 <https://github.com/HorizenOfficial/Sidechains-SDK/blob/master/sdk/src/main/java/com/horizen/transaction/MC2SCAggregatedTransaction.java>`_ and `SidechainCoreTransaction
 <https://github.com/HorizenOfficial/Sidechains-SDK/blob/master/sdk/src/main/java/com/horizen/transaction/SidechainCoreTransaction.java>`_.
-An MC2SCAggregatedTransaction is the implementation of Forward Transfer and can be only added as a part of the mainchain block reference data during synchronization with mainchain.
-When a Forger is going to produce a sidechain block and a new mainchain block appears, the forger will recreate that mainchain block as a reference that will contain sidechain 
-related data. So, if some Forward Transfer exists in the mainchain block, it will be included into the MC2SCAggregatedTransaction and added as a part of the reference.
-The SidechainCoreTransaction is the transaction, which can be created by anyone to send coins inside a sidechain, create forging stakes or perform withdrawal requests
-(send coins back to the MC). 
-The SidechainCoreTransaction can be extended to support custom logic operations. For example, if we think about real-estate sidechain, we can tokenize some private
-property as a specific Box using SidechainCoreTransaction. Please refer to SDK extensions for more details.
+An MC2SCAggregatedTransaction is the implementation of Forward Transfer and can only be added as a part of the mainchain block reference data during synchronization with the mainchain.
+When a Forger is going to produce a sidechain block, and a new mainchain block appears, the forger will recreate that mainchain block as a reference that will contain sidechain related data. If a Forward Transfer exists in the mainchain block, it will be included into the MC2SCAggregatedTransaction and added as a part of the reference.
+The SidechainCoreTransaction is the transaction, which can be created by anyone to send coins inside a sidechain, create forging stakes or perform withdrawal requests (send coins back to the MC). 
+The SidechainCoreTransaction can be extended to support custom logic operations. For example, if we think about real-estate sidechain, we can tokenize some private property as a specific Box using SidechainCoreTransaction. Please refer to SDK extensions for more details.
 
 Serialization
 *************
 
 Because the SDK is based on Scorex we implement the Scorex way of data serialization. 
-  * Any serialized data like Box/BoxData/Secret/Proof/Transaction implements Scorex BytesSerializable interface/trait.
-  * BytesSerializable declare functions byte[] bytes() and Serializer serializer(). 
-  * Serializer  itself works with Reader/Writer which are wrappers on byte stream. 
-  * Scorex Reader and Writer also implements some functionality like reading/parsing data of integer/long/string etc. 
+  * Any serialized data like Box/BoxData/Secret/Proof/Transaction implements Scorex `BytesSerializable <https://github.com/ScorexFoundation/Scorex/blob/master/src/main/scala/scorex/core/serialization/BytesSerializable.scala>`_ interface/trait.
+  * `BytesSerializable <https://github.com/ScorexFoundation/Scorex/blob/master/src/main/scala/scorex/core/serialization/BytesSerializable.scala>`_ declare functions byte[] bytes() and Serializer serializer(). 
+  * Serializer itself works with Reader/Writer, which are wrappers on byte stream. 
+  * Scorex Reader and Writer also implements functionality like reading/parsing data of integer/long/string etc. 
   * Serialization and parsing itself implemented in data class by implementation byte[] bytes() (required by BytesSerializable interface) and implementation static function for parsing bytes public static Data parseBytes(byte[] bytes)
-  * Also, for correct parse purposes, special bytes such as a unique id of data type is put at the beginning of the byte stream (it is done automatically), thus any serialized data shall provide a unique id. Specific serializers shall be set for those unique ids during dependency injection setting as well as custom Serializer shall be put into Custom Serializers Map which are defined at AppModule. Please refer to SDK extension section for more information
+  * Also, for correct parse purposes, special bytes such as a unique id of data type are put at the beginning of the byte stream (it is done automatically). Thus any serialized data shall provide a unique id. Specific serializers shall be set for those unique ids during the dependency injection setting as well as custom Serializer shall be put into Custom Serializers Map, which are defined at AppModule. Please refer to the SDK extension section for more information
 
 SidechainNodeView
 *****************
@@ -124,7 +122,7 @@ Node interconnection is organized as a peer-to-peer network. Over the network, t
 Physical storage
 ****************
 
-Physical storage. The SDK introduces the unified physical storage interface, this default implementation is based on the LevelDB library. Sidechain developers can decide to use the default solution or to provide the custom one. For example, the developer could decide to use encrypted storage, a Key Value store, a relational database or even a cloud solution.
+Physical storage. The SDK introduces the unified physical storage interface, this default implementation is based on the `LevelDB library <https://github.com/google/leveldb>`_. Sidechain developers can decide to use the default solution or to provide the custom one. For example, the developer could decide to use encrypted storage, a Key Value store, a relational database or even a cloud solution. In case of your own implementation, please make sure that `Storage <https://github.com/HorizenOfficial/Sidechains-SDK/blob/master/sdk/src/test/java/com/horizen/storage/StorageTest.java>`_ test passes for your custom storage.
 
 User specific settings
 **********************
