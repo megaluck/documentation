@@ -91,15 +91,15 @@ To build a real application, a developer will need more to do more than receive,
 +--------------------------------------+------------------------------------------------------------------------------------+
 | Custom Box Data Serializer Singleton | -- Define the way how to parse bytes from Reader into Custom Box Data object       |
 |                                      | -- Define the way how to put boxData object into Writer Parsing function used in a |
-|                                      |     Serializer class can be put in that class as well. However, it can be defined  |
-|                                      |     somewhere else                                                                 |
+|                                      | Serializer class can be put in that class as well. However, it can be defined      |
+|                                      | somewhere else                                                                     |
 +--------------------------------------+------------------------------------------------------------------------------------+
 | Custom Box                           | Representation new entity in Sidechain, contains appropriate Custom Box Data class |
 +--------------------------------------+------------------------------------------------------------------------------------+
 | Custom Box Serializer Singleton      | -- Define the way how to parse bytes from Reader into Box object                   |
 |                                      | -- Define the way how to put boxData object into Writer Parsing function used in a |
-|                                      |     Serializer class can be put in that class as well. However, it can be defined  |
-|                                      |     somewhere else                                                                 |
+|                                      | Serializer class can be put in that class as well. However, it can be defined      |
+|                                      | somewhere else                                                                     |
 +--------------------------------------+------------------------------------------------------------------------------------+
 
 Custom Box Data class creation
