@@ -7,8 +7,8 @@ Data serialization
 ##################
 
 Any data like **Box**/**BoxData**/**Secret**/**Proposition**/**Proof**/**Transaction** shall provide a way to  serialize itself to bytes and provide a way to parse it from bytes.
-Serialization is performed via special Serializer class. Any custom data, beside defining own Serializer and definition of parsing/serializing,
-shall declare those Serializers for the SDK, thus SDK will be able to use proper serializer for custom data. The steps to describe serialization/parsing for some
+Serialization is performed via a special Serializer class. Any custom data needs to define its own Serializer and definition of parsing/serializing
+and needs to declare those Serializers for the SDK. Thus SDK will be able to use proper Serializer for custom data. The steps to describe serialization/parsing for some
 CustomData are the following:
 
 For CustomData
