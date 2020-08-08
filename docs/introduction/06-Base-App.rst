@@ -188,11 +188,11 @@ The starting point of the SDK for each sidechain is the `SidechainApp class <htt
 The SidechainApp instance can be instantiated directly or through `Guice DI library <https://github.com/google/guice>`_.
 Binding by Guice could be done in the following ways:
 
-	::
+::
 	
-		bind(injected_classType)
-	       .annotatedWith(Names.named("Injected_parameter_name"))
-	       .toInstance(injected_variable_name);
+	bind(injected_classType)
+		.annotatedWith(Names.named("Injected_parameter_name"))
+		.toInstance(injected_variable_name);
 
 
 We can split SidechainApp arguments into 4 groups:
