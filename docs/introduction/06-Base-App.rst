@@ -11,6 +11,7 @@ Secret / Proof / Proposition
 
 * **Sidechain SDK** uses its own terms for secret key / public key / signed message and provides various types of them.
 * **Secret** -  Private key 
+* **Proposition** - Public key, used in boxes as a locker
 * **Proof** -  Signed message
 
 * SDK provides the following implementations for Secret / Proof / Proposition
