@@ -30,26 +30,10 @@ CustomData are the following:
 +-------------------------------+---------------------------+
 
 
-* In your AppModule class (i.e. class which extends  AbstractModule, in SimpleApp it is SimpleAppModule) define Custom Serializer map, for example for boxes it could be 
-  ::
-
-    Map<Byte, BoxSerializer<Box<Proposition>>> customBoxSerializers = new HashMap<>(); 
+* In your AppModule class (i.e. class which extends  ```AbstractModule```, in SimpleApp it is ```SimpleAppModule```) define Custom Serializer map, for example for boxes it could be ```Map<Byte, BoxSerializer<Box<Proposition>>> customBoxSerializers = new HashMap<>();``` where key is data type id and value is CustomSerializer for those data type id.
   
-  where key is data type id and value is CustomSerializer for those data type id.
-  
-* Provide a unique id for that data type by implementing a special function. For example for box data type it is the function  
-  ::
+* Add your custom serializer into the map, for example it could be something  ```like customBoxSerializers.put((byte)MY_CUSTOM_BOX_ID, (BoxSerializer) CustomBoxSerializer.getSerializer());```
 
-    public byte boxTypeId()
-  for other data types the function name could be different and you will be obliged to implement it.  
-* ::
-
-   Map<Byte, BoxSerializer<Box<Proposition>>> customBoxSerializers = new HashMap<>();
-* Add your custom serializer into the map, for example it could be something  like 
-
- .. code:: java
-
-   customBoxSerializers.put((byte)MY_CUSTOM_BOX_ID, (BoxSerializer) CustomBoxSerializer.getSerializer());  
 * Bind map with custom serializers to your application in the app model class:
   ::
 
@@ -84,27 +68,18 @@ Example:
        .annotatedWith(Names.named("CustomBoxSerializers"))
        .toInstance(customBoxSerializers);
 
-where  
-common serializer type
-::
-  BoxSerializer<Box<Proposition>>>
+ Where
 
-bound property name 
-::
-  "CustomBoxSerializers"
-
-created map with all defined custom serializers
-::
-  customBoxSerializers 
-
-Overall we have the next expected type and property name.
+* **BoxSerializer<Box<Proposition>>>** -- common serializer type
+* **"CustomBoxSerializers"** -- bound property name 
+* **customBoxSerializers** -- created map with all defined custom serializers.
 
 Custom box creation
 ###################
 
   a) SDK Box extension Overview
 
-To build a real application, a developer will need more to do more than just receive, transfer and send coins back. A distributed app, built on a sidechain, will typically have to define some custom data that the sidechain users will be able to exchange according to a defined logic. Creation of new Boxes requires definition of new four classes. We will use name Custom Box as a definition for some abstract custom Box:
+To build a real application, a developer will need more to do more than receive, transfer, and send coins back. A distributed app, built on a sidechain, will typically have to define some custom data that the sidechain users will be able to exchange according to a defined logic. The creation of new Boxes requires the definition of four new classes. We will use the name Custom Box as a definition for some abstract custom Box:  
 
 
 +---------------------------------------+------------------------------------------------------------------------------------+
@@ -115,14 +90,16 @@ To build a real application, a developer will need more to do more than just rec
 |                                       | -- Define the way for creation new Custom Box from current Custom Box Data         |
 +---------------------------------------+------------------------------------------------------------------------------------+
 | Custom Box Data Serializer Singleton  | -- Define the way how to parse bytes from Reader into Custom Box Data object       |
-|                                       | -- Define the way how to put boxData object into Writer                            |
-|                                       | Parsing/Serialization itself could be defined in Custom Box Data class             |
+|                                       | -- Define the way how to put boxData object into Writer Parsing function used in a |
+|                                       |    Serializer class can be put in that class as well. However, it can be defined   |
+|                                       |    somewhere else                                                                  |
 +---------------------------------------+------------------------------------------------------------------------------------+
 | Custom Box                            | Representation new entity in Sidechain, contains appropriate Custom Box Data class |
 +---------------------------------------+------------------------------------------------------------------------------------+
-| Custom Box Serializer Singleton       | -- Define the way how to parse bytes from Reader into Box Data object              |
-|                                       | -- Define the way how to put boxData object into Writer                            |
-|                                       | Parsing/Serialization itself could be defined in Box Data class                    |
+| Custom Box Serializer Singleton       | -- Define the way how to parse bytes from Reader into Box object                   |
+|                                       | -- Define the way how to put boxData object into Writer Parsing function used in a |
+|                                       |    Serializer class can be put in that class as well. However, it can be defined   |
+|                                       |    somewhere else                                                                  |
 +---------------------------------------+------------------------------------------------------------------------------------+
 
 Custom Box Data class creation
