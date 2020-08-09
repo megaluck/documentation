@@ -274,7 +274,7 @@ Nothing special to note about.
 Implementation of CarSellOrderBox
 *********************************
 
-CarSellorder is implemented according to description from “Custom Box Class creation” (`section <#custom-box-class-creation>`_) as
+CarSellorder is implemented according to description from “Custom Box Class creation” (`section <07-Sidechain-SDK-extension.html#custom-box-class-creation>`_) as
 public final class CarSellOrderBox extends AbstractNoncedBox<SellOrderProposition, CarSellOrderBoxData, CarSellOrderBox>
 
 Nothing special about implementation.
