@@ -2,14 +2,16 @@
 Before you start
 ================
 
-This document is a tutorial that wants to offer Java developers all the needed information to build a complete blockchain application on the Horizen sidechain system.
+This tutorial offer's Java developers all the needed information to build a complete blockchain application on the Horizen Sidechain system.
 Apart from Java competency, this tutorial assumes that the reader has at least a high level understanding of how blockchain-based distributed software works. 
-So, concepts such as Transactions, UTXO, Blocks, Validation, Confirmation, Consensus, Unique chain and chain forks, Hash Function, Private/Public key and Signature, … should be known and understood, as well as the concept of network of nodes and node communication. If the above words are new to you, you can start by exploring the material available on the Horizen Academy web site. Also, the original whitepaper by Satoshi Nakamoto, “Bitcoin: A Peer-to-Peer Electronic Cash System” can be a good starting point. 
+So, concepts such as Transactions, UTXO's, Blocks, Validation, Confirmation, Consensus, Unique chain and chain forks, Hash Function, Private/Public key and Signing should be known and understood, as well as the concept of network of nodes and node communication. 
+If the above words are new to you, you can start by exploring the material available on the Horizen Academy web site (`link <https://academy.horizen.global>`_). 
+Also, the original whitepaper by Satoshi Nakamoto, “Bitcoin: A Peer-to-Peer Electronic Cash System” can be a good starting point. 
 Direct experience with an existing blockchain software is also a very useful prerequisite. For that, you can install the Horizen “zend” software, and explore its rpc command interface and “regtest” mode.
 
-================
+****************
 Why a Sidechain?
-================
+****************
 
 The success of Bitcoin and of many of its successors, has led to the attempt to build more and more applications that do not require to trust a third party, not even the author of the software, to be confident that data is stored and processed according to what expected and declared. These distributed applications keep the same concept of an append-only ledger, that replaces the usual application database, that is stored and updated by the applications nodes, which also communicate to check and agree on the legitimacy of transactions, accept them and apply the relevant database updates. The success of this approach requires, among other things, that the overall system includes a robust logic to reward the app actors, so that a good enough amount of decentralization is maintained, such that any attempt of malicious behaviours bear an overwhelmingly anti-economical cost. Today, the only way to guarantee this day one, is to code the logic and data of a new application in the software that runs an existing, established blockchain supporting a traded coin. That way, the robustness of the blockchain extends to the new app, that can immediately make use of the availability of existing miners, nodes, and the coin itself.
 Unfortunately, the above approach bears a scalability challenge. Blockchains already suffer from scalability issues in their limited ability to process large volumes of transaction/time, and to accommodate sustained transaction peaks, that restrict the possibility of integrating a large number of new applications. Besides, each application logic needs to be coded in the node software, that is run by each node participating in the blockchain validation process, and this also has an impact on scalability: the software cannot be changed and updated each time we want to add a new application, and cannot grow indefinitely.
