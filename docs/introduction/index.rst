@@ -5,8 +5,8 @@ Tutorials
 #########
 
 The pages in this section of the documentation are aimed at the newcomer to
-the Sidechain-SDK. They're designed to help you get started quickly, and show how
-easy it is to work with the Sidechain SDK as a developer who wants to customise it and
+the Horizen Sidechain SDK. They're designed to help you get started quickly, and show how
+easy it is to work with the sidechain SDK as a developer who wants to customize it and
 get it working according to their own requirements.
 
 These tutorials take you step-by-step through some key aspects of this work.
@@ -27,6 +27,7 @@ in the order presented here.
     :maxdepth: 2
     :numbered:
 
+    overview.rst
     01-install
     02-blockchain-representation
     03-Cross-chain-transfer-protocol
