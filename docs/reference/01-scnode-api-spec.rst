@@ -385,3 +385,389 @@ _____
 =====
 **Sidechain Transaction operations**
 =====
+
+.. http:post:: /transaction/allTransactions
+
+*Find all transactions in the memory pool*  
+   
+**No Parameters**
+   
+**Example request**:
+
+.. tabs::
+
+   .. tab:: Bash
+
+      curl -X POST "http://127.0.0.1:9087/transaction/allTransactions" -H "accept: application/json" -H "Content-Type: application/json" -d "{\"format\":true}"
+      
+      
+**Example response**:
+
+   .. sourcecode:: http
+   
+      {
+        "result": {
+          "transactions": []
+        }
+      }
+      
+_____
+
+   .. http:post:: /transaction/findById
+   
+* *blockHash set -> Search in block referenced by blockHash (do not care about txIndex parameter)*
+* *blockHash not set, txIndex = true -> Search in memory pool, if not found, search in the whole blockchain*
+* *blockHash not set, txIndex = false -> Search in memory pool*
+   
+**Parameters TBD**
+
++-------------+--------+----------+----------------------------------------+
+| Name        | Type   | Required |          Description                   |
++=============+========+==========+========================================+
+| epochNumber |  int   |   yes    |         Epoch Number                   |
++-------------+--------+----------+----------------------------------------+
+|  slotNumber |  int   |   yes    |         Slot Number                    |
++-------------+--------+----------+----------------------------------------+
+   
+**Example request**:
+
+.. tabs::
+
+   .. tab:: Bash
+
+      curl -X POST "http://127.0.0.1:9087/transaction/findById" -H "accept: application/json" -H "Content-Type: application/json" -d "{\"transactionId\":\"string\",\"blockHash\":\"string\",\"transactionIndex\":false,\"format\":false}"
+      
+      
+**Example response**:
+
+   .. sourcecode:: http
+   
+      {
+        "result": {
+          "transaction": {},
+          "transactionBytes": "string"
+        },
+        "error": {
+          "code": "string",
+          "description": "string",
+          "detail": "string"
+        }
+      }
+
+_________
+
+.. http:post:: /transaction/decodeTransactionBytes
+   
+*Return a JSON representation of a transaction given its byte serialization*
+
+
+   
+**Parameters**
+
++------------------+--------+----------+----------------------------------------+
+| Name             | Type   | Required |          Description                   |
++==================+========+==========+========================================+
+| transactionBytes | String |   yes    |         byte String                    |
++------------------+--------+----------+----------------------------------------+
+
+   
+**Example request**:
+
+.. tabs::
+
+   .. tab:: Bash
+
+      curl -X POST "http://127.0.0.1:9087/transaction/decodeTransactionBytes" -H "accept: application/json" -H "Content-Type: application/json" -d "{\"transactionBytes\":\"string\"}"
+      
+      
+**Example response**:
+
+   .. sourcecode:: http
+   
+      {
+        "result": {
+          "transaction": {}
+        },
+        "error": {
+          "code": "string",
+          "description": "string",
+          "detail": "string"
+        }
+      }
+      
+______
+
+
+.. http:post:: /transaction/createCoreTransaction
+   
+*Create and sign a Sidechain core transaction, specifying inputs and outputs. Return the new transaction as a hex string if format = false, otherwise its JSON representation.*
+
+
+   
+**Parameters**
+
++------------------+--------+----------+----------------------------------------+
+| Name             | Type   | Required |          Description                   |
++==================+========+==========+========================================+
+| transactionBytes | String |   yes    |         byte String                    |
++------------------+--------+----------+----------------------------------------+
+
+   
+**Example request**:
+
+.. tabs::
+
+   .. tab:: Bash
+
+      curl -X POST "http://127.0.0.1:9087/transaction/createCoreTransaction" -H "accept: application/json" -H "Content-Type: application/json" -d "{\"transactionInputs\":[{\"boxId\":\"string\"}],\"regularOutputs\":[{\"publicKey\":\"string\",\"value\":0}],\"withdrawalRequests\":[{\"publicKey\":\"string\",\"value\":0}],\"forgerOutputs\":[{\"publicKey\":\"string\",\"blockSignPublicKey\":\"string\",\"vrfPubKey\":\"string\",\"value\":0}],\"format\":false}"
+      
+      
+**Example response**:
+
+   .. sourcecode:: http
+   
+      {
+        "result": {
+          "transaction": {},
+          "transactionBytes": "string"
+        },
+        "error": {
+          "code": "string",
+          "description": "string",
+          "detail": "string"
+        }
+      } 
+      
+______
+
+
+.. http:post:: /transaction/createCoreTransactionSimplified
+   
+*Create and sign a Sidechain core transaction, specifying inputs and outputs. Return the new transaction as a hex string if format = false, otherwise its JSON representation.*
+
+   
+**Parameters**
+
++------------------+
+| **TBD**          |
++------------------+
+
+   
+**Example request**:
+
+.. tabs::
+
+   .. tab:: Bash
+
+      curl -X POST "http://127.0.0.1:9087/transaction/createCoreTransactionSimplified" -H "accept: application/json" -H "Content-Type: application/json" -d "{\"regularOutputs\":[{\"publicKey\":\"string\",\"value\":0}],\"withdrawalRequests\":[{\"publicKey\":\"string\",\"value\":0}],\"forgerOutputs\":[{\"publicKey\":\"string\",\"blockSignPublicKey\":\"string\",\"vrfPubKey\":\"string\",\"value\":0}],\"fee\":0,\"format\":true}"
+      
+      
+**Example response**:
+
+   .. sourcecode:: http
+   
+      {
+        "result": {
+          "transaction": {},
+          "transactionBytes": "string"
+        },
+        "error": {
+          "code": "string",
+          "description": "string",
+          "detail": "string"
+        }
+      }
+
+______
+
+
+.. http:post:: /transaction/sendCoinsToAddress
+   
+*Create and sign a regular transaction, specifying outputs and fee. Then validate and send the transaction. Then return the id of the transaction*
+
+   
+**Parameters**
+
++------------------+
+| **TBD**          |
++------------------+
+
+   
+**Example request**:
+
+.. tabs::
+
+   .. tab:: Bash
+
+      curl -X POST "http://127.0.0.1:9087/transaction/sendCoinsToAddress" -H "accept: application/json" -H "Content-Type: application/json" -d "{\"outputs\":[{\"publicKey\":\"string\",\"value\":0}],\"fee\":0}"
+      
+      
+**Example response**:
+
+   .. sourcecode:: http
+   
+      {
+        "result": {
+          "transactionId": "string"
+        },
+        "error": {
+          "code": "string",
+          "description": "string",
+          "detail": "string"
+        }
+      }
+      
+____
+
+.. http:post:: /transaction/withdrawCoins
+   
+*Create and sign a regular transaction, specifying withdrawal outputs and fee. Then validate and send the transaction. Then return the id of the transaction*
+
+   
+**Parameters**
+
++------------------+
+| **TBD**          |
++------------------+
+
+   
+**Example request**:
+
+.. tabs::
+
+   .. tab:: Bash
+
+      curl -X POST "http://127.0.0.1:9087/transaction/withdrawCoins" -H "accept: application/json" -H "Content-Type: application/json" -d "{\"outputs\":[{\"publicKey\":\"string\",\"value\":0}],\"fee\":0}"
+      
+      
+**Example response**:
+
+   .. sourcecode:: http
+   
+      {
+        "code": 0,
+        "reason": "string",
+        "detail": "string"
+      }
+      
+____
+
+.. http:post:: /transaction/makeForgerStake
+   
+*Create and sign a Sidechain core transaction, specifying forger stake outputs and fee. Then validate and send the transaction. Then return the id of the transaction*
+
+   
+**Parameters**
+
++------------------+
+| **TBD**          |
++------------------+
+
+   
+**Example request**:
+
+.. tabs::
+
+   .. tab:: Bash
+
+      curl -X POST "http://127.0.0.1:9087/transaction/makeForgerStake" -H "accept: application/json" -H "Content-Type: application/json" -d "{\"outputs\":[{\"publicKey\":\"string\",\"blockSignPublicKey\":\"string\",\"vrfPubKey\":\"string\",\"value\":0}],\"fee\":0}"
+      
+      
+**Example response**:
+
+   .. sourcecode:: http
+   
+      {
+        "result": {
+          "transactionId": "string"
+        },
+        "error": {
+          "code": "string",
+          "description": "string",
+          "detail": "string"
+        }
+      }
+     
+_______
+
+.. http:post:: /transaction/spendForgingStake
+   
+*Create and sign sidechain core transaction, specifying inputs and outputs. Return the new transaction as a hex string if format = false, otherwise its JSON representation.*
+
+   
+**Parameters**
+
++------------------+
+| **TBD**          |
++------------------+
+
+   
+**Example request**:
+
+.. tabs::
+
+   .. tab:: Bash
+
+      curl -X POST "http://127.0.0.1:9087/transaction/spendForgingStake" -H "accept: application/json" -H "Content-Type: application/json" -d "{\"transactionInputs\":[{\"boxId\":\"string\"}],\"regularOutputs\":[{\"publicKey\":\"string\",\"value\":0}],\"forgerOutputs\":[{\"publicKey\":\"string\",\"blockSignPublicKey\":\"string\",\"vrfPubKey\":\"string\",\"value\":0}],\"format\":false}"
+      
+      
+**Example response**:
+
+   .. sourcecode:: http
+   
+      {
+        "result": {
+          "transaction": {},
+          "transactionBytes": "string"
+        },
+        "error": {
+          "code": "string",
+          "description": "string",
+          "detail": "string"
+        }
+      }
+     
+______
+
+
+.. http:post:: /transaction/sendTransaction
+   
+*Validate and send a transaction, given its serialization as input. Then return the id of the transaction*
+
+   
+**Parameters**
+
++------------------+
+| **TBD**          |
++------------------+
+
+   
+**Example request**:
+
+.. tabs::
+
+   .. tab:: Bash
+
+      curl -X POST "http://127.0.0.1:9087/transaction/sendTransaction" -H "accept: application/json" -H "Content-Type: application/json" -d "{\"transactionBytes\":\"string\"}"
+      
+      
+**Example response**:
+
+   .. sourcecode:: http
+   
+      {
+        "result": {
+          "transactionId": "string"
+        },
+        "error": {
+          "code": "string",
+          "description": "string",
+          "detail": "string"
+        }
+      }
+   
+______
+
+=====
+**Sidechain Wallet Operations**
+=====
