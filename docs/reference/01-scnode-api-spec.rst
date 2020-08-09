@@ -172,10 +172,10 @@ _____
 
    .. sourcecode:: http
    
-   {
-      "result":{
-         "blockId":"e8c92a6c217a7dced190b729a7815f0be6a011ea23a38e083e79298bb66620e7"
+      {
+         "result":{
+            "blockId":"e8c92a6c217a7dced190b729a7815f0be6a011ea23a38e083e79298bb66620e7"
+         }
       }
-   }
 
 
