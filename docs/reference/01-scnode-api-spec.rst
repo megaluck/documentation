@@ -285,7 +285,7 @@ _____
 
  .. http:post:: /block/stopForging
    
-*Return a sidechain block Id by its height in a blockchain*  
+*Stop forging*  
    
 **No Parameters**
    
