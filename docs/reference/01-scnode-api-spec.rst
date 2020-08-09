@@ -312,3 +312,76 @@ _____
           "detail": "string"
         }
       }
+
+_____
+
+
+   .. http:post:: /block/generate
+   
+*Try to generate new block by epoch and slot number*  
+*Returns id of generated sidechain block*
+   
+**Parameters**
+
++-------------+--------+----------+----------------------------------------+
+| Name        | Type   | Required |          Description                   |
++=============+========+==========+========================================+
+| epochNumber |  int   |   yes    |         Epoch Number                   |
++-------------+--------+----------+----------------------------------------+
+|  slotNumber |  int   |   yes    |         Slot Number                    |
++-------------+--------+----------+----------------------------------------+
+   
+**Example request**:
+
+.. tabs::
+
+   .. tab:: Bash
+
+      curl -X POST "http://127.0.0.1:9086/block/generate" -H "accept: application/json" -H "Content-Type: application/json" -d "{\"epochNumber\":3,\"slotNumber\":45}"
+      
+      
+**Example response**:
+
+   .. sourcecode:: http
+   
+      {
+        "result": {
+          "blockId": "7f25d35aadae65062033757e5049e44728128b7405ff739070e91d753b419094"
+        }
+      }
+      
+_____
+
+   .. http:post:: /block/forgingInfo
+   
+*Get forging info*
+   
+**No Parameters**
+   
+**Example request**:
+
+.. tabs::
+
+   .. tab:: Bash
+
+      curl -X POST "http://127.0.0.1:9086/block/forgingInfo" -H "accept: application/json"
+      
+      
+**Example response**:
+
+   .. sourcecode:: http
+   
+      {
+        "result": {
+          "consensusSecondsInSlot": 120,
+          "consensusSlotsInEpoch": 720,
+          "bestEpochNumber": 3,
+          "bestSlotNumber": 45
+        }
+      }
+
+_____
+
+=====
+**Sidechain Transaction operations**
+=====
