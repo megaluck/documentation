@@ -33,8 +33,10 @@ extensions = [
     'sphinx.ext.autodoc',
     'sphinx.ext.intersphinx',
     'sphinx_tabs.tabs',
-    'sphinxcontrib.httpdomain',
+    'sphinxcontrib.httpdomain'
 ]
+
+autosectionlabel_prefix_document = True
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
