@@ -795,7 +795,8 @@ ______
       
 **Example response**:
    
-   ::
+   .. sourcecode:: http
+      
       {
         "result": {
           "boxes": [
@@ -843,7 +844,8 @@ ______
       
 **Example response**:
    
-   ::
+   .. sourcecode:: http
+      
       {
         "result": {
           "balance": 0
@@ -881,7 +883,8 @@ ______
       
 **Example response**:
    
-   ::
+   .. sourcecode:: http
+      
       {
         "result": {
           "proposition": {
@@ -920,7 +923,8 @@ ______
       
 **Example response**:
    
-   ::
+   .. sourcecode:: http
+      
       {
         "result": {
           "proposition": {
@@ -955,7 +959,8 @@ ________
       
 **Example response**:
    
-   ::
+   .. sourcecode:: http
+      
       {
         "result": {
           "propositions": [
