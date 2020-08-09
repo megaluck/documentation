@@ -5,7 +5,7 @@ Sidechain Node API spec
 =====
 
 
-.. http:post:: /block/findById/
+.. http:post:: /block/findById
 
 *Find Block by ID*
 
@@ -103,7 +103,7 @@ Sidechain Node API spec
 
 _____
 
-   .. http:post:: /block/findLastIds/
+   .. http:post:: /block/findLastIds
    
 *Returns an array with the ids of the last x blocks*  
    
@@ -147,6 +147,241 @@ _____
 
 _____
 
-teste
+ .. http:post:: /block/findIdByHeight
    
+*Return a sidechain block Id by its height in a blockchain*  
+   
+**Parameters**
 
++---------+--------+----------+----------------------------------------+
+| Name    | Type   | Required |          Description                   |
++=========+========+==========+========================================+
+|  height |  int   |   yes    | Retrieves block ID by it´s height      |
++---------+--------+----------+----------------------------------------+
+   
+**Example request**:
+
+.. tabs::
+
+   .. tab:: Bash
+
+      curl -X POST "http://127.0.0.1:9086/block/findIdByHeight" -H "accept: application/json" -H "Content-Type: application/json" -d "{\"height\":100}"
+      
+      
+**Example response**:
+
+   .. sourcecode:: http
+   
+      {
+         "result":{
+            "blockId":"e8c92a6c217a7dced190b729a7815f0be6a011ea23a38e083e79298bb66620e7"
+         }
+      }
+
+_____
+
+ .. http:post:: /block/best
+   
+Return here best sidechain block id and height in active chain
+   
+**No Parameters**
+
+   
+**Example request**:
+
+.. tabs::
+
+   .. tab:: Bash
+
+      curl -X POST "http://127.0.0.1:9086/block/best" -H "accept: application/json"
+      
+      
+**Example response**:
+
+   .. sourcecode:: http
+   
+      {
+        "result": {
+          "block": {
+            "header": {
+              "version": 1,
+              "parentId": "ae6bcf104b7a7cccf83dfa23494760fb8d9a4d5cc3de82443de8b82bb86669d1",
+              "timestamp": 1595475730,
+              "forgerBox": {
+                "nonce": -8596034112114319000,
+                "id": "f290e648415642b051cf6075b5fcaa7609eddd9a919d144cc2062db632918d9e",
+                "typeId": 3,
+                "vrfPubKey": {
+                  "valid": true,
+                  "publicKey": "d984ea8909760cb69d0a1a13848bd534e9ac28ec0ac20c3b05d557fa6512405185d799d1bab96068ad903a8f72e08329f29b45747a9ab1e66841b9a8440140e507457168d07bf6032875a6112dba9e6cb728d1a37e47c196aa9045136dd3000098a74b639a0bd495b3a19facd5c7b2811257a45476fb369c282002ec4f3aad4324b73e6555290b35db447705375824a5c5805a94c0438125f38b138e6842bb48bef94da30b4c5b121ce368544c86351ccdc8197d9f2334d2e52a44620381000000"
+                },
+                "blockSignProposition": {
+                  "publicKey": "153623a54522cc0336068a305ac13f530f4fdc95ee105a7ee85939326b9996fb"
+                },
+                "value": 10000000000,
+                "proposition": {
+                  "publicKey": "153623a54522cc0336068a305ac13f530f4fdc95ee105a7ee85939326b9996fb"
+                }
+              },
+              "forgerBoxMerklePath": "00000000",
+              "vrfProof": {
+                "vrfProof": "6be4253461faa494c5b79befbd12a39d73bf80c8c0d4b004bb72b49d0203fee1880057100dec12d4fbaf49e304798726ae07fe3acca2250376e93c3d7315ae45ecc99f70b36e21154026d035fa52cb584f2477ad5b677b199d4b5801e6b70100f8be8238b793179259207f1f372d796bd00223c46126316e9833965adabd3d21f2c11d0bc15e583ecbe4e00232082eb88dc78af8e9be5b68f6f7571dcd45ba6c563427a3f4f529a33edad6a79e1c9ecf9bc0e1ad54009ac1899cbf4d9b7a0000009a34323da1dc589a82cbe0eaad05bcebeea9b215c1128e2179402da8f4d556c5231a94f88170638199ddfe45fedebd1456796a47bc4c8cf583c004451a824bcae2ce1b88fdb1fa991b850e31847ecc8fa3f66de17e170ee478e2e7cd4b8b00009b232901e99f7da9c747d72a32579ff19d076b68434f2438e24230db15c1af7f0e31fcc7e8c2b90ce9206a05feed010e5f2dccb89030f6fd3a582901a9451a2fc232a816c48af827d1e98120cd191152ccfe81ccfa8db563aaaaeb3d36600000"
+              },
+              "sidechainTransactionsMerkleRootHash": "0000000000000000000000000000000000000000000000000000000000000000",
+              "mainchainMerkleRootHash": "0000000000000000000000000000000000000000000000000000000000000000",
+              "ommersMerkleRootHash": "0000000000000000000000000000000000000000000000000000000000000000",
+              "ommersCumulativeScore": 0,
+              "signature": {
+                "signature": "2c5e2d784bdb46ab07a9958152605a363931fa2794c714169e054667ef615f176be20a8db5a8dc40f02daca3d66842b85289be2ec4e11d9151f235f13a8a0105",
+                "typeId": 1
+              },
+              "id": "055c15d9a6c9ae299493d241705a2bcfdfbc72a19f04394a26aa53b39f6ee2a6"
+            },
+            "sidechainTransactions": [],
+            "mainchainBlockReferencesData": [],
+            "mainchainHeaders": [],
+            "ommers": [],
+            "timestamp": 1595475730,
+            "parentId": "ae6bcf104b7a7cccf83dfa23494760fb8d9a4d5cc3de82443de8b82bb86669d1",
+            "id": "055c15d9a6c9ae299493d241705a2bcfdfbc72a19f04394a26aa53b39f6ee2a6"
+          },
+          "height": 371
+        }
+      }
+
+_____
+
+.. http:post:: /block/startForging
+   
+*Start forging*  
+   
+**No Parameters**
+
+**Example request**:
+
+.. tabs::
+
+   .. tab:: Bash
+
+      curl -X POST "http://127.0.0.1:9086/block/startForging" -H "accept: application/json"
+      
+      
+**Example response**:
+
+   .. sourcecode:: http
+   
+      {
+        "result": {
+          "result": "string"
+        },
+        "error": {
+          "code": "string",
+          "description": "string",
+          "detail": "string"
+        }
+      }
+
+_____
+
+ .. http:post:: /block/stopForging
+   
+*Stop forging*  
+   
+**No Parameters**
+   
+**Example request**:
+
+.. tabs::
+
+   .. tab:: Bash
+
+      curl -X POST "http://127.0.0.1:9086/block/stopForging" -H "accept: application/json"
+      
+      
+**Example response**:
+
+   .. sourcecode:: http
+   
+      {
+        "result": {
+          "result": "string"
+        },
+        "error": {
+          "code": "string",
+          "description": "string",
+          "detail": "string"
+        }
+      }
+
+_____
+
+
+   .. http:post:: /block/generate
+   
+*Try to generate new block by epoch and slot number*  
+*Returns id of generated sidechain block*
+   
+**Parameters**
+
++-------------+--------+----------+----------------------------------------+
+| Name        | Type   | Required |          Description                   |
++=============+========+==========+========================================+
+| epochNumber |  int   |   yes    |         Epoch Number                   |
++-------------+--------+----------+----------------------------------------+
+|  slotNumber |  int   |   yes    |         Slot Number                    |
++-------------+--------+----------+----------------------------------------+
+   
+**Example request**:
+
+.. tabs::
+
+   .. tab:: Bash
+
+      curl -X POST "http://127.0.0.1:9086/block/generate" -H "accept: application/json" -H "Content-Type: application/json" -d "{\"epochNumber\":3,\"slotNumber\":45}"
+      
+      
+**Example response**:
+
+   .. sourcecode:: http
+   
+      {
+        "result": {
+          "blockId": "7f25d35aadae65062033757e5049e44728128b7405ff739070e91d753b419094"
+        }
+      }
+      
+_____
+
+   .. http:post:: /block/forgingInfo
+   
+*Get forging info*
+   
+**No Parameters**
+   
+**Example request**:
+
+.. tabs::
+
+   .. tab:: Bash
+
+      curl -X POST "http://127.0.0.1:9086/block/forgingInfo" -H "accept: application/json"
+      
+      
+**Example response**:
+
+   .. sourcecode:: http
+   
+      {
+        "result": {
+          "consensusSecondsInSlot": 120,
+          "consensusSlotsInEpoch": 720,
+          "bestEpochNumber": 3,
+          "bestSlotNumber": 45
+        }
+      }
+
+_____
+
+=====
+**Sidechain Transaction operations**
+=====
