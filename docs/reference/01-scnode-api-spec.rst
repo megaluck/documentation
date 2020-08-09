@@ -5,7 +5,7 @@ Sidechain Node API spec
 =====
 
 
-.. http:post:: /block/findById/
+.. http:post:: /block/findById
 
 *Find Block by ID*
 
@@ -103,7 +103,7 @@ Sidechain Node API spec
 
 _____
 
-   .. http:post:: /block/findLastIds/
+   .. http:post:: /block/findLastIds
    
 *Returns an array with the ids of the last x blocks*  
    
@@ -147,6 +147,37 @@ _____
 
 _____
 
-teste
+ .. http:post:: /block/findIdByHeight
    
+*Return a sidechain block Id by its height in a blockchain*  
+   
+**Parameters**
+
++---------+--------+----------+----------------------------------------+
+| Name    | Type   | Required |          Description                   |
++=========+========+==========+========================================+
+|  height |  int   |   yes    | Retrieves block ID by it´s height      |
++---------+--------+----------+----------------------------------------+
+   
+**Example request**:
+
+.. tabs::
+
+   .. tab:: Bash
+
+      curl -X POST "http://127.0.0.1:9086/block/findIdByHeight" -H "accept: application/json" -H "Content-Type: application/json" -d "{\"height\":100}"
+      
+      
+**Example response**:
+
+   .. sourcecode:: http
+   
+      {
+  "result": {
+    "blockId": "e8c92a6c217a7dced190b729a7815f0be6a011ea23a38e083e79298bb66620e7"
+        }
+      }
+   
+_____
+
 
