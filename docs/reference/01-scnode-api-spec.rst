@@ -248,3 +248,67 @@ Return here best sidechain block id and height in active chain
           "height": 371
         }
       }
+
+_____
+
+.. http:post:: /block/startForging
+   
+*Start forging*  
+   
+**No Parameters**
+
+**Example request**:
+
+.. tabs::
+
+   .. tab:: Bash
+
+      curl -X POST "http://127.0.0.1:9086/block/startForging" -H "accept: application/json"
+      
+      
+**Example response**:
+
+   .. sourcecode:: http
+   
+      {
+        "result": {
+          "result": "string"
+        },
+        "error": {
+          "code": "string",
+          "description": "string",
+          "detail": "string"
+        }
+      }
+
+_____
+
+ .. http:post:: /block/stopForging
+   
+*Return a sidechain block Id by its height in a blockchain*  
+   
+**No Parameters**
+   
+**Example request**:
+
+.. tabs::
+
+   .. tab:: Bash
+
+      curl -X POST "http://127.0.0.1:9086/block/stopForging" -H "accept: application/json"
+      
+      
+**Example response**:
+
+   .. sourcecode:: http
+   
+      {
+        "result": {
+          "result": "string"
+        },
+        "error": {
+          "code": "string",
+          "description": "string",
+          "detail": "string"
+        }
+      }
