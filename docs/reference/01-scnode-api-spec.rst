@@ -771,3 +771,205 @@ ______
 =====
 **Sidechain Wallet Operations**
 =====
+
+.. http:post:: /wallet/allBoxes
+   
+*Return all boxes, excluding those which ids are included in excludeBoxIds list*
+
+   
+**Parameters**
+
++------------------+
+| **TBD**          |
++------------------+
+
+   
+**Example request**:
+
+.. tabs::
+
+   .. tab:: Bash
+
+      curl -X POST "http://127.0.0.1:9086/wallet/allBoxes" -H "accept: application/json" -H "Content-Type: application/json" -d "{\"boxTypeClass\":\"string\",\"excludeBoxIds\":[\"string\"]}"
+      
+      
+**Example response**:
+   
+   ::
+      {
+        "result": {
+          "boxes": [
+            {
+              "id": "string",
+              "proposition": {
+                "publicKey": "string"
+              },
+              "value": 0,
+              "nonce": 0,
+              "activeFromWithdrawalEpoch": 0,
+              "typeId": 0
+            }
+          ]
+        },
+        "error": {
+          "code": "string",
+          "description": "string",
+          "detail": "string"
+        }
+      }
+      
+______
+
+.. http:post:: /wallet/balance
+   
+*Return the global balance for all types of boxes*
+
+   
+**Parameters**
+
++------------------+
+| **TBD**          |
++------------------+
+
+   
+**Example request**:
+
+.. tabs::
+
+   .. tab:: Bash
+
+      curl -X POST "http://127.0.0.1:9086/wallet/balance" -H "accept: application/json" -H "Content-Type: application/json" -d "{\"boxType\":\"string\"}"
+      
+      
+**Example response**:
+   
+   ::
+      {
+        "result": {
+          "balance": 0
+        },
+        "error": {
+          "code": "string",
+          "description": "string",
+          "detail": "string"
+        }
+      }
+
+______
+
+
+.. http:post:: /wallet/createPrivateKey25519
+   
+*Create new secret and return corresponding address (public key)*
+
+   
+**Parameters**
+
++------------------+
+| **TBD**          |
++------------------+
+
+   
+**Example request**:
+
+.. tabs::
+
+   .. tab:: Bash
+
+      curl -X POST "http://127.0.0.1:9086/wallet/createPrivateKey25519" -H "accept: application/json"
+      
+      
+**Example response**:
+   
+   ::
+      {
+        "result": {
+          "proposition": {
+            "publicKey": "string"
+          }
+        },
+        "error": {
+          "code": "string",
+          "description": "string",
+          "detail": "string"
+        }
+      }
+      
+______
+
+.. http:post:: /wallet/createVrfSecret
+   
+*Create new Vrf secret and return corresponding public key*
+
+   
+**Parameters**
+
++------------------+
+| **TBD**          |
++------------------+
+
+   
+**Example request**:
+
+.. tabs::
+
+   .. tab:: Bash
+
+      curl -X POST "http://127.0.0.1:9086/wallet/createVrfSecret" -H "accept: application/json"
+      
+      
+**Example response**:
+   
+   ::
+      {
+        "result": {
+          "proposition": {
+            "valid": true,
+            "publicKey": "ef3df0e2ca6f34dc89c2c14e23aecd37370ec4739230a6ec640a1fc87857ee5e7f55f3784e5ddd3c8e733bcdefb6795fda1d1228013c1968639bfd8888a48a07bbf978bec536412338eefd96e8d980e667f2d78a8e284bc3c9e8f7e4697400008ab41ebebb96464c0d4a77c6ac059e8265095faede25bf2e22a4d2dc82e6631dce2a61c2c5fb8e77160cee81fe84de136225ac1853f4b971eb3ecfadee7993bbb9cf7af75bb6523b248debb2a2173a8bcfba90ee5e2c55f7edb89f182e1f010000"
+          }
+        }
+      }
+
+________
+
+.. http:post:: /wallet/allPublicKeys
+   
+*Returns the list of all wallet’s propositions (public keys)*
+
+   
+**Parameters**
+
++------------------+
+| **TBD**          |
++------------------+
+
+   
+**Example request**:
+
+.. tabs::
+
+   .. tab:: Bash
+
+      curl -X POST "http://127.0.0.1:9086/wallet/allPublicKeys" -H "accept: application/json" -H "Content-Type: application/json" -d "{}"
+      
+      
+**Example response**:
+   
+   ::
+      {
+        "result": {
+          "propositions": [
+            {
+              "publicKey": "string"
+            }
+          ]
+        },
+        "error": {
+          "code": "string",
+          "description": "string",
+          "detail": "string"
+        }
+      }
+
+________
+
