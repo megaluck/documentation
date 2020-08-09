@@ -153,18 +153,19 @@ Custom Box Data Serializer class creation
 #########################################
 
 The SDK provides a base class for Custom Box Data Serializer
-NoncedBoxDataSerializer<D extends NoncedBoxData> where D is type of serialized Custom Box Data
+``NoncedBoxDataSerializer<D extends NoncedBoxData>`` where **D** is type of serialized Custom Box Data
+
 So creation of a Custom Box Data Serializer can be done in following way:
 ::
  public class CustomBoxDataSerializer implements NoncedBoxDataSerializer<CustomBoxData>
 
-That new Custom Box Data Serializer require's the following:
+The new Custom Box Data Serializer require's the following:
 
   1. Definition of function for writing Custom Box Data into the Scorex Writer by implementation of the following method.
      ::
       public void serialize(CustomBoxData boxData, Writer writer)
 
-  2. Definition of function for reading Custom Box Data from Scorex Reader by implementation of the function 
+  2. Definition of function for reading Custom Box Data from Scorex *Reader* by implementation of the function 
      ::
       public CustomBoxData parse(Reader reader)
 
@@ -190,56 +191,48 @@ The SDK provides a base class for creation of a Custom Box:
  public class CustomBox extends AbstractNoncedBox<PublicKey25519Proposition, CustomBoxData, CustomBoxBox>
 
 As parameters for **AbstractNoncedBox** three template parameters shall be provided:
-- Proposition type for the box, for common purposes. PublicKey25519Proposition could be used as it used in regular boxes
-  ::
+
+::
   P extends Proposition
 
-- Definition of type for Box Data which contains all custom data for a new custom box
-  ::
-   BD extends AbstractNoncedBoxData<P, B, BD>
+- Proposition type for the box, for common purposes. ``PublicKey25519Proposition`` could be used as it used in regular boxes
 
-- Definition of type for Box itself, required for description inside of new Custom Box data.
-  ::
+
+::
+  BD extends AbstractNoncedBoxData<P, B, BD>
+   
+- Definition of type for Box Data which contains all custom data for a new custom box
+
+::
    B extends AbstractNoncedBox<P, BD, B>
 
+- Definition of type for Box itself, required for description inside of new Custom Box data.
+  
+  
 The Custom Box itself requires implementation of following functionality:
 
   1. Serialization definition
 
-    * The box itself provides the way to be serialized into bytes, thus method 
-      ::
-       public byte[] bytes()`` shall be implemented 
-    * Method for creation of a new Car Box object from bytes
-      ::
-       public static CarBox parseBytes(byte[] bytes)
-
-    * Providing box type id by implementation of the following method which return's a custom box type id
-      ::
-       public byte boxTypeId()
-
-    And, finally, a serializer for the Custom Box shall be returned by implementation of the following method 
-    ::
-     public BoxSerializer serializer()
+    * The box itself provides the way to be serialized into bytes, thus function ``public byte[] bytes()`` shall be implemented 
+    * Method for creation of a new Car Box object from bytes ``public static CarBox parseBytes(byte[] bytes)``
+    * Providing box type id by implementation of function  ``public byte boxTypeId()`` which return custom box type id. Finally, proper serializer for the Custom Box shall be returned by implementing function ``public BoxSerializer serializer()``
 
 Custom Box Serializer Class
 ###########################
 
-The SDK provides base class for a custom box serializer below, where B is type of serialized Custom Box
-::
- Custom Box Serializer BoxSerializer<B extends Box>
+SDK provide base class for Custom Box Serializer BoxSerializer<B extends Box> where B is type of serialized Custom Box
+So the creation of Custom Box Serializer can be done in the following way:
 
-So creation of **Custom Box Serializer** can be done in the following way:
 ::
  public class CustomBoxSerializer implements NoncedBoxSerializer<CustomBox>
 
 The new Custom Box Serializer requires the following:
 
-  1. Definition of method for writing *Custom Box* into the Scorex Writer by implementation of the following.
+  1. Definition of function for writing *Custom Box* into the *Scorex Writer* by implementation of the following.
      ::
       public void serialize(CustomBox box, Writer writer)
 
-  2. Definition of method for reading *Custom Box* from Scorex Reader
-     by implementation of the following 
+  2. Definition of function for reading *Custom Box* from *Scorex Reader* by implementation of the following method
      ::
       public CustomBox parse(Reader reader)
 
@@ -261,7 +254,7 @@ The new Custom Box Serializer requires the following:
 Specific actions for extension of Coin-box
 ###########################################
 
-A Coin box is created and extended as a usual non-coin box, only one additional action is required: *Coin box class* shall also implement interface CoinsBox<P extends PublicKey25519Proposition> interface without any additional function implementations, i.e. it is a mixin interface.
+A Coin box is created and extended as a usual non-coin box, only one additional action is required: *Coin box class* shall also implement interface ``CoinsBox<P extends PublicKey25519Proposition>`` interface without any additional function implementations, i.e., it is a mixin interface.
 
 Transaction extension
 #####################
@@ -270,8 +263,44 @@ A transaction in the SDK is represented by the following class.
 ::
  public abstract class BoxTransaction<P extends Proposition, B extends Box<P>>
  
-This class provides access to data such as which boxes will be created, unlockers for input boxes, fee, etc. 
+This class provides access to data such as which boxes will be created, unlockers for input boxes, fees, etc. 
 SDK developer could add custom transaction check by implementing *custom ApplicationState* 
+
+Any custom transaction shall implement three important functions:
+``public boolean transactionSemanticValidity()`` -- this function defines is transaction semantically valid or not, i.e. verify stateless (without context) transaction correctness. Non zero fee and positive timestamp are examples of such verification.
+
+``public List<BoxUnlocker<Proposition>> unlockers()`` -- SDK core does box opening verification by checking proofs against input box ids. However, information about closed boxes and proofs for that box shall be returned separately by each transaction. For such purposes each transaction shall return a list of `unlockers <https://github.com/HorizenOfficial/Sidechains-SDK/blob/master/sdk/src/main/java/com/horizen/box/BoxUnlocker.java>`_ which are implements following interface:
+
+::
+   public interface BoxUnlocker<P extends Proposition>
+   {
+    byte[] closedBoxId();
+    Proof<P> boxKey();
+   }
+
+Where *closedBoxId* is the id of the closed box and *boxKey* is correct proof for that box.
+
+``public List<NoncedBox<Proposition>> newBoxes()`` -- function returns list of new boxes which shall be created by current transaction. Be aware due to some internal implementation of SDK that function must be implemented in the following way:
+
+  ::
+    @Override
+    public List<NoncedBox<Proposition>> newBoxes() {
+       if(newBoxes == null) {
+        new boxes are created here, newBoxes shall be updated             by those new boxes
+           }
+       }
+       return Collections.unmodifiableList(newBoxes);
+    }
+
+Custom Proof / Proposition creation
+###################################
+
+A proposition is a locker for a box, and Proof is an unlocker for a box. For some reason, a way how the box is locked/unlocked can be changed by the SDK developer. For example, a special box can be opened by two or more independent private keys. For such reason, custom Proof / Proposition can be created.
+
+* Creating custom Proposition
+  For creating a custom Proposition  ``ProofOfKnowledgeProposition<S extends Secret>`` interface shall be implemented. Generic     parameter is just a marker for the type of private key, for example, *PrivateKey25519* It could be used. Inside the Proposition, we could put two different public keys, which are used for locking the box.
+
+* Creating custom Proof interface ``Proof<P extends Proposition>`` shall be implemented where *P* is an appropriate Proposition class. ``Function boolean isValid(P proposition, byte[] messageToVerify);`` shall be implemented. That function defines whether Proof is valid for a given proposition and Proof or not. For example, in the case of Proposition with two different public keys, we could try to verify the message using public keys in Proposition one by one and return true if Proof had been created by one of the expected private keys.
 
 ApplicationState and Wallet
 ###########################
@@ -290,22 +319,22 @@ ApplicationState:
   Try<ApplicationState> onRollback(byte[] version);
   }
 
-For example, the custom application may have the possibility to tokenize cars by creation of Box entries - let’s call them CarBox. Each CarBox token should represent a unique car by having a unique *VIN* (Vehicle Identification Number). To do this Sidechain developer may define ApplicationState to store the list of actual VINs and reject transactions with CarBox tokens with VIN already existing in the system.
+For example, the custom application may have the possibility to tokenize cars by the creation of Box entries - let us call them CarBox. Each CarBox token should represent a unique car by having a unique *VIN* (Vehicle Identification Number). To do this, Sidechain developer may define ApplicationState to store the list of actual VINs and reject transactions with CarBox tokens with VIN already existing.
 
 The next custom state checks could be done here:
 
-  * ```public boolean validate(SidechainStateReader stateReader, SidechainBlock block)``` --  any custom block validation could be done here. If the function return's false then block will note be accepted by Sidechain Node at all.
+  * ``public boolean validate(SidechainStateReader stateReader, SidechainBlock block)`` --  any custom block validation could be done here. If the function returns false, then the block will not be accepted by the Sidechain Node.
   
-  * ```public boolean validate(SidechainStateReader stateReader, BoxTransaction<Proposition, Box<Proposition>> transaction)``` -- any custom checks for transaction could be done here, if function return's false then transaction is assumed as invalid and for example will not be included in a memory pool. 
+  * ``public boolean validate(SidechainStateReader stateReader, BoxTransaction<Proposition, Box<Proposition>> transaction)`` -- any custom checks for the transaction could be done here if the function returns false then transaction is assumed as invalid and for example will not be included in a memory pool. 
 
-  * ```public Try<ApplicationState> onApplyChanges(SidechainStateReader stateReader, byte[] version, List<Box<Proposition>> newBoxes, List<byte[]> boxIdsToRemove)``` -- any specific action after block applying in State could be defined here.
+  * ``public Try<ApplicationState> onApplyChanges(SidechainStateReader stateReader, byte[] version, List<Box<Proposition>> newBoxes, List<byte[]> boxIdsToRemove)`` -- any specific action after block applying in State could be defined here.
   
-  * ```public Try<ApplicationState> onRollback(byte[] version)``` -- any specific action after rollback of State (for example in case of fork/invalid block) could be defined here
+  * ``public Try<ApplicationState> onRollback(byte[] version)`` -- any specific action after rollback of State (for example in case of fork/invalid block) could be defined here
   
 Application Wallet 
 ##################
 
-The Wallet by default keeps user secret info and related balances. The actual data is updated when a new block is applied to the chain or when some blocks are reverted. Developers can specify custom secret types that will be processed by Wallet. The developer may extend the logic using ApplicationWallet:
+The Wallet by default keeps user secret info and related balances. The actual data is updated when a new block is applied to the chain or when some blocks are reverted. Developers can specify custom secret types that will be processed by Wallet. The developer may extend the logic using ``ApplicationWallet: <https://github.com/ZencashOfficial/Sidechains-SDK/blob/master/sdk/src/main/java/com/horizen/wallet/ApplicationWallet.java>`_
 
 ::
 
@@ -316,7 +345,7 @@ The Wallet by default keeps user secret info and related balances. The actual da
     void onRollback(byte[] version);
   }
 
-For example, a developer needs to have some event-based data, like an auction slot that belongs to him and will start in 10 blocks and will expire in 100 blocks. So in ApplicationWallet he will additionally keep this event-based info and will react when a new block is going to be applied (onChangeBoxes method execution) to activate or deactivate that slot in ApplicationWallet.
+For example, a developer needs to have some event-based data, like an auction slot that belongs to him, and will start in 10 blocks and expire in 100 blocks. So in ApplicationWallet, he will additionally keep this event-based info and will react when a new block is going to be applied (onChangeBoxes method execution) to activate or deactivate that slot in ApplicationWallet.
 
 
 Custom API creation 
@@ -326,11 +355,11 @@ Custom API creation
   
     1. Create a class (e.g. MyCustomApi) which extends the ApplicationApiGroup abstract class (you could create multiple classes, for example to group functions by functionality).
 
-    2. In a class where all dependencies are declared (e.g. SimpleAppModule in our Simple App example ) we need to create the following variable: List<ApplicationApiGroup> customApiGroups = new ArrayList<>();
+    2. In a class where all dependencies are declared (e.g. SimpleAppModule in our Simple App example ) we need to create the following variable: ``List<ApplicationApiGroup> customApiGroups = new ArrayList<>();``
 
-    3. Create a new instance of the class MyCustomApi, and then add it to customApiGroups 
+    3. Create a new instance of the class MyCustomApi, and then add it to *customApiGroups* 
 
-At this point MyCustomApi will be included in the API route, but we still need to declare the HTTP address. To do that:
+At this point, MyCustomApi will be included in the API route, but we still need to declare the HTTP address. To do that:
 
   1. Override the basepath() method -
   
@@ -377,23 +406,23 @@ Setters are defined to expect data from JSON. So, for the given MyCustomRequest 
       "someBytes": "a5b10622d70f094b7276e04608d97c7c699c8700164f78e16fe5e8082f4bb2ac"
       }
 
- And it will be converted to an instance of the MyCustomRequest class with vin = 342, and someBytes = bytes which are represented by hex string "a5b10622d70f094b7276e04608d97c7c699c8700164f78e16fe5e8082f4bb2ac"
+ And it will be converted to an instance of the *MyCustomRequest* class with vin = 342, and someBytes = bytes which are represented by hex string "a5b10622d70f094b7276e04608d97c7c699c8700164f78e16fe5e8082f4bb2ac"
 
 
   3. Define a function to process the HTTP request: Currently we support three types of function’s signature:
   
-      * ApiResponse ```custom_function_name(Custom_HTTP_request_type)``` -- a function that by default does not have access to *SidechainNodeView*. To have access to *SidechainNodeViewHolder*, this special call should be used: ```getFunctionsApplierOnSidechainNodeView().applyFunctionOnSidechainNodeView(Function<SidechainNodeView, T> function)```
+      * ApiResponse ``custom_function_name(Custom_HTTP_request_type)`` -- a function that by default does not have access to *SidechainNodeView*. To have access to *SidechainNodeViewHolder*, this special call should be used: ``getFunctionsApplierOnSidechainNodeView().applyFunctionOnSidechainNodeView(Function<SidechainNodeView, T> function)``
       
-      * ```ApiResponse custom_function_name(SidechainNodeView, Custom_HTTP_request_type)``` -- a function that offers by default access to SidechainNodeView
+      * ``ApiResponse custom_function_name(SidechainNodeView, Custom_HTTP_request_type)`` -- a function that offers by default access to SidechainNodeView
       
-      * ```ApiResponse custom_function_name(SidechainNodeView)``` -- a function to process empty HTTP requests, i.e. JSON body shall be empty
+      * ``ApiResponse custom_function_name(SidechainNodeView)`` -- a function to process empty HTTP requests, i.e. JSON body shall be empty
       
-Inside those functions all required action could be defined, and with them also function response results. Responses could be based on SuccessResponse or ErrorResponse interfaces. The JSON response will be formatted by using the defined getters.  
+Inside those functions, all required action could be defined, and with them also function response results. Responses could be based on *SuccessResponse* or *ErrorResponse* interfaces. The JSON response will be formatted by using the defined getters.  
 
   4. Add response classes
 
-As a result of an API request the result shall be sent back via HTTP response. In a common case we could have two different types of response: operation is successful oe some error had appeared during processing of the API request. SDK provides next way to declare those API responses:
-For a successful response implement SuccessResponse interface with data to be returned. That data shall be accessible via getters. Also that class shall have next annotation which requires for marshaling and correct convertation to JSON: @JsonView(Views.Default.class) . You could define here some other custom class for JSON marshaling. For example if a string should be returned then next response class could be defined:
+As a result of an API request, the result shall be sent back via HTTP response. In a typical case, we could have two different responses: operation is successful, or some error had appeared during processing the API request. SDK provides following way to declare those API responses:
+For a successful response, implement SuccessResponse interface with data to be returned. That data shall be accessible via getters. Also, that class shall have the next annotation required for marshaling and correct conversion to JSON: ``@JsonView(Views.Default.class)``. The developer can define here some other custom class for JSON marshaling. For example, if a string should be returned, then the following response class can be defined:
 
   ::
   
@@ -416,7 +445,7 @@ In such case API response will be represented in the following JSON format:
   
     {"result": {“response” : “response from CustomSuccessResponse object”}}
     
-Error response should implement the ErrorResponse interface which by default should have the next functions to be implemented:
+In case of something going wrong and error shall be returned then response shall implement ErrorResponse interface which by default have next functions to be implemented:
 
 ```public String code()``` -- error code
 
@@ -438,7 +467,7 @@ As a result next JSON will be returned in case of error:
     
   5. Add defined route processing functions to route
 
-  Override public List<Route> getRoutes() function by returning all defined routes, for example:
+  Override ``public List<Route> getRoutes() function`` by returning all defined routes, for example:
 
     ::
       
@@ -448,7 +477,9 @@ As a result next JSON will be returned in case of error:
       routes.add(bindPostRequest("getAllSecretByEmptyHttpBody", this::getAllSecretByEmptyHttpBodyFunction));
       return routes;
       
- Where "*getNSecrets*", "*getNSecretOtherImplementation*", "*getAllSecretByEmptyHttpBody*" are defined API end points; *this::getNSecretsFunction*, *this::getNSecretOtherImplementationFunction*, *getAllSecretByEmptyHttpBodyFunction* binded functions;
+ Where 
+ 
+ "*getNSecrets*", "*getNSecretOtherImplementation*", "*getAllSecretByEmptyHttpBody*" are defined API end points; *this::getNSecretsFunction*, *this::getNSecretOtherImplementationFunction*, *getAllSecretByEmptyHttpBodyFunction* binded functions;
 *GetSecretRequest.class* -- class for defining type of HTTP request
 
 
