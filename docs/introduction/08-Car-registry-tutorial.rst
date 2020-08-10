@@ -221,15 +221,14 @@ Few comments about implementation:
 Implementation of CarBoxSerializer:
 ***********************************
 
-CarBoxSerializer is implemented according to the description from “Custom Box Data Serializer Creation” section as 
-``public class CarBoxSerializer implements BoxSerializer<CarBox>``.  
+A CarBoxSerializer is implemented according to the description from the (`“Custom Box Data Serializer Creation section” <07-Sidechain-SDK-extension.html#custom-box-data-serializer-class-creation>`_) as 
+::
+ public class CarBoxSerializer implements BoxSerializer<CarBox> 
 
 Implementation of SellOrderProposition
 **************************************
-::
- SellOrderProposition 
- 
-implemented as 
+
+A SellOrderProposition is implemented as 
 ::
  public final class SellOrderProposition implements ProofOfKnowledgeProposition<PrivateKey25519>
 
@@ -237,19 +236,16 @@ A point to note is that the proposition contains two public keys, thus that prop
 
 Implementation of SellOrderPropositionSerializer
 ************************************************
-::
- SellOrderPropositionSerializer 
-
-implemented as 
+A SellOrderPropositionSerializer is implemented as 
 ::
  public final class SellOrderPropositionSerializer implements PropositionSerializer<SellOrderProposition>
 
 
 Implementation of SellOrderSpendingProof  
 ****************************************
-
+A SellOrderSpendingProof is implemented as  
 ::
- SellOrderSpendingProof implemented as  extends AbstractSignature25519<PrivateKey25519, SellOrderProposition>
+ extends AbstractSignature25519<PrivateKey25519, SellOrderProposition>
 
 Implementation Comments: Information about proof type is defined by the result of method boolean isSeller(). For example an implementation of method isValid uses that flag:
 ::
