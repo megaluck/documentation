@@ -207,15 +207,14 @@ Implementation of CarBox:
 Few comments about implementation:
 
     1. As a serialization part SDK developer shall include ``long nonce`` as a part of serialization, thus serialization is implemented in the following way:
-    
-    ::
-     public byte[] bytes()
-     {
-         return Bytes.concat(
-             Longs.toByteArray(nonce),
-            CarBoxDataSerializer.getSerializer().toBytes(boxData)
-         );
-     }
+       ::
+        public byte[] bytes()
+        {
+            return Bytes.concat(
+                Longs.toByteArray(nonce),
+                CarBoxDataSerializer.getSerializer().toBytes(boxData)
+            );
+        }
 
     2. ``CarBox`` defines his own unique id by implementation of the function ``public byte boxTypeId()``. Similar function is defined in ``CarBoxData`` but it is a different ids despite value returned in ``CarBox`` and ``CarBoxData`` is the same.
 
@@ -238,12 +237,10 @@ A point to note is that the proposition contains two public keys, thus that prop
 
 Implementation of SellOrderPropositionSerializer
 ************************************************
-
 ::
  SellOrderPropositionSerializer 
 
 implemented as 
-
 ::
  public final class SellOrderPropositionSerializer implements PropositionSerializer<SellOrderProposition>
 
