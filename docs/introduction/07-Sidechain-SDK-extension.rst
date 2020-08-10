@@ -264,22 +264,22 @@ Any custom transaction shall implement three important functions:
 ::
   public interface BoxUnlocker<P extends Proposition>
   {
-  byte[] closedBoxId();
-  Proof<P> boxKey();
+    byte[] closedBoxId();
+    Proof<P> boxKey();
   }
 
 Where *closedBoxId* is the id of the closed box and *boxKey* is correct proof for that box.
 
 ``public List<NoncedBox<Proposition>> newBoxes()`` -- function returns list of new boxes which shall be created by current transaction. Be aware due to some internal implementation of SDK that function must be implemented in the following way:
   ::
-    @Override
-    public List<NoncedBox<Proposition>> newBoxes() {
-       if(newBoxes == null) {
-        new boxes are created here, newBoxes shall be updated             by those new boxes
-           }
-       }
-       return Collections.unmodifiableList(newBoxes);
-    }
+   @Override
+   public List<NoncedBox<Proposition>> newBoxes() {
+      if(newBoxes == null) {
+      new boxes are created here, newBoxes shall be updated             by those new boxes
+          }
+      }
+      return Collections.unmodifiableList(newBoxes);
+   }
 
 Custom Proof / Proposition creation
 ###################################
@@ -322,9 +322,7 @@ Application Wallet
 ##################
 
 The Wallet by default keeps user secret info and related balances. The actual data is updated when a new block is applied to the chain or when some blocks are reverted. Developers can specify custom secret types that will be processed by Wallet. The developer may extend the logic using ``ApplicationWallet: <https://github.com/ZencashOfficial/Sidechains-SDK/blob/master/sdk/src/main/java/com/horizen/wallet/ApplicationWallet.java>`_
-
 ::
-
   interface ApplicationWallet {
     void onAddSecret(Secret secret);
     void onRemoveSecret(Proposition proposition);
