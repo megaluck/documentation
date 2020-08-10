@@ -271,7 +271,6 @@ Any custom transaction shall implement three important functions:
 Where *closedBoxId* is the id of the closed box and *boxKey* is correct proof for that box.
 
 ``public List<NoncedBox<Proposition>> newBoxes()`` -- function returns list of new boxes which shall be created by current transaction. Be aware due to some internal implementation of SDK that function must be implemented in the following way:
-
   ::
     @Override
     public List<NoncedBox<Proposition>> newBoxes() {
@@ -296,9 +295,7 @@ ApplicationState and Wallet
 ###########################
 
 ApplicationState:
- 
 ::
-
   interface ApplicationState {
   boolean validate(SidechainStateReader stateReader, SidechainBlock block);
 
