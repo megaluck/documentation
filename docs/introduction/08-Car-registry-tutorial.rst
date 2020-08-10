@@ -185,7 +185,7 @@ Few comments about implementation:
 Implementation of CarBoxDataSerializer:
 ***************************************
 
-``CarBoxDataSerializer`` is implemented according to the description from ``Custom Box Data Serializer Creation`` section as ``public class CarBoxDataSerializer implements NoncedBoxDataSerializer<CarBoxData>``. Nothing special to note about.
+``CarBoxDataSerializer`` is implemented according to the description from ``Custom Box Data Serializer Creation`` section as ``public class CarBoxDataSerializer implements NoncedBoxDataSerializer<CarBoxData>``. 
 
 Implementation of CarBox:
 *************************
@@ -211,7 +211,7 @@ Implementation of CarBoxSerializer:
 ***********************************
 
 CarBoxSerializer is implemented according to the description from “Custom Box Data Serializer Creation” section as 
-``public class CarBoxSerializer implements BoxSerializer<CarBox>``.  Nothing special to note about.
+``public class CarBoxSerializer implements BoxSerializer<CarBox>``.  
 
 Implementation of SellOrderProposition
 **************************************
@@ -267,15 +267,17 @@ Implementation of CarSellOrderBoxDataSerializer
 ***********************************************
 
 A CarSellOrderDataSerializer is implemented according to the description from the (`“Custom Box Data Serializer creation section” <07-Sidechain-SDK-extension.html#custom-box-data-serializer-class-creation>`_) as
-``public class CarSellOrderBoxDataSerializer implements NoncedBoxDataSerializer<CarSellOrderData>``. 
-Nothing special to note about.
+::
+ public class CarSellOrderBoxDataSerializer implements NoncedBoxDataSerializer<CarSellOrderData>
+
 
 
 Implementation of CarSellOrderBox
 *********************************
 
 A CarSellorder is implemented according to description from the (`“Custom Box Class creation section” <07-Sidechain-SDK-extension.html#custom-box-class-creation>`_) as
-public final class CarSellOrderBox extends AbstractNoncedBox<SellOrderProposition, CarSellOrderBoxData, CarSellOrderBox>
+::
+ public final class CarSellOrderBox extends AbstractNoncedBox<SellOrderProposition, CarSellOrderBoxData, CarSellOrderBox>
 
 Nothing special about implementation.
 
