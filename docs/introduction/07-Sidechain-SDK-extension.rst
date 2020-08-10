@@ -321,7 +321,7 @@ The next custom state checks could be done here:
 Application Wallet 
 ##################
 
-The Wallet by default keeps user secret info and related balances. The actual data is updated when a new block is applied to the chain or when some blocks are reverted. Developers can specify custom secret types that will be processed by Wallet. The developer may extend the logic using ``ApplicationWallet: <https://github.com/ZencashOfficial/Sidechains-SDK/blob/master/sdk/src/main/java/com/horizen/wallet/ApplicationWallet.java>`_
+The Wallet by default keeps user secret info and related balances. The actual data is updated when a new block is applied to the chain or when some blocks are reverted. Developers can specify custom secret types that will be processed by Wallet. The developer may extend the logic using `ApplicationWallet <https://github.com/ZencashOfficial/Sidechains-SDK/blob/master/sdk/src/main/java/com/horizen/wallet/ApplicationWallet.java>`_
 ::
   interface ApplicationWallet {
     void onAddSecret(Secret secret);
