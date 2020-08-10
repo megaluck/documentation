@@ -84,7 +84,6 @@ Special proposition and proof:
         ownerPublicKeyBytes
        
        and 
-
        ::
         buyerPublicKeyBytes 
 
