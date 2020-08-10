@@ -978,3 +978,363 @@ ________
 
 ________
 
+
+=====
+**Sidechain node operations**
+=====
+
+
+.. http:post:: /node/allPeers
+   
+*Returns the list of all sidechain node peers*
+
+   
+**Parameters**
+
++------------------+
+| **TBD**          |
++------------------+
+
+   
+**Example request**:
+
+.. tabs::
+
+   .. tab:: Bash
+
+      curl -X POST "http://127.0.0.1:9086/node/allPeers" -H "accept: application/json"
+      
+      
+**Example response**:
+   
+   .. sourcecode:: http
+      
+      {
+        "result": {
+          "peers": [
+            {
+              "address": "string",
+              "lastSeen": 0,
+              "name": "string",
+              "connectionType": "string"
+            }
+          ]
+        },
+        "error": {
+          "code": "string",
+          "description": "string",
+          "detail": "string"
+        }
+      }
+      
+__________
+
+.. http:post:: /node/connect
+   
+*Send the request to connect to a sidechain node*
+
+   
+**Parameters**
+
++------------------+
+| **TBD**          |
++------------------+
+
+   
+**Example request**:
+
+.. tabs::
+
+   .. tab:: Bash
+
+      curl -X POST "http://127.0.0.1:9086/node/connect" -H "accept: application/json" -H "Content-Type: application/json" -d "{\"host\":\"string\",\"port\":0}"
+      
+      
+**Example response**:
+   
+   .. sourcecode:: http
+      
+      {
+        "result": {
+          "connectedTo": "string"
+        },
+        "error": {
+          "code": "string",
+          "description": "string",
+          "detail": "string"
+        }
+      }
+ 
+__________
+
+.. http:post:: /node/connectedPeers
+   
+*Returns the list of all connected sidechain node peers*
+
+   
+**No Parameters**
+
+**Example request**:
+
+.. tabs::
+
+   .. tab:: Bash
+
+      curl -X POST "http://127.0.0.1:9086/node/connectedPeers" -H "accept: application/json"
+      
+      
+**Example response**:
+   
+   .. sourcecode:: http
+      
+      {
+        "result": {
+          "peers": [
+            {
+              "address": "string",
+              "lastSeen": 0,
+              "name": "string",
+              "connectionType": "string"
+            }
+          ]
+        },
+        "error": {
+          "code": "string",
+          "description": "string",
+          "detail": "string"
+        }
+      }
+ 
+_______
+
+
+.. http:post:: /node/blacklistedPeers
+   
+*Returns the list of all blacklisted sidechain node peers*
+
+   
+**No Parameters**
+
+**Example request**:
+
+.. tabs::
+
+   .. tab:: Bash
+
+      curl -X POST "http://127.0.0.1:9086/node/blacklistedPeers" -H "accept: application/json"
+      
+      
+**Example response**:
+   
+   .. sourcecode:: http
+      
+      {
+        "result": {
+          "addresses": [
+            "string"
+          ]
+        },
+        "error": {
+          "code": "string",
+          "description": "string",
+          "detail": "string"
+        }
+      }
+
+
+=====
+**Sidechain Mainchain Operations**
+=====
+
+
+.. http:post:: /mainchain/bestBlockReferenceInfo
+   
+*Returns the best MC block header which has already been included in a SC block. Returns:*
+
+   * Mainchain block reference hash with the most height;
+   * Its height in mainchain;
+   * Sidechain block ID which contains this MC block reference.
+
+   
+**No Parameters**
+
+**Example request**:
+
+.. tabs::
+
+   .. tab:: Bash
+
+      curl -X POST "http://127.0.0.1:9086/mainchain/bestBlockReferenceInfo" -H "accept: application/json"
+      
+      
+**Example response**:
+   
+   .. sourcecode:: http
+      
+      {
+        "result": {
+          "blockReferenceInfo": {
+            "mainchainHeaderSidechainBlockId": "a9fd0eee294ee95daad3b72e1f307b52d6b34591dc0c211e49238634c68ecac2",
+            "mainchainReferenceDataSidechainBlockId": "a9fd0eee294ee95daad3b72e1f307b52d6b34591dc0c211e49238634c68ecac2",
+            "hash": "0e9329f275d8e5081cb10b605a767841eed9d6b4a49e550114bde0ca96fd375c",
+            "parentHash": "00ecbbcb1beb5c262f4638d8ac9c9dd5f1e5474f8d97114a426f53d856eccd7a",
+            "height": 255
+          }
+        }
+      }
+
+_______
+
+
+.. http:post:: /mainchain/genesisBlockReferenceInfo
+   
+*Reference to Genesis Block*
+
+**No Parameters**
+
+**Example request**:
+
+.. tabs::
+
+   .. tab:: Bash
+
+      curl -X POST "http://127.0.0.1:9086/mainchain/genesisBlockReferenceInfo" -H "accept: application/json"
+      
+      
+**Example response**:
+   
+   .. sourcecode:: http
+      
+      {
+        "result": {
+          "blockReferenceInfo": {
+            "mainchainHeaderSidechainBlockId": "5392e4e8f0f02b00600604d9e65d606418e9e4788552eb0a02629ea9bf6d2a74",
+            "mainchainReferenceDataSidechainBlockId": "5392e4e8f0f02b00600604d9e65d606418e9e4788552eb0a02629ea9bf6d2a74",
+            "hash": "0536ec69de7f5ec3c8161bc34a014ffe7cae112cab03770972e45fd15da2de82",
+            "parentHash": "06660749307d87444d627c3c8b7d795706ce42a62f2b1858043dd9892f8a20d5",
+            "height": 221
+          }
+        }
+      }
+
+______________
+
+.. http:post:: /mainchain/blockReferenceInfoBy
+   
+   
+**Parameters**
+
++------------------+
+| **TBD**          |
++------------------+
+
+   
+**Example request**:
+
+.. tabs::
+
+   .. tab:: Bash
+
+      curl -X POST "http://127.0.0.1:9086/mainchain/blockReferenceInfoBy" -H "accept: application/json" -H "Content-Type: application/json" -d "{\"hash\":\"string\",\"height\":0,\"format\":false}"
+      
+      
+**Example response**:
+   
+   .. sourcecode:: http
+      
+      {
+        "result": {
+          "blocReferencekInfo": {
+            "hash": "string",
+            "parentHash": "string",
+            "height": 0,
+            "sidechainBlockId": "string"
+          },
+          "blockHex": "string"
+        },
+        "error": {
+          "code": "string",
+          "description": "string",
+          "detail": "string"
+        }
+      }
+
+
+____________
+
+
+.. http:post:: /mainchain/blockReferenceByHash
+
+*Reference block by hash*
+   
+   
+**Parameters**
+
++------------------+
+| **TBD**          |
++------------------+
+
+   
+**Example request**:
+
+.. tabs::
+
+   .. tab:: Bash
+
+      curl -X POST "http://127.0.0.1:9086/mainchain/blockReferenceByHash" -H "accept: application/json" -H "Content-Type: application/json" -d "{\"hash\":\"string\",\"format\":false}"
+      
+      
+**Example response**:
+   
+   .. sourcecode:: http
+      
+      {
+        "result": {
+          "blockReference": {
+            "header": {
+              "mainchainHeaderBytes": "string",
+              "version": 0,
+              "hashPrevBlock": "string",
+              "hashMerkleRoot": "string",
+              "hashReserved": "string",
+              "hashSCMerkleRootsMap": "string",
+              "time": 0,
+              "bits": 0,
+              "nonce": "string",
+              "solution": "string"
+            },
+            "sidechainRelatedAggregatedTransaction": {
+              "id": "string",
+              "fee": 0,
+              "timestamp": 0,
+              "mc2scTransactionsMerkleRootHash": "string",
+              "newBoxes": [
+                {
+                  "id": "string",
+                  "proposition": {
+                    "publicKey": "string"
+                  },
+                  "value": 0,
+                  "nonce": 0,
+                  "activeFromWithdrawalEpoch": 0,
+                  "typeId": 0
+                }
+              ]
+            },
+            "merkleRoots": [
+              {
+                "key": "string",
+                "value": "string"
+              }
+            ]
+          },
+          "blockHex": "string"
+        },
+        "error": {
+          "code": "string",
+          "description": "string",
+          "detail": "string"
+        }
+      }
+
+
