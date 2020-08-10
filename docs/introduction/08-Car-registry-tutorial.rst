@@ -362,9 +362,8 @@ Extend API:
        public String proposition; // hex representation of public key proposition
        public long fee;
 
-
-   // Setters to let Akka jackson JSON library to automatically deserialize the request body.
-    ::
+       // Setters to let Akka jackson JSON library to automatically deserialize the request body.
+       ::
         public void setVin(String vin) {
             this.vin = vin;
         }
@@ -392,16 +391,16 @@ Extend API:
 
 
 Request class shall have appropriate setters and getters for all class members. Class members' names define a structure for related JSON structure according to `Jackson library <https://github.com/FasterXML/jackson-databind/>`_, so next JSON structure is expected to be set: 
-    ::
-        {
-          "vin":"30124",
-          “year”:1984,
-          “model”: “Lamborghini”
-          “color”:”deep black”
-        "carProposition":"a5b10622d70f094b7276e04608d97c7c699c8700164f78e16fe5e8082f4bb2ac",
-         "fee": 1,
-          "boxId": "d59f80b39d24716b4c9a54cfed4bff8e6f76597a7b11761d0d8b7b27ddf8bd3c"
-        }
+::
+ {
+    "vin":"30124",
+    “year”:1984,
+    “model”: “Lamborghini”
+    “color”:”deep black”
+    "carProposition":"a5b10622d70f094b7276e04608d97c7c699c8700164f78e16fe5e8082f4bb2ac",
+    "fee": 1,
+    "boxId": "d59f80b39d24716b4c9a54cfed4bff8e6f76597a7b11761d0d8b7b27ddf8bd3c"
+ }
         
 Few notes: setter’s input parameter could have a different type than set class member. It allows us to make all necessary conversation in setters.
 
