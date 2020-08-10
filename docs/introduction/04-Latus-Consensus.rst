@@ -2,7 +2,7 @@
 Latus Consensus
 ***************
 
-As we have just seen, the Cross-Chain Transfer Protocol does not impose any requirements on the Sidechain architectural design other than the need to support the protocol itself. Having said that, the Horizen Sidechain SDK does offer a ready made implementation of the Latus consensus, which is a Proof of Stake (“PoS”)  consensus based on the Ouroboros Praos protocol.
+As we have just seen, the Cross-Chain Transfer Protocol does not impose any requirements on the Sidechain architectural design other than the need to support the protocol itself. Having said that, the Horizen Sidechain SDK does offer a ready made implementation of the Latus consensus, which is a Proof of Stake (“PoS”)  consensus based on the `Ouroboros Praos <https://eprint.iacr.org/2017/573.pdf>`_ protocol.
 
 Consensus Epochs & Forging
 ===========================
@@ -14,7 +14,7 @@ The possibility of being a slot leader increases with the percentage of forging 
 A slot leader eligible for a certain slot, that decides to create and propagate a new Sidechain Block for that slot, is called a “forger”. A forger proves its eligibility for a slot by including in the block a cryptographic proof, in such a way that any node can validate, besides the validity of each transaction, also that the "slot leader" selection rule for that specific slot and consensus epoch was respected.
 
 Forgers are also entitled and incentivized to include sidechain transactions and mainchain synchronization data into Sidechain Blocks.
-A limited amount of mainchain block data is added to sidechain blocks, in such a way that all the mainchain transactions that refer to a particular sidechain are included in that sidechain, that a reference to each mainchain block is present in all sidechains, and that enough information is published in a sidechain such that any sidechain node is able to validate the mainchain block references without the need for a direct connection to the mainchain itself. Please note, the forger will need its own direct connection to mainchain nodes, to have a source of mainchain blocks data.
+A limited amount of mainchain block data is added to sidechain blocks, in such a way that all the mainchain transactions that refer to a particular sidechain are included in that sidechain, that a reference to each mainchain block is present in all sidechains, and that information is stored in a sidechain so that any sidechain node is able to validate the mainchain block references without the need for a direct connection to the mainchain itself. Please note, the forger will need its own direct connection to mainchain nodes, to have a source of mainchain blocks data.
 The connection between the mainchain and sidechain nodes is established via a websocket interface provided by the mainchain node. 
 
 The Latus consensus, including mainchain block synchronization, forging logic and functionality, is implemented out-of-the-box by the core SDK, and developers do not need to make any changes to this. The forging process can be fully managed through the API interface provided by the SDK, see 
