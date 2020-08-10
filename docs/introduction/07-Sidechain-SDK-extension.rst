@@ -271,15 +271,15 @@ Any custom transaction shall implement three important functions:
 Where *closedBoxId* is the id of the closed box and *boxKey* is correct proof for that box.
 
 ``public List<NoncedBox<Proposition>> newBoxes()`` -- function returns list of new boxes which shall be created by current transaction. Be aware due to some internal implementation of SDK that function must be implemented in the following way:
-  ::
-   @Override
-   public List<NoncedBox<Proposition>> newBoxes() {
-      if(newBoxes == null) {
-      new boxes are created here, newBoxes shall be updated             by those new boxes
-          }
-      }
-      return Collections.unmodifiableList(newBoxes);
-   }
+::
+  @Override
+  public List<NoncedBox<Proposition>> newBoxes() {
+    if(newBoxes == null) {
+    new boxes are created here, newBoxes shall be updated             by those new boxes
+        }
+    }
+    return Collections.unmodifiableList(newBoxes);
+  }
 
 Custom Proof / Proposition creation
 ###################################
@@ -347,9 +347,7 @@ Custom API creation
 At this point, MyCustomApi will be included in the API route, but we still need to declare the HTTP address. To do that:
 
   1. Override the basepath() method -
-  
-    ::
-    
+    ::   
       public String basePath() {
        return "myCustomAPI";
       }
