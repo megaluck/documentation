@@ -519,7 +519,7 @@ ______
    
 **Parameters**
 
-Schema
+Example Value
 
    .. sourcecode:: http
 
@@ -588,7 +588,7 @@ ______
    
 **Parameters**
 
-Schema 
+Example Value 
 
    .. sourcecode:: http
    
@@ -653,7 +653,7 @@ ______
    
 **Parameters**
 
-Schema
+Example Value
 
    .. sourcecode:: http
 
@@ -742,7 +742,7 @@ ____
    
 **Parameters**
 
-Schema
+Example Value
 
    .. sourcecode:: http
 
@@ -792,7 +792,7 @@ _______
    
 **Parameters**
 
-Schema
+Example Value
 
    .. sourcecode:: http
 
@@ -899,7 +899,7 @@ ______
    
 **Parameters**
 
-Schema
+Example Value
 
    .. sourcecode:: http
 
