@@ -46,4 +46,4 @@ Summary
 =======
 
 The Cross-Chain Transfer Protocol assumes that proofs are generated with a specific proving system, but does not limit the logic of the computation that is proven by the proving system (the “circuit”). So, sidechain developers could implement the proving system that they want and need, to prove the legitimacy of backward transfers. The examples provided with the SDK implement a sample proving system, that proves that the certificate was signed by a minimum number of certifiers, whose key identities were declared at sidechain creation time. This is just a demo circuit; production sidechains require robust circuits 
-(see the Latus recursive model in the (`Zendoo paper <https://www.horizen.global/assets/files/Horizen-Sidechain-Zendoo-A_zk-SNARK-Verifiable-Cross-Chain-Transfer-Protocol.pdf>`_).).
+(see the Latus recursive model in the (`Zendoo paper <https://www.horizen.global/assets/files/Horizen-Sidechain-Zendoo-A_zk-SNARK-Verifiable-Cross-Chain-Transfer-Protocol.pdf>`_).
