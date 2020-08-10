@@ -280,18 +280,6 @@ injected_variable_name could be differrent
 |        .toInstance(rejectedApiPaths);``                                                                                |                                                                                                                                                                                                                                                                                               |
 +------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
-TBD leaving it here
-**ALTERNATIVE TO THE TABLE**[]]]]]]][[[[[[[[[
-.. container:: twocol
-
-    .. container:: leftside
-
-        text on left column
-
-    .. container:: rightside
-
-        text on right column
-
 We can split SidechainApp arguments into 4 groups:
 	1. Settings
 		* The instance of SidechainSettings is retrieved by custom application via SettingsReader, as was described above.
