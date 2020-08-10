@@ -53,7 +53,7 @@ Installing on Linux OS:
   
   .. code:: Bash
   
-     git clone git@github.com:ZencashOfficial/Sidechains-SDK.git
+     git clone git@github.com:HorizenOfficial/Sidechains-SDK.git
      
   5. As IDE, please install and use IntelliJ IDEA Community Edition (link) In the IDE, please also install the Intellij Scala plugin: in the Settings->Plugins tab, select it from the marketplace: 
   
