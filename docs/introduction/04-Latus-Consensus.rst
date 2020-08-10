@@ -18,7 +18,7 @@ A limited amount of mainchain block data is added to sidechain blocks, in such a
 The connection between the mainchain and sidechain nodes is established via a websocket interface provided by the mainchain node. 
 
 The Latus consensus, including mainchain block synchronization, forging logic and functionality, is implemented out-of-the-box by the core SDK, and developers do not need to make any changes to this. The forging process can be fully managed through the API interface provided by the SDK, see 
-(`“the api reference” <01-scnode-api-spec.html#sidechain-block-operations>`_) .
+(`“the api reference” <../reference/01-scnode-api-spec.html#sidechain-block-operations>`_) .
 
 Default Latus consensus parameters
 ==================================
