@@ -215,15 +215,26 @@ CarBoxSerializer is implemented according to the description from “Custom Box 
 
 Implementation of SellOrderProposition
 **************************************
+::
+ SellOrderProposition 
+ 
+implemented as 
+::
+ public final class SellOrderProposition implements ProofOfKnowledgeProposition<PrivateKey25519>
 
-``SellOrderProposition`` implemented as ``public final class SellOrderProposition implements ProofOfKnowledgeProposition<PrivateKey25519>``
-Nothing special about implementation besides the fact that that proposition contains two public keys, thus that proposition could be opened by two different keys.
+Point to note is that the proposition contains two public keys, thus that proposition could be opened by two different keys.
 
 Implementation of SellOrderPropositionSerializer
 ************************************************
 
-``SellOrderPropositionSerializer`` implemented as ``public final class SellOrderPropositionSerializer implements PropositionSerializer<SellOrderProposition>``
-Nothing special about implementation
+::
+ SellOrderPropositionSerializer 
+
+implemented as 
+
+::
+ public final class SellOrderPropositionSerializer implements PropositionSerializer<SellOrderProposition>
+
 
 Implementation of SellOrderSpendingProof  
 ****************************************
@@ -282,14 +293,13 @@ A CarSellorder is implemented according to description from the (`“Custom Box 
 ::
  public final class CarSellOrderBox extends AbstractNoncedBox<SellOrderProposition, CarSellOrderBoxData, CarSellOrderBox>
 
-Nothing special about implementation.
-
-
 
 AbstractRegularTransaction
 **************************
 
-*AbstractRegularTransaction* is implemented as ``public abstract class AbstractRegularTransaction extends SidechainTransaction<Proposition, NoncedBox<Proposition>>``
+*AbstractRegularTransaction* is implemented as 
+::
+ public abstract class AbstractRegularTransaction extends SidechainTransaction<Proposition, NoncedBox<Proposition>>
 
 Basic functionality is implemented for building required unlockers for input Regular boxes and returning a list of output Regular boxes according to input parameter *outputRegularBoxesData*. Also, basic transaction semantic validity is checked here. 
 
