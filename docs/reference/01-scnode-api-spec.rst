@@ -393,7 +393,13 @@ _____
 
 *Find all transactions in the memory pool*  
    
-**No Parameters**
+**Parameters**
+
++--------+---------+----------+---------------------------------------------------------------------------------------------------------+
+| Name   | Type    | Required | Description                                                                                             |
++========+=========+==========+=========================================================================================================+
+| format | boolean | no       | Returns an array of transaction ids if formatMemPool=false, otherwise a JSONObject for each transaction |
++--------+---------+----------+---------------------------------------------------------------------------------------------------------+
    
 **Example request**:
 
@@ -422,15 +428,19 @@ _____
 * *blockHash not set, txIndex = true -> Search in memory pool, if not found, search in the whole blockchain*
 * *blockHash not set, txIndex = false -> Search in memory pool*
    
-**Parameters TBD**
+**Parameters**
 
-+-------------+--------+----------+----------------------------------------+
-| Name        | Type   | Required |          Description                   |
-+=============+========+==========+========================================+
-| epochNumber |  int   |   yes    |         Epoch Number                   |
-+-------------+--------+----------+----------------------------------------+
-|  slotNumber |  int   |   yes    |         Slot Number                    |
-+-------------+--------+----------+----------------------------------------+
++------------------+---------+---------------------------------------------------------------------------------------+
+| Name             | Type    | Description                                                                           |
++==================+=========+=======================================================================================+
+| transactionId    | String  | Find by Transaction Id                                                                |
++------------------+---------+---------------------------------------------------------------------------------------+
+| blockHash        | String  | Search in block referenced by blockHash (do not care about txIndex parameter)         |
++------------------+---------+---------------------------------------------------------------------------------------+
+| transactionIndex | boolean | txIndex = true -> Search in memory pool, if not found, search in the whole blockchain |
++------------------+---------+---------------------------------------------------------------------------------------+
+| format           | boolean |                                                                                       |
++------------------+---------+---------------------------------------------------------------------------------------+
    
 **Example request**:
 
@@ -551,9 +561,38 @@ ______
    
 **Parameters**
 
-+------------------+
-| **TBD**          |
-+------------------+
+Schema 
+
+   ..sourcode:: http
+   
+      {
+        "transactionInputs": [
+          {
+            "boxId": "string"
+          }
+        ],
+        "regularOutputs": [
+          {
+            "publicKey": "string",
+            "value": 0
+          }
+        ],
+        "withdrawalRequests": [
+          {
+            "publicKey": "string",
+            "value": 0
+          }
+        ],
+        "forgerOutputs": [
+          {
+            "publicKey": "string",
+            "blockSignPublicKey": "string",
+            "vrfPubKey": "string",
+            "value": 0
+          }
+        ],
+        "format": false
+      }      
 
    
 **Example request**:
