@@ -266,7 +266,7 @@ CarSellOrderBoxData  uses custom proposition type, thus *proposition* field have
 Implementation of CarSellOrderBoxDataSerializer
 ***********************************************
 
-CarSellOrderDataSerializer is implemented according to the description from “Custom Box Data Serializer Creation” chapter as 
+CarSellOrderDataSerializer is implemented according to the description from the (`“Custom Box Data Serializer creation section” <07-Sidechain-SDK-extension.html#custom-box-data-serializer-class-creation>`_) as
 ``public class CarSellOrderBoxDataSerializer implements NoncedBoxDataSerializer<CarSellOrderData>``. 
 Nothing special to note about.
 
@@ -274,7 +274,7 @@ Nothing special to note about.
 Implementation of CarSellOrderBox
 *********************************
 
-CarSellorder is implemented according to description from the (`“Custom Box Class creation section” <07-Sidechain-SDK-extension.html#custom-box-class-creation>`_) as
+A CarSellorder is implemented according to description from the (`“Custom Box Class creation section” <07-Sidechain-SDK-extension.html#custom-box-class-creation>`_) as
 public final class CarSellOrderBox extends AbstractNoncedBox<SellOrderProposition, CarSellOrderBoxData, CarSellOrderBox>
 
 Nothing special about implementation.
