@@ -195,12 +195,12 @@ As parameters for **AbstractNoncedBox** three template parameters shall be provi
  P extends Proposition
 
 - Proposition type for the box, for common purposes. ``PublicKey25519Proposition`` could be used as it used in regular boxes
-::
- BD extends AbstractNoncedBoxData<P, B, BD>
+  ::
+   BD extends AbstractNoncedBoxData<P, B, BD>
    
 - Definition of type for Box Data which contains all custom data for a new custom box
-::
- B extends AbstractNoncedBox<P, BD, B>
+  ::
+   B extends AbstractNoncedBox<P, BD, B>
 
 - Definition of type for Box itself, required for description inside of new Custom Box data.
   
