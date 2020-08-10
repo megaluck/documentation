@@ -363,31 +363,30 @@ Extend API:
        public long fee;
 
        // Setters to let Akka jackson JSON library to automatically deserialize the request body.
-       ::
-        public void setVin(String vin) {
-            this.vin = vin;
-        }
+            public void setVin(String vin) {
+                this.vin = vin;
+            }
 
-        public void setYear(int year) {
-            this.year = year;
-        }
+            public void setYear(int year) {
+                this.year = year;
+            }
 
-        public void setModel(String model) {
-            this.model = model;
-        }
+            public void setModel(String model) {
+                this.model = model;
+            }
 
-        public void setColor(String color) {
-            this.color = color;
-        }
+            public void setColor(String color) {
+                this.color = color;
+            }
 
-        public void setProposition(String proposition) {
-            this.proposition = proposition;
-        }
+            public void setProposition(String proposition) {
+                this.proposition = proposition;
+            }
 
-        public void setFee(long fee) {
-            this.fee = fee;
+            public void setFee(long fee) {
+                this.fee = fee;
+            }
         }
-    }
 
 
 Request class shall have appropriate setters and getters for all class members. Class members' names define a structure for related JSON structure according to `Jackson library <https://github.com/FasterXML/jackson-databind/>`_, so next JSON structure is expected to be set: 
