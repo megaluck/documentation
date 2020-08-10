@@ -6,7 +6,7 @@ This tutorial offers Java developers all the needed information to build a compl
 
 So, concepts such as Transactions, UTXO's, Blocks, Validation, Confirmation, Consensus, Unique chain, and chain forks, Hash Function, Private/Public key, and Signing should be known and understood, as well as the concept of a network of nodes and node communication.
 
-If the above words are new to you, you can start by exploring the Horizen Academy website's material (link). Also, the original whitepaper by Satoshi Nakamoto, "Bitcoin: A Peer-to-Peer Electronic Cash System" (link), can be a good starting point. Direct experience with an existing blockchain software is also a very useful prerequisite. For that, you can install the Horizen "zend" software from (Github), and explore its rpc command interface and "regtest" mode.
+If the above words are new to you, you can start by exploring the Horizen Academy website's material (`link <https://academy.horizen.global/>`_). Also, the original whitepaper by Satoshi Nakamoto, "Bitcoin: A Peer-to-Peer Electronic Cash System" (`link <https://bitcoin.org/bitcoin.pdf>`_), can be a good starting point. Direct experience with an existing blockchain software is also a very useful prerequisite. For that, you can install the Horizen "zend" software from (`Github <https://github.com/HorizenOfficial/zen>`_), and explore its rpc command interface and "regtest" mode.
 
 ****************
 Why a Sidechain?
