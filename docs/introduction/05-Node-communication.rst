@@ -25,7 +25,7 @@ timeout -- Timeout on API requests in seconds
 
 * `Postman <https://www.postman.com/>`__ Collaboration Platform for API Development
 
-* Embedded swagger client: Sending HTTP requests via a  swagger client which is already embedded in the Sidechain Node. So you could run in your browser “IP:port” as defined in your configuration file, and select any of the commands shown there. For example: 
+* Embedded `swagger <https://swagger.io/>`_ client: Sending HTTP requests via a  swagger client which is already embedded in the Sidechain Node. So you could run in your browser “IP:port” as defined in your configuration file, and select any of the commands shown there. For example: 
   
   .. image:: /images/swagger.png
    :alt: Swagger
