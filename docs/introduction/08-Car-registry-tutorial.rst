@@ -484,24 +484,22 @@ As a first parameter we pass reference to SidechainNodeView, second reference is
     Where *isSeller* is false.
 
 * Create cancelCarSellOrder transaction
-
     * Specify cancel request as 
-    
-        ::
-            public class SpendCarSellOrderRequest {
-               public String carSellOrderId; // hex representation of box id
-               public long fee;
+      ::
+        public class SpendCarSellOrderRequest {
+            public String carSellOrderId; // hex representation of box id
+            public long fee;
 
-               // Setters to let Akka jackson JSON library to automatically deserialize the request body.
+            // Setters to let Akka jackson JSON library to automatically deserialize the request body.
 
-               public void setCarSellOrderId(String carSellOrderId) {
-                   this.carSellOrderId = carSellOrderId;
-               }
-
-               public void setFee(long fee) {
-                   this.fee = fee;
-               }
+            public void setCarSellOrderId(String carSellOrderId) {
+                this.carSellOrderId = carSellOrderId;
             }
+
+            public void setFee(long fee) {
+                this.fee = fee;
+            }
+        }
     * Specify transaction itself. Because we recall our sell order then isSeller parameter during transaction creation is set to false.
 
 
