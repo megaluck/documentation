@@ -40,13 +40,13 @@ In terms of customization, the History object is the only one that is fully cont
 
 The core logic of State, Wallet and Memory Pool can instead be extended by sidechain developers:
 
- * The “State” is a set of objects that are the result of processing all the previous blocks. These objects are needed to validate the next blocks, to allow the Node to efficiently verify, before applying a block, that all the defined rules have been respected by it. The “State” can be extended to keep track of new objects that can be useful to enforce additional rules that can be implemented in the application state interface.
+ * The “State” is a set of objects that are the result of processing all the previous blocks. These objects are needed to validate the next block, to allow the Node to efficiently verify, before applying a block, that all the defined rules have been respected by it. The “State” can be extended to keep track of new objects that can be useful to enforce additional rules that can be implemented in the application state interface.
 
- * “Wallet” can be extended  through the ApplicationWallet interface, e.g. to change box ownership rules.
+ * The “Wallet” can be extended  through the ApplicationWallet interface, e.g. to change box ownership rules.
 
  * The logic to accept transactions in “Memory Pool” can be also extended, e.g. transaction incompatibility rules to address possible custom data conflicts.
 
-As mentioned before, the “Box” is an important element, as it is designed as an object that contains some data, e.g. an amount of ZEN coins, or data of a custom object (such as a car’s plate as we’ll see in Chapter 9), associated with some conditions (called “Proposition”) that protect them from being spent other than by a party (or parties) able to satisfy that proposition. Usually, the ability to satisfy a Proposition is given by knowledge of some data (“called “Secret”), that can be used to produce a “Proof” that satisfies the Proposition and opens the Box, so that it can be spent. 
+As mentioned before, the “Box” is an important element, as it is designed as an object that contains some data, e.g. an amount of ZEN coins, or data of a custom object (such as a car’s plate as we’ll see in Section 9), associated with some conditions (called “Proposition”) that protect them from being spent other than by a party (or parties) able to satisfy that proposition. Usually, the ability to satisfy a Proposition is given by knowledge of some data (“called “Secret”), that can be used to produce a “Proof” that satisfies the Proposition and opens the Box, so that it can be spent. 
 
 If we translate the above into bitcoin-like terminology, a UTXO is a Box, a locking script of an output is a Proposition, e.g. a P2PK unlocking script, the signature is the proof, and its associated private key is the Secret.
 
