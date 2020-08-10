@@ -17,6 +17,9 @@ Sidechain Node API spec
 | blockId | String | yes      | Find block by ID |
 +---------+--------+----------+------------------+
 
+   :query boolean active: return only active versions
+   :query boolean built: return only built versions
+
 **Example request**:
 
 .. tabs::
