@@ -404,7 +404,7 @@ Request class shall have appropriate setters and getters for all class members. 
 Few notes: setter’s input parameter could have a different type than set class member. It allows us to make all necessary conversation in setters.
 
 * Define response for Car creation transaction, the result of transaction shall be defined by implementing SuccessResponse interface with class members which shall be returned as API response, all members shall have properly set getters, also response class shall have proper annotation ``@JsonView(Views.Default.class)`` thus jackson library is able correctly represent response class in JSON format. In our case, we expect to return transaction bytes, so response class is next:
-    ::
+  ::
     @JsonView(Views.Default.class)
     class TxResponse implements SuccessResponse {
     public String transactionBytes;
