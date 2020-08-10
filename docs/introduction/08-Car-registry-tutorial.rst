@@ -248,11 +248,16 @@ Few comments about implementation: Information about proof type is defined by th
 Implementation of CarSellOrderBoxData
 *************************************
 
-CarSellOrderBoxData is implemented according description from “Custom Box Data Creation” section as public class CarSellOrderData extends AbstractNoncedBoxData<SellOrderProposition, CarSellOrderBox, CarSellOrderBoxData> with custom data as:
-private final String vin;
-private final int year;
-private final String model;
-private final String color;
+A CarSellOrderBoxData is implemented according to the description from (`“Custom Box Data class creation section” <07-Sidechain-SDK-extension.html#custom-box-data-class-creation"`_) as 
+::
+ public class CarSellOrderData extends AbstractNoncedBoxData<SellOrderProposition, CarSellOrderBox, CarSellOrderBoxData> 
+ 
+with custom data as:
+::
+ private final String vin;
+ private final int year;
+ private final String model;
+ private final String color;
 
 
 Few comments about implementation:
