@@ -899,9 +899,16 @@ ______
    
 **Parameters**
 
-+------------------+
-| **TBD**          |
-+------------------+
+Schema
+
+   .. sourcecode:: http
+
+      {
+        "boxTypeClass": "string",
+        "excludeBoxIds": [
+          "string"
+        ]
+      }
 
    
 **Example request**:
@@ -948,9 +955,11 @@ ______
    
 **Parameters**
 
-+------------------+
-| **TBD**          |
-+------------------+
++---------+--------+----------+-------------+
+| Name    | Type   | Required | Description |
++=========+========+==========+=============+
+| boxType | String | No       |  Box type   |
++---------+--------+----------+-------------+
 
    
 **Example request**:
@@ -985,11 +994,7 @@ ______
 *Create new secret and return corresponding address (public key)*
 
    
-**Parameters**
-
-+------------------+
-| **TBD**          |
-+------------------+
+**No Parameters**
 
    
 **Example request**:
@@ -1025,11 +1030,7 @@ ______
 *Create new Vrf secret and return corresponding public key*
 
    
-**Parameters**
-
-+------------------+
-| **TBD**          |
-+------------------+
+**No Parameters**
 
    
 **Example request**:
@@ -1063,9 +1064,11 @@ ________
    
 **Parameters**
 
-+------------------+
-| **TBD**          |
-+------------------+
++----------+--------+-------------+
+| Name     | Type   | Description |
++==========+========+=============+
+| protoype | String |             |
++----------+--------+-------------+
 
    
 **Example request**:
@@ -1109,11 +1112,7 @@ ________
 *Returns the list of all sidechain node peers*
 
    
-**Parameters**
-
-+------------------+
-| **TBD**          |
-+------------------+
+**No Parameters**
 
    
 **Example request**:
@@ -1156,9 +1155,13 @@ __________
    
 **Parameters**
 
-+------------------+
-| **TBD**          |
-+------------------+
++------+--------+--------------+
+| Name | Type   | Description  |
++======+========+==============+
+| host | String | Node hostname|
++------+--------+--------------+
+| port | int    | Node Port    |
++------+--------+--------------+
 
    
 **Example request**:
@@ -1344,9 +1347,15 @@ ______________
    
 **Parameters**
 
-+------------------+
-| **TBD**          |
-+------------------+
++--------+---------+--------------+
+| Name   | Type    | Description  |
++========+=========+==============+
+| hash   | String  | Block hash   |
++--------+---------+--------------+
+| height | int     | Block height |
++--------+---------+--------------+
+| format | boolean |              |
++--------+---------+--------------+
 
    
 **Example request**:
@@ -1390,9 +1399,13 @@ ____________
    
 **Parameters**
 
-+------------------+
-| **TBD**          |
-+------------------+
++--------+---------+-------------+
+| Name   | Type    | Description |
++========+=========+=============+
+| hash   | String  | Block hash  |
++--------+---------+-------------+
+| format | boolean |             |
++--------+---------+-------------+
 
    
 **Example request**:
