@@ -16,7 +16,7 @@ Secret / Proof / Proposition
 
 * SDK provides the following implementations for Secret / Proof / Proposition
 
-  * Curve 25519
+  * `Curve 25519 <https://en.wikipedia.org/wiki/Curve25519>`_
 	- PrivateKey25519
 	- PublicKey25519Proposition
 	- Signature25519
