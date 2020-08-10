@@ -76,11 +76,24 @@ So, the starting point of the development process is the data representation. A 
 Special proposition and proof:
 ##############################
 
-    a) **SellOrderProposition** Standard proposition only contains one public key, i.e., only one specific secret key could open that proposition. 
+    a) **SellOrderProposition** 
+       The standard proposition only contains one public key, i.e., only one specific secret key could open that proposition. 
        However, for a sell order, we need a way to open and spend the box in two different ways, so we need to specify an additional proposition/proof. 
-       SellOrderProposition contains two public keys: ``ownerPublicKeyBytes`` and ``buyerPublicKeyBytes``. So the seller or buyer's private keys could open that proposition.
-    |
-    b) **SellOrderSpendingProof** The proof that allows us to open and spend ``CarSellOrderBox`` in two different ways: opened by the buyer and thus buy the car or opened by the seller and thus recall car sell order. Such proof creation requires two different API calls, but as a result, in both cases, we will have the same type of transaction with the same proof type. 
+       SellOrderProposition contains two public keys: 
+       ::
+        ownerPublicKeyBytes
+       
+       and 
+       ::buyerPublicKeyBytes 
+       
+       So the seller or buyer's private keys could open that proposition.
+    
+    b) **SellOrderSpendingProof** 
+       The proof that allows us to open and spend 
+       ::
+        CarSellOrderBox 
+       
+       in two different ways: opened by the buyer and thus buy the car or opened by the seller and thus recall car sell order. Such proof creation requires two different API calls, but as a result, in both cases, we will have the same type of transaction with the same proof type. 
 
 
 Transactions:
@@ -222,7 +235,7 @@ implemented as
 ::
  public final class SellOrderProposition implements ProofOfKnowledgeProposition<PrivateKey25519>
 
-Point to note is that the proposition contains two public keys, thus that proposition could be opened by two different keys.
+A point to note is that the proposition contains two public keys, thus that proposition could be opened by two different keys.
 
 Implementation of SellOrderPropositionSerializer
 ************************************************
@@ -239,9 +252,10 @@ implemented as
 Implementation of SellOrderSpendingProof  
 ****************************************
 
-``SellOrderSpendingProof implemented as  extends AbstractSignature25519<PrivateKey25519, SellOrderProposition>``
+::
+ SellOrderSpendingProof implemented as  extends AbstractSignature25519<PrivateKey25519, SellOrderProposition>
 
-Few comments about implementation: Information about proof type is defined by the result of method boolean isSeller(). For example an implementation of method isValid uses that flag:
+Implementation Comments: Information about proof type is defined by the result of method boolean isSeller(). For example an implementation of method isValid uses that flag:
 ::
  public boolean isValid(SellOrderProposition proposition, byte[] message) {
   if(isSeller) {
