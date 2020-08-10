@@ -231,24 +231,22 @@ Implementation of SellOrderSpendingProof
 ``SellOrderSpendingProof implemented as  extends AbstractSignature25519<PrivateKey25519, SellOrderProposition>``
 
 Few comments about implementation: Information about proof type is defined by the result of method boolean isSeller(). For example an implementation of method isValid uses that flag:
-
-    ::
-    
-        public boolean isValid(SellOrderProposition proposition, byte[] message) {
-        if(isSeller) {
-        // Car seller wants to discard selling.
-        return Ed25519.verify(signatureBytes, message, proposition.getOwnerPublicKeyBytes());
-        } else {
-        // Specific buyer wants to buy the car.
-        return Ed25519.verify(signatureBytes, message, proposition.getBuyerPublicKeyBytes());
-        }
-        }
+::
+ public boolean isValid(SellOrderProposition proposition, byte[] message) {
+  if(isSeller) {
+   // Car seller wants to discard selling.
+   return Ed25519.verify(signatureBytes, message, proposition.getOwnerPublicKeyBytes());
+  } else {
+   // Specific buyer wants to buy the car.
+   return Ed25519.verify(signatureBytes, message, proposition.getBuyerPublicKeyBytes());
+  }
+ }
 
 
 Implementation of CarSellOrderBoxData
 *************************************
 
-A CarSellOrderBoxData is implemented according to the description from (`“Custom Box Data class creation section” <07-Sidechain-SDK-extension.html#custom-box-data-class-creation"`_) as 
+A CarSellOrderBoxData is implemented according to the description from the (`“Custom Box Data class creation section” <07-Sidechain-SDK-extension.html#custom-box-data-class-creation>"`_) as 
 ::
  public class CarSellOrderData extends AbstractNoncedBoxData<SellOrderProposition, CarSellOrderBox, CarSellOrderBoxData> 
  
