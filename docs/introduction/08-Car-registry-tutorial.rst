@@ -415,16 +415,16 @@ Few notes: setter’s input parameter could have a different type than set class
 
 
 * Define Car creation transaction itself
-::
- private ApiResponse createCar(SidechainNodeView view, CreateCarBoxRequest ent)
+  ::
+   private ApiResponse createCar(SidechainNodeView view, CreateCarBoxRequest ent)
 
 As a first parameter we pass reference to SidechainNodeView, second reference is previously defined class on step 1 for representation of JSON request. 
 
 * Define request for Car sell order transaction CreateCarSellOrderRequest  similar as it was done for Car creation transaction request
 
     * Define request class for Car sell order transaction CreateCarSellOrderRequest as it was done for Car creation transaction request:
-    ::
-     public class CreateCarSellOrderRequest {
+      ::
+       public class CreateCarSellOrderRequest {
         public String carBoxId; // hex representation of box id
         public String buyerProposition; // hex representation of public key proposition
         public long sellPrice;
@@ -447,7 +447,7 @@ As a first parameter we pass reference to SidechainNodeView, second reference is
         public void setFee(int fee) {
             this.fee = fee;
         }
-     }
+      }
 
 * Define Car Sell order transaction itself -- ``private ApiResponse createCarSellOrder(SidechainNodeView view, CreateCarSellOrderRequest ent)`` Required actions are similar as it was done to Create Car transaction. The main idea is a moving Car Box into CarSellOrderBox.
 
