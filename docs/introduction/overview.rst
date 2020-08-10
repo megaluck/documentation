@@ -2,7 +2,8 @@
 Before you start
 ################
 
-This tutorial offers Java developers all the needed information to build a complete blockchain application on the Horizen Sidechain system. Apart from Java competency, this tutorial assumes that the reader has a high-level understanding of how blockchain-based distributed software works. 
+| This tutorial offers Java developers all the needed information to build a complete blockchain application on the Horizen Sidechain system. 
+| Apart from Java competency, this tutorial assumes that the reader has a high-level understanding of how blockchain-based distributed software works. 
 
 So, concepts such as Transactions, UTXO's, Blocks, Validation, Confirmation, Consensus, Unique chain, and chain forks, Hash Function, Private/Public key, and Signing should be known and understood, as well as the concept of a network of nodes and node communication.
 
