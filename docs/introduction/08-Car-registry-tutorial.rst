@@ -447,7 +447,7 @@ As a first parameter we pass reference to SidechainNodeView, second reference is
         public void setFee(int fee) {
             this.fee = fee;
         }
-      }
+       }
 
 * Define Car Sell order transaction itself -- ``private ApiResponse createCarSellOrder(SidechainNodeView view, CreateCarSellOrderRequest ent)`` Required actions are similar as it was done to Create Car transaction. The main idea is a moving Car Box into CarSellOrderBox.
 
@@ -469,7 +469,7 @@ As a first parameter we pass reference to SidechainNodeView, second reference is
         public void setFee(long fee) {
         this.fee = fee;
         }
-      }
+       }
             
     * Specify acceptCarSellOrder transaction itself
     * As a result we still could use TxResponse class
