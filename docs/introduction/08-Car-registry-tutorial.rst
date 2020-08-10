@@ -181,13 +181,11 @@ Implementation of CarBoxData:
 *****************************
 
 CarBoxData is implemented according description from ``Custom Box Data Creation`` section as ``public class CarBoxData extends AbstractNoncedBoxData<PublicKey25519Proposition, CarBox, CarBoxData>`` with custom data as:
-
-    ::
-    
-        private final BigInteger vin;
-        private final int year;
-        private final String model;
-        private final String color;
+::    
+ private final BigInteger vin;
+ private final int year;
+ private final String model;
+ private final String color;
         
 Few comments about implementation:
 
@@ -210,14 +208,14 @@ Few comments about implementation:
 
     1. As a serialization part SDK developer shall include ``long nonce`` as a part of serialization, thus serialization is implemented in the following way:
     
-        ::
-            public byte[] bytes()
-            {
-             return Bytes.concat(
-                 Longs.toByteArray(nonce),
-                 CarBoxDataSerializer.getSerializer().toBytes(boxData)
-             );
-            }
+    ::
+     public byte[] bytes()
+     {
+         return Bytes.concat(
+             Longs.toByteArray(nonce),
+            CarBoxDataSerializer.getSerializer().toBytes(boxData)
+         );
+     }
 
     2. ``CarBox`` defines his own unique id by implementation of the function ``public byte boxTypeId()``. Similar function is defined in ``CarBoxData`` but it is a different ids despite value returned in ``CarBox`` and ``CarBoxData`` is the same.
 
@@ -348,9 +346,10 @@ Extend API:
     * Adding created ``CarApi`` into ``customApiGroups: customApiGroups.add(new CarApi())``;
 
     * Binding that custom api group via dependency injection:
-      bind(new TypeLiteral<List<ApplicationApiGroup>> () {})
-           .annotatedWith(Names.named("CustomApiGroups"))
-           .toInstance(customApiGroups);
+      ::
+       bind(new TypeLiteral<List<ApplicationApiGroup>> () {})
+               .annotatedWith(Names.named("CustomApiGroups"))
+               .toInstance(customApiGroups);
 
 
 * Define Car creation transaction.
@@ -361,44 +360,42 @@ Extend API:
       Fee value; 
       Proposition address which will be recognized as a Car Proposition; 
       Vehicle identification number of car. So next request class shall be created:
-        :: 
-           public class CreateCarBoxRequest {
-           public String vin;
-           public int year;
-           public String model;
-           public String color;
-           public String proposition; // hex representation of public key proposition
-           public long fee;
+      :: 
+       public class CreateCarBoxRequest {
+       public String vin;
+       public int year;
+       public String model;
+       public String color;
+       public String proposition; // hex representation of public key proposition
+       public long fee;
 
 
    // Setters to let Akka jackson JSON library to automatically deserialize the request body.
+    ::
+        public void setVin(String vin) {
+            this.vin = vin;
+        }
 
-        ::
-        
-           public void setVin(String vin) {
-               this.vin = vin;
-           }
+        public void setYear(int year) {
+            this.year = year;
+        }
 
-           public void setYear(int year) {
-               this.year = year;
-           }
+        public void setModel(String model) {
+            this.model = model;
+        }
 
-           public void setModel(String model) {
-               this.model = model;
-           }
+        public void setColor(String color) {
+            this.color = color;
+        }
 
-           public void setColor(String color) {
-               this.color = color;
-           }
+        public void setProposition(String proposition) {
+            this.proposition = proposition;
+        }
 
-           public void setProposition(String proposition) {
-               this.proposition = proposition;
-           }
-
-           public void setFee(long fee) {
-               this.fee = fee;
-           }
-           }
+        public void setFee(long fee) {
+            this.fee = fee;
+        }
+    }
 
 
 Request class shall have appropriate setters and getters for all class members. Class members' names define a structure for related JSON structure according to `Jackson library <https://github.com/FasterXML/jackson-databind/>`_, so next JSON structure is expected to be set: 
