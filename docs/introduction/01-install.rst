@@ -85,7 +85,7 @@ As a result of step 8, three jar files will be generated:
 Sidechain Setup Configuration
 *****************************
 
-Check the following `example <https://github.com/HorizenOfficial/Sidechains-SDK/blob/master/examples/simpleapp/mc_sc_workflow_example.md>`_
+Check the following `link <https://github.com/HorizenOfficial/Sidechains-SDK/blob/master/examples/simpleapp/mc_sc_workflow_example.md>`_
 
   
 
