@@ -84,12 +84,14 @@ Special proposition and proof:
         ownerPublicKeyBytes
        
        and 
-       ::buyerPublicKeyBytes 
-       
-       So the seller or buyer's private keys could open that proposition.
-    
-    b) **SellOrderSpendingProof** 
-       The proof that allows us to open and spend 
+
+       ::
+        buyerPublicKeyBytes 
+
+       So the seller or buyer's private keys could open that proposition.  
+
+    b) **SellOrderSpendingProof**
+       The proof that allows us to open and spend
        ::
         CarSellOrderBox 
        
