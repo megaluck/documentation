@@ -2,8 +2,8 @@
 Internal representation of a Blockchain
 ***************************************
 
-Being a distributed architecture, the sidechain software is meant to be delivered as a software application that will be compiled/installed by potentially many different independent, connected computers. In blockchain jargon, these computers are called “Nodes,” and the term “node” is also generally used to name also the blockchain software itself, the one run by each of the computers that participate in the blockchain.
-So, the output of the Sidechain SDK, when customised by a developer, is a “Node” that implements some core functionalities, and the added logic.
+Being a distributed architecture, the sidechain software is meant to be delivered as a software application that will be compiled/installed by potentially many different independent, connected computers. In blockchain jargon, these computers are called “Nodes,” and the term “node” is also generally used to name the blockchain software itself.
+So, the output of the Sidechain SDK, when customized by a developer, is a “Node” that implements core functionalities, and the added logic.
 
 A Node consists of 4 main elements: “**History**,” “**State**,” “**Wallet**,” and “**Memory pool**.” Before we get to know these 4 elements we need to know what a “box” is.
 
