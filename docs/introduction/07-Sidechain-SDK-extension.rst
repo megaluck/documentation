@@ -68,7 +68,7 @@ Example:
        .annotatedWith(Names.named("CustomBoxSerializers"))
        .toInstance(customBoxSerializers);
 
- Where
+Where
 
 * **BoxSerializer<Box<Proposition>>>** -- common serializer type
 * **"CustomBoxSerializers"** -- bound property name 
