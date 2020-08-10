@@ -87,7 +87,7 @@ Because the SDK is based on Scorex we implement the Scorex way of data serializa
   * `BytesSerializable <https://github.com/ScorexFoundation/Scorex/blob/master/src/main/scala/scorex/core/serialization/BytesSerializable.scala>`_ declare functions byte[] bytes() and Serializer serializer(). 
   * Serializer itself works with Reader/Writer, which are wrappers on byte stream. 
   * Scorex Reader and Writer also implements functionality like reading/parsing data of integer/long/string etc. 
-  * Serialization and parsing itself implemented in data class by implementation byte[] bytes() (required by BytesSerializable interface) and implementation static function for parsing bytes public static Data parseBytes(byte[] bytes)
+  * Serialization and parsing itself implemented in data class by implementation ``byte[] bytes()`` (required by BytesSerializable interface) and implementation static function for parsing bytes ``public static Data parseBytes(byte[] bytes)``
   * Also, for correct parse purposes, special bytes such as a unique id of data type are put at the beginning of the byte stream (it is done automatically). Thus any serialized data shall provide a unique id. Specific serializers shall be set for those unique ids during the dependency injection setting as well as custom Serializer shall be put into Custom Serializers Map, which are defined at AppModule. Please refer to the SDK extension section for more information
 
 SidechainNodeView
