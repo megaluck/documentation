@@ -404,54 +404,50 @@ Request class shall have appropriate setters and getters for all class members. 
 Few notes: setter’s input parameter could have a different type than set class member. It allows us to make all necessary conversation in setters.
 
 * Define response for Car creation transaction, the result of transaction shall be defined by implementing SuccessResponse interface with class members which shall be returned as API response, all members shall have properly set getters, also response class shall have proper annotation ``@JsonView(Views.Default.class)`` thus jackson library is able correctly represent response class in JSON format. In our case, we expect to return transaction bytes, so response class is next:
-
-    ::
-        @JsonView(Views.Default.class)
-        class TxResponse implements SuccessResponse {
-           public String transactionBytes;
-
-           public TxResponse(String transactionBytes) {
-               this.transactionBytes = transactionBytes;
-           }
-        }
+::
+ @JsonView(Views.Default.class)
+ class TxResponse implements SuccessResponse {
+ public String transactionBytes;
+    public TxResponse(String transactionBytes) {
+        this.transactionBytes = transactionBytes;
+    }
+ }
 
 
 * Define Car creation transaction itself
-
-    ::
-        private ApiResponse createCar(SidechainNodeView view, CreateCarBoxRequest ent)
+::
+ private ApiResponse createCar(SidechainNodeView view, CreateCarBoxRequest ent)
 
 As a first parameter we pass reference to SidechainNodeView, second reference is previously defined class on step 1 for representation of JSON request. 
 
 * Define request for Car sell order transaction CreateCarSellOrderRequest  similar as it was done for Car creation transaction request
 
     * Define request class for Car sell order transaction CreateCarSellOrderRequest as it was done for Car creation transaction request:
-    
-        ::
-            public class CreateCarSellOrderRequest {
-               public String carBoxId; // hex representation of box id
-               public String buyerProposition; // hex representation of public key proposition
-               public long sellPrice;
-               public long fee;
+    ::
+     public class CreateCarSellOrderRequest {
+        public String carBoxId; // hex representation of box id
+        public String buyerProposition; // hex representation of public key proposition
+        public long sellPrice;
+        public long fee;
 
-               // Setters to let Akka jackson JSON library to automatically deserialize the request body.
+        // Setters to let Akka jackson JSON library to automatically deserialize the request body.
 
-               public void setCarBoxId(String carBoxId) {
-                   this.carBoxId = carBoxId;
-               }
+        public void setCarBoxId(String carBoxId) {
+            this.carBoxId = carBoxId;
+        }
 
-               public void setBuyerProposition(String buyerProposition) {
-                   this.buyerProposition = buyerProposition;
-               }
+        public void setBuyerProposition(String buyerProposition) {
+            this.buyerProposition = buyerProposition;
+        }
 
-               public void setSellPrice(long sellPrice) {
-                   this.sellPrice = sellPrice;
-               }
+        public void setSellPrice(long sellPrice) {
+            this.sellPrice = sellPrice;
+        }
 
-               public void setFee(int fee) {
-                   this.fee = fee;
-               }
-            }
+        public void setFee(int fee) {
+            this.fee = fee;
+        }
+     }
 
 * Define Car Sell order transaction itself -- ``private ApiResponse createCarSellOrder(SidechainNodeView view, CreateCarSellOrderRequest ent)`` Required actions are similar as it was done to Create Car transaction. The main idea is a moving Car Box into CarSellOrderBox.
 
