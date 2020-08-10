@@ -246,7 +246,7 @@ Few comments about implementation: Information about proof type is defined by th
 Implementation of CarSellOrderBoxData
 *************************************
 
-A CarSellOrderBoxData is implemented according to the description from the (`“Custom Box Data class creation section” <07-Sidechain-SDK-extension.html#custom-box-data-class-creation>"`_) as 
+A CarSellOrderBoxData is implemented according to the description from the (`“Custom Box Data class creation section” <07-Sidechain-SDK-extension.html#custom-box-data-class-creation>`_) as 
 ::
  public class CarSellOrderData extends AbstractNoncedBoxData<SellOrderProposition, CarSellOrderBox, CarSellOrderBoxData> 
  
