@@ -191,20 +191,16 @@ The SDK provides a base class for creation of a Custom Box:
  public class CustomBox extends AbstractNoncedBox<PublicKey25519Proposition, CustomBoxData, CustomBoxBox>
 
 As parameters for **AbstractNoncedBox** three template parameters shall be provided:
-
 ::
-  P extends Proposition
+ P extends Proposition
 
 - Proposition type for the box, for common purposes. ``PublicKey25519Proposition`` could be used as it used in regular boxes
-
-
 ::
-  BD extends AbstractNoncedBoxData<P, B, BD>
+ BD extends AbstractNoncedBoxData<P, B, BD>
    
 - Definition of type for Box Data which contains all custom data for a new custom box
-
 ::
-   B extends AbstractNoncedBox<P, BD, B>
+ B extends AbstractNoncedBox<P, BD, B>
 
 - Definition of type for Box itself, required for description inside of new Custom Box data.
   
@@ -222,7 +218,6 @@ Custom Box Serializer Class
 
 SDK provide base class for Custom Box Serializer BoxSerializer<B extends Box> where B is type of serialized Custom Box
 So the creation of Custom Box Serializer can be done in the following way:
-
 ::
  public class CustomBoxSerializer implements NoncedBoxSerializer<CustomBox>
 
@@ -237,15 +232,11 @@ The new Custom Box Serializer requires the following:
       public CustomBox parse(Reader reader)
 
   3. Class shall be converted to singleton, for example it could be done in following way:
-
-    ::
-    
+     ::
       private static final CustomBoxSerializer serializer = new CustomBoxSerializer();
-
       private CustomBoxSerializer() {
        super();
       }
-
       public static CustomBoxSerializer getSerializer() {
        return serializer;
       }
@@ -270,13 +261,12 @@ Any custom transaction shall implement three important functions:
 ``public boolean transactionSemanticValidity()`` -- this function defines is transaction semantically valid or not, i.e. verify stateless (without context) transaction correctness. Non zero fee and positive timestamp are examples of such verification.
 
 ``public List<BoxUnlocker<Proposition>> unlockers()`` -- SDK core does box opening verification by checking proofs against input box ids. However, information about closed boxes and proofs for that box shall be returned separately by each transaction. For such purposes each transaction shall return a list of `unlockers <https://github.com/HorizenOfficial/Sidechains-SDK/blob/master/sdk/src/main/java/com/horizen/box/BoxUnlocker.java>`_ which are implements following interface:
-
 ::
-   public interface BoxUnlocker<P extends Proposition>
-   {
-    byte[] closedBoxId();
-    Proof<P> boxKey();
-   }
+  public interface BoxUnlocker<P extends Proposition>
+  {
+  byte[] closedBoxId();
+  Proof<P> boxKey();
+  }
 
 Where *closedBoxId* is the id of the closed box and *boxKey* is correct proof for that box.
 

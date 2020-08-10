@@ -399,7 +399,6 @@ Extend API:
 
 
 Request class shall have appropriate setters and getters for all class members. Class members' names define a structure for related JSON structure according to `Jackson library <https://github.com/FasterXML/jackson-databind/>`_, so next JSON structure is expected to be set: 
-
     ::
         {
           "vin":"30124",
