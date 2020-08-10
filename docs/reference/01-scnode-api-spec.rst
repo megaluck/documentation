@@ -519,11 +519,38 @@ ______
    
 **Parameters**
 
-+------------------+--------+----------+----------------------------------------+
-| Name             | Type   | Required |          Description                   |
-+==================+========+==========+========================================+
-| transactionBytes | String |   yes    |         byte String                    |
-+------------------+--------+----------+----------------------------------------+
+Schema
+
+   .. sourcecode:: http
+
+      {
+        "transactionInputs": [
+          {
+            "boxId": "string"
+          }
+        ],
+        "regularOutputs": [
+          {
+            "publicKey": "string",
+            "value": 0
+          }
+        ],
+        "withdrawalRequests": [
+          {
+            "publicKey": "string",
+            "value": 0
+          }
+        ],
+        "forgerOutputs": [
+          {
+            "publicKey": "string",
+            "blockSignPublicKey": "string",
+            "vrfPubKey": "string",
+            "value": 0
+          }
+        ],
+        "format": false
+      }
 
    
 **Example request**:
@@ -566,11 +593,6 @@ Schema
    .. sourcecode:: http
    
       {
-        "transactionInputs": [
-          {
-            "boxId": "string"
-          }
-        ],
         "regularOutputs": [
           {
             "publicKey": "string",
@@ -591,8 +613,9 @@ Schema
             "value": 0
           }
         ],
-        "format": false
-      }      
+        "fee": 0,
+        "format": true
+      }
 
    
 **Example request**:
@@ -630,9 +653,19 @@ ______
    
 **Parameters**
 
-+------------------+
-| **TBD**          |
-+------------------+
+Schema
+
+   .. sourcecode:: http
+
+      {
+        "outputs": [
+          {
+            "publicKey": "string",
+            "value": 0
+          }
+        ],
+        "fee": 0
+      }
 
    
 **Example request**:
@@ -668,9 +701,17 @@ ____
    
 **Parameters**
 
-+------------------+
-| **TBD**          |
-+------------------+
+   .. sourcecode:: http
+
+      {
+        "outputs": [
+          {
+            "publicKey": "string",
+            "value": 0
+          }
+        ],
+        "fee": 0
+      }      
 
    
 **Example request**:
@@ -701,9 +742,21 @@ ____
    
 **Parameters**
 
-+------------------+
-| **TBD**          |
-+------------------+
+Schema
+
+   .. sourcecode:: http
+
+      {
+        "outputs": [
+          {
+            "publicKey": "string",
+            "blockSignPublicKey": "string",
+            "vrfPubKey": "string",
+            "value": 0
+          }
+        ],
+        "fee": 0
+      }
 
    
 **Example request**:
@@ -739,9 +792,32 @@ _______
    
 **Parameters**
 
-+------------------+
-| **TBD**          |
-+------------------+
+Schema
+
+   .. sourcecode:: http
+
+      {
+        "transactionInputs": [
+          {
+            "boxId": "string"
+          }
+        ],
+        "regularOutputs": [
+          {
+            "publicKey": "string",
+            "value": 0
+          }
+        ],
+        "forgerOutputs": [
+          {
+            "publicKey": "string",
+            "blockSignPublicKey": "string",
+            "vrfPubKey": "string",
+            "value": 0
+          }
+        ],
+        "format": false
+      }
 
    
 **Example request**:
@@ -779,9 +855,11 @@ ______
    
 **Parameters**
 
-+------------------+
-| **TBD**          |
-+------------------+
++------------------+--------+--------------------------+
+| Name             | Type   | Description              |
++==================+========+==========================+
+| transactionBytes | String | Signed Transaction Bytes |
++------------------+--------+--------------------------+
 
    
 **Example request**:
