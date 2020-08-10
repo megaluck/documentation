@@ -81,7 +81,11 @@ As a result of step 8, three jar files will be generated:
   * **examples/simpleapp/target/Sidechains-SDK-simpleapp-0.2.0.jar** - A sidechain application example. You can find more details in the examples/simpleapp/readme.md file.
 
   
+*****************************
+Sidechain Setup Configuration
+*****************************
 
+Check the following `example <https://github.com/HorizenOfficial/Sidechains-SDK/blob/master/examples/simpleapp/mc_sc_workflow_example.md>`_
 
   
 
